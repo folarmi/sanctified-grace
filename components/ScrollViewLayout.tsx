@@ -1,5 +1,6 @@
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import React from "react";
+import { StatusBar } from "expo-status-bar";
 
 interface CustomScrollViewProps {
   children: React.ReactNode;
@@ -13,10 +14,13 @@ export default function ScrollViewLayout({
   return (
     <ScrollView
       className={className}
-      contentContainerStyle={{
-        paddingTop: 10,
-      }}
+      contentContainerStyle={
+        {
+          // paddingTop: 10,
+        }
+      }
     >
+      <StatusBar style="dark" />
       {children}
     </ScrollView>
   );

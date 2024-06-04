@@ -2,8 +2,8 @@ import { Tabs } from "expo-router";
 import React from "react";
 
 import { TabBarIcon } from "@/components/navigation/TabBarIcon";
-import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
+import { CustomColor } from "@/components/CustomColor";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -11,8 +11,20 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
+        tabBarActiveTintColor: CustomColor.orange,
+        tabBarInactiveTintColor: CustomColor.blue_100,
         headerShown: false,
+        tabBarStyle: {
+          height: 88,
+        },
+        tabBarLabelStyle: {
+          fontSize: 12,
+          margin: 0,
+          fontWeight: "400",
+          fontFamily: "MontserratMedium",
+          letterSpacing: -0.2,
+          marginBottom: 18,
+        },
       }}
     >
       <Tabs.Screen
@@ -27,7 +39,15 @@ export default function TabLayout() {
           ),
         }}
       />
-      <Tabs.Screen
+      {/* <Tabs.Screen
+        key="index"
+        name="index"
+        options={{
+          title: "Home",
+          tabBarIcon: ({ focused }) => <TabHomeIcon focused={focused} />,
+        }}
+      /> */}
+      {/* <Tabs.Screen
         name="explore"
         options={{
           title: "Explore",
@@ -38,7 +58,7 @@ export default function TabLayout() {
             />
           ),
         }}
-      />
+      /> */}
     </Tabs>
   );
 }

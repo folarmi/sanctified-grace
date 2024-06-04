@@ -9,6 +9,8 @@ type Variant =
   | "subHeading2"
   | "bodyText1"
   | "bodyText2"
+  | "bodyText3"
+  | "bodyText4"
   | "footer";
 
 interface TailwindTextProps extends RNTextProps {
@@ -30,6 +32,10 @@ const getBaseClasses = (variant: Variant) => {
       return "text-base font-MontserratMedium";
     case "bodyText2":
       return "text-sm font-MontserratLight";
+    case "bodyText3":
+      return "text-xs font-MontserratLight";
+    case "bodyText4":
+      return "text-xs font-MontserratMedium";
     case "footer":
       return "text-xs font-MontserratLight";
     default:

@@ -17,6 +17,7 @@ module.exports = {
         sky_blue: "#c6dbf6",
         primary: "#001229",
         blue_100: "#216ac4",
+        navy_blue: "#02387c",
       },
       fontFamily: {
         Georgia: ["Georgia"],

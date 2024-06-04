@@ -1,11 +1,13 @@
-import { Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
+import React from "react";
+import Header from "@/components/Header";
 
-export default function Index() {
+export default function index() {
   return (
     <View>
-      <View className="flex flex-row text-red-900 text-[2xl] items-center font-MontserratSemiBold">
-        <Text>Index jdfbjdbkjdbfdkj</Text>
-      </View>
+      <Header />
     </View>
   );
 }
+
+const styles = StyleSheet.create({});
