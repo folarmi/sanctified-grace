@@ -4,6 +4,16 @@ import habakkuk from "@/assets/images/habakkuk.png";
 import colossians from "@/assets/images/colossians.png";
 import bookOne from "@/assets/images/bookOne.png";
 import bookTwo from "@/assets/images/bookTwo.png";
+import inbox from "@/assets/images/inbox.png";
+import savedSermon from "@/assets/images/savedSermons.png";
+import notifications from "@/assets/images/notifications.png";
+import access from "@/assets/images/access.png";
+import termsOfuse from "@/assets/images/termsOfuse.png";
+import privacy from "@/assets/images/privacy.png";
+import aboutInfo from "@/assets/images/aboutInfo.png";
+import share from "@/assets/images/share.png";
+import feedback from "@/assets/images/feedback.png";
+import help from "@/assets/images/help.png";
 
 export const recentSermons = [
   {
@@ -67,5 +77,82 @@ export const featuredBooks = [
     author: "Matthew Henry",
     amount: "N750",
     image: bookTwo,
+  },
+];
+
+export const userProfile = [
+  {
+    id: 1,
+    name: "Ekomobong Udo-Affah",
+    sub: "Edit your profile information",
+  },
+];
+
+export const thisDevice = [
+  {
+    id: 1,
+    name: "Inbox",
+    sub: "Access your Notifications",
+    image: inbox,
+  },
+  {
+    id: 2,
+    name: "Saved Sermons",
+    sub: "Access your downloads",
+    image: savedSermon,
+  },
+];
+
+export const appSettings = [
+  {
+    id: 1,
+    name: "Notifications",
+    sub: "Manage notification Preferences",
+    image: notifications,
+  },
+  {
+    id: 2,
+    name: "Accessibility",
+    sub: "display & interaction controls",
+    image: access,
+  },
+  {
+    id: 3,
+    name: "Terms of Use",
+    sub: "Access your notes",
+    image: termsOfuse,
+  },
+  {
+    id: 4,
+    name: "Privacy Policy",
+    sub: "Access your downloads",
+    image: privacy,
+  },
+  {
+    id: 5,
+    name: "About",
+    sub: "App version 1.0",
+    image: aboutInfo,
+  },
+];
+
+export const moreItems = [
+  {
+    id: 1,
+    name: "Share Grace Multiplied App",
+    sub: "Get a link to share the app",
+    image: share,
+  },
+  {
+    id: 2,
+    name: "Feedback",
+    sub: "Provide Feedback on the App Store",
+    image: feedback,
+  },
+  {
+    id: 3,
+    name: "Help",
+    sub: "Access your downloads",
+    image: help,
   },
 ];

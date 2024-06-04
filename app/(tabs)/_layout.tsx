@@ -39,6 +39,12 @@ export default function TabLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="settings/index"
+        options={{
+          href: null,
+        }}
+      />
       {/* <Tabs.Screen
         key="index"
         name="index"

@@ -18,6 +18,7 @@ module.exports = {
         primary: "#001229",
         blue_100: "#216ac4",
         navy_blue: "#02387c",
+        dark_blue: "#001328",
       },
       fontFamily: {
         Georgia: ["Georgia"],
