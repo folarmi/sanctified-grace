@@ -14,6 +14,12 @@ import aboutInfo from "@/assets/images/aboutInfo.png";
 import share from "@/assets/images/share.png";
 import feedback from "@/assets/images/feedback.png";
 import help from "@/assets/images/help.png";
+import loginHeader from "@/assets/images/loginHeader.png";
+import todayBibleReading from "@/assets/images/todayBibleReading.png";
+import psalmsAndHymns from "@/assets/images/psalmsAndHymns.png";
+import kidsCorner from "@/assets/images/kidsCorner.png";
+import blog from "@/assets/images/blog.png";
+import bookstore from "@/assets/images/bookstore.png";
 
 export const recentSermons = [
   {
@@ -94,12 +100,14 @@ export const thisDevice = [
     name: "Inbox",
     sub: "Access your Notifications",
     image: inbox,
+    link: "inbox",
   },
   {
     id: 2,
     name: "Saved Sermons",
     sub: "Access your downloads",
     image: savedSermon,
+    link: "savedSermons",
   },
 ];
 
@@ -109,6 +117,7 @@ export const appSettings = [
     name: "Notifications",
     sub: "Manage notification Preferences",
     image: notifications,
+    link: "notifications",
   },
   {
     id: 2,
@@ -154,5 +163,124 @@ export const moreItems = [
     name: "Help",
     sub: "Access your downloads",
     image: help,
+  },
+];
+
+export const inboxData = [
+  {
+    id: 1,
+    topic: "Bible Reading",
+    date: "01 Apr 2024",
+    body: "Participate in today’s bible reading from Genesis 32, Romans 8 Eza 6, Revelations 9",
+  },
+  {
+    id: 2,
+    topic: "Sermons",
+    date: "01 Apr 2024",
+    body: "New Sermon Series : Divine Providence is now available on Grace Multiplied",
+  },
+  {
+    id: 3,
+    topic: "LiveStream",
+    date: "14 Mar 2024",
+    body: "Join us this Lord’s day in our service. Tap to stream",
+  },
+  {
+    id: 4,
+    topic: "Blog",
+    date: "14 Mar 2024",
+    body: "Christ our only Hope - Osagie Azeta",
+  },
+];
+
+export const savedSermonsData = [
+  {
+    id: 1,
+    month: "APR",
+    date: "14",
+    title: "The More Sure Word",
+    bibleVerse: "2 Peter 1:16-21",
+    preacher: "Pst. Osinachi Nwoko",
+  },
+  {
+    id: 2,
+    month: "APR",
+    date: "7",
+    title: "The Vital Place of Regular Exortation",
+    bibleVerse: "2 Peter 1:12-15",
+    preacher: "Pst. Osinachi Nwoko",
+  },
+  {
+    id: 3,
+    month: "APR",
+    date: "7",
+    title: "The Question that led to the Fall of Man",
+    bibleVerse: "Genesis 3:1-8",
+    preacher: "Bro. Joseph Eteuka",
+  },
+  {
+    id: 4,
+    month: "MAR",
+    date: "4",
+    title: "Romans 9 - the Doctrine of Election",
+    bibleVerse: "Romans 9:1-18",
+    preacher: "Pst. Ronald Kalifungwa",
+  },
+];
+
+export const notificationData = [
+  {
+    id: 1,
+    name: "Bible Reading",
+    topic: "Daily Bible Reading ",
+  },
+  {
+    id: 2,
+    name: "Grace Pulpit",
+    topic: "Sermons",
+  },
+  {
+    id: 3,
+    name: "Messages",
+    topic: "App Updates",
+  },
+];
+
+export const resourcesPage = [
+  {
+    id: 1,
+    name: "Today’s Devotional",
+    image: loginHeader,
+    link: "resources/todayDevotional",
+  },
+  {
+    id: 2,
+    name: "Today’s Bible Reading",
+    image: todayBibleReading,
+    link: "resources/todayDevotional",
+  },
+  {
+    id: 3,
+    name: "Psalms & Hymns",
+    image: psalmsAndHymns,
+    link: "resources/todayDevotional",
+  },
+  {
+    id: 5,
+    name: "Kid’s Corner ",
+    image: kidsCorner,
+    link: "resources/todayDevotional",
+  },
+  {
+    id: 6,
+    name: "Blog",
+    image: blog,
+    link: "resources/todayDevotional",
+  },
+  {
+    id: 7,
+    name: "Bookstore",
+    image: bookstore,
+    link: "resources/todayDevotional",
   },
 ];

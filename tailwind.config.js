@@ -12,8 +12,10 @@ module.exports = {
       colors: {
         ash_one: "#D9D9D9",
         ash_100: "#fbfbfb",
+        ash_200: "#f5f5f5",
         orange_100: "#F9AF1C",
         ash_200: "#E8E8E8",
+        ash_300: "#f0f0f0",
         sky_blue: "#c6dbf6",
         primary: "#001229",
         blue_100: "#216ac4",

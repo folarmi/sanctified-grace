@@ -6,6 +6,8 @@ import { appSettings, moreItems, thisDevice, userProfile } from "@/data";
 import TailwindText from "@/components/TailwindText";
 import pencil from "@/assets/images/pencil.png";
 import nextArrow from "@/assets/images/nextArrow.png";
+import { Link } from "expo-router";
+import MenuMapping from "@/components/MenuMapping";
 
 export default function index() {
   return (
@@ -36,9 +38,9 @@ export default function index() {
                 <TailwindText variant="footer">{sub}</TailwindText>
               </View>
 
-              <View className="ml-auto">
+              <Link href="/settings/userProfile" className="ml-auto">
                 <Image source={pencil} className="w-6 h-6" />
-              </View>
+              </Link>
             </View>
           );
         })}
@@ -48,85 +50,18 @@ export default function index() {
           This Device
         </Text>
 
-        {thisDevice?.map(({ id, name, sub, image }) => {
-          return (
-            <View
-              key={id}
-              className="flex items-center flex-row px-7 py-4 border-b border-ash_200"
-            >
-              <View className=" mr-[33px]">
-                <Image source={image} className="w-11 h-11" />
-              </View>
-
-              <View>
-                <TailwindText variant="bodyText1" className="pb-1">
-                  {name}
-                </TailwindText>
-                <TailwindText variant="footer">{sub}</TailwindText>
-              </View>
-
-              <View className="ml-auto">
-                <Image source={nextArrow} className="w-6 h-6" />
-              </View>
-            </View>
-          );
-        })}
+        <MenuMapping items={thisDevice} />
 
         {/* App Settings */}
         <Text className="text-[18px] font-GeorgiaBold pt-6 pl-4">
           App Settings
         </Text>
-
-        {appSettings?.map(({ id, name, sub, image }) => {
-          return (
-            <View
-              key={id}
-              className="flex items-center flex-row px-7 py-4 border-b border-ash_200"
-            >
-              <View className=" mr-[33px]">
-                <Image source={image} className="w-11 h-11" />
-              </View>
-
-              <View>
-                <TailwindText variant="bodyText1" className="pb-1">
-                  {name}
-                </TailwindText>
-                <TailwindText variant="footer">{sub}</TailwindText>
-              </View>
-
-              <View className="ml-auto">
-                <Image source={nextArrow} className="w-6 h-6" />
-              </View>
-            </View>
-          );
-        })}
+        <MenuMapping items={appSettings} />
 
         {/* More items */}
         <Text className="text-[18px] font-GeorgiaBold pt-6 pl-4">More</Text>
 
-        {moreItems?.map(({ id, name, sub, image }) => {
-          return (
-            <View
-              key={id}
-              className="flex items-center flex-row px-7 py-4 border-b border-ash_200"
-            >
-              <View className=" mr-[33px]">
-                <Image source={image} className="w-11 h-11" />
-              </View>
-
-              <View>
-                <TailwindText variant="bodyText1" className="pb-1">
-                  {name}
-                </TailwindText>
-                <TailwindText variant="footer">{sub}</TailwindText>
-              </View>
-
-              <View className="ml-auto">
-                <Image source={nextArrow} className="w-6 h-6" />
-              </View>
-            </View>
-          );
-        })}
+        <MenuMapping items={moreItems} />
       </View>
     </Header>
   );

@@ -2,7 +2,6 @@ import { View, Text, Image, Touchable } from "react-native";
 import React from "react";
 import ashCircleArrow from "@/assets/images/ashCircleArrow.png";
 import { useRouter } from "expo-router";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 interface SettingsHeaderProps {
   text: string;

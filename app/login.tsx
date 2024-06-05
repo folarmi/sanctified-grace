@@ -12,7 +12,6 @@ import CustomButton from "@/components/CustomButton";
 import TextBetweenLines from "@/components/TextBetweenLines";
 import Social from "@/components/Social";
 import { Link } from "expo-router";
-import FullImage from "@/components/FullImage";
 
 export default function login() {
   const { control } = useForm();

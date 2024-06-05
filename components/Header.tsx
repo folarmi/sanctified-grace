@@ -4,6 +4,7 @@ import logo from "@/assets/images/logo.png";
 import searchIcon from "@/assets/images/searchIcon.png";
 import defaultAvatar from "@/assets/images/defaultAvatar.png";
 import { Link } from "expo-router";
+import { screenHeight } from "@/utils";
 
 interface HeaderProps {
   children: React.ReactNode;
@@ -31,7 +32,9 @@ export default function Header({ children, className }: HeaderProps) {
           </View>
         </View>
       </View>
-      <ScrollView className={`pt-20 pb-4 ${className}`}>{children}</ScrollView>
+      <ScrollView className={`pt-20 pb-4 h-[${screenHeight}] ${className}`}>
+        {children}
+      </ScrollView>
     </View>
   );
 }

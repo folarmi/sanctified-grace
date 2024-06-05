@@ -39,8 +39,57 @@ export default function TabLayout() {
           ),
         }}
       />
+
       <Tabs.Screen
         name="settings/index"
+        options={{
+          href: null,
+        }}
+      />
+
+      <Tabs.Screen
+        name="settings/userProfile"
+        options={{
+          href: null,
+        }}
+      />
+
+      <Tabs.Screen
+        name="settings/inbox"
+        options={{
+          href: null,
+        }}
+      />
+
+      <Tabs.Screen
+        name="settings/savedSermons"
+        options={{
+          href: null,
+        }}
+      />
+
+      <Tabs.Screen
+        name="settings/notifications"
+        options={{
+          href: null,
+        }}
+      />
+
+      <Tabs.Screen
+        name="resources/index"
+        options={{
+          title: "Resources",
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon
+              name={focused ? "book" : "book-outline"}
+              color={color}
+            />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="resources/todayDevotional"
         options={{
           href: null,
         }}

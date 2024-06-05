@@ -55,8 +55,10 @@ export default function index() {
         </ScrollView>
 
         {/* Sermons */}
-        <View className="flex flex-row justify-between items-center px-6 mt-10">
-          <TailwindText variant="subHeading1">Sermons</TailwindText>
+        <View className="flex flex-row justify-between items-center px-6 mt-10 mb-4">
+          <TailwindText variant="subHeading1" className="">
+            Sermons
+          </TailwindText>
           <TailwindText variant="bodyText5" className="text-orange_100 ">
             See All
           </TailwindText>
