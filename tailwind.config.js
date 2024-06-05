@@ -19,6 +19,7 @@ module.exports = {
         sky_blue: "#c6dbf6",
         primary: "#001229",
         blue_100: "#216ac4",
+        blue_200: "#00397F",
         navy_blue: "#02387c",
         dark_blue: "#001328",
       },

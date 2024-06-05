@@ -20,6 +20,9 @@ import psalmsAndHymns from "@/assets/images/psalmsAndHymns.png";
 import kidsCorner from "@/assets/images/kidsCorner.png";
 import blog from "@/assets/images/blog.png";
 import bookstore from "@/assets/images/bookstore.png";
+import podcastOne from "@/assets/images/podcastOne.png";
+import podcastTwo from "@/assets/images/podcastTwo.png";
+import podcastThree from "@/assets/images/podcastThree.png";
 
 export const recentSermons = [
   {
@@ -275,12 +278,78 @@ export const resourcesPage = [
     id: 6,
     name: "Blog",
     image: blog,
-    link: "resources/todayDevotional",
+    link: "resources/blogs/index",
   },
   {
     id: 7,
     name: "Bookstore",
     image: bookstore,
     link: "resources/todayDevotional",
+  },
+];
+
+export const podcastData = [
+  {
+    id: 1,
+    title: "The Truth Of God’s Word",
+    summary:
+      "is a weekly podcast that explores the biblical teachings on various topics and issues.",
+    img: podcastOne,
+    link: "podcasts/123",
+  },
+  {
+    id: 2,
+    title: "The Bible Catechism",
+    summary:
+      "is a weekly podcast that explores the biblical teachings on various topics and issues.",
+    img: podcastTwo,
+    link: "podcasts/123",
+  },
+  {
+    id: 3,
+    title: "Think on these things",
+    summary:
+      "is a weekly podcast that explores the biblical teachings on various topics and issues.",
+    img: podcastThree,
+    link: "podcasts/123",
+  },
+];
+
+export const singlePodcastsData = [
+  {
+    id: 1,
+    name: "The Good Shepherd",
+    uploaded: "2hrs ago",
+    length: "45mins",
+    img: podcastOne,
+    summary:
+      "Pastor Tony in this week’s podcast draws our minds to see the reality of Christ’s resurrection and its essence to the christian life. Listen and be blessed and share!",
+  },
+  {
+    id: 2,
+    name: "Salvation",
+    uploaded: "2hrs ago",
+    length: "45mins",
+    img: podcastOne,
+    summary:
+      "Pastor Tony in this week’s podcast draws our minds to see the reality of Christ’s resurrection and its essence to the christian life. Listen and be blessed and share!",
+  },
+  {
+    id: 3,
+    name: "Trans-substantiation",
+    uploaded: "2hrs ago",
+    length: "45mins",
+    img: podcastOne,
+    summary:
+      "Pastor Tony in this week’s podcast draws our minds to see the reality of Christ’s resurrection and its essence to the christian life. Listen and be blessed and share!",
+  },
+  {
+    id: 4,
+    name: "Great Grace",
+    uploaded: "2hrs ago",
+    length: "45mins",
+    img: podcastOne,
+    summary:
+      "Pastor Tony in this week’s podcast draws our minds to see the reality of Christ’s resurrection and its essence to the christian life. Listen and be blessed and share!",
   },
 ];

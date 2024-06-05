@@ -41,6 +41,39 @@ export default function TabLayout() {
       />
 
       <Tabs.Screen
+        name="sermons"
+        options={{
+          title: "Sermons",
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon
+              name={focused ? "home" : "home-outline"}
+              color={color}
+            />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="podcasts/index"
+        options={{
+          title: "Podcasts",
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon
+              name={focused ? "podium-sharp" : "podium-outline"}
+              color={color}
+            />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="podcasts/[id]"
+        options={{
+          href: null,
+        }}
+      />
+
+      <Tabs.Screen
         name="settings/index"
         options={{
           href: null,
@@ -94,6 +127,14 @@ export default function TabLayout() {
           href: null,
         }}
       />
+
+      <Tabs.Screen
+        name="resources/blogs/index"
+        options={{
+          href: null,
+        }}
+      />
+
       {/* <Tabs.Screen
         key="index"
         name="index"
