@@ -9,6 +9,8 @@ type Variant =
   | "subHeading2"
   | "subHeadingTwo"
   | "subHeading3"
+  | "subHeading4"
+  | "subHeading5"
   | "bodyText1"
   | "bodyText2"
   | "bodyTextTwo"
@@ -37,6 +39,10 @@ const getBaseClasses = (variant: Variant) => {
       return "text-xl font-MontserratSemiBold";
     case "subHeading3":
       return "text-sm font-MontserratSemiBold";
+    case "subHeading4":
+      return "text-xs font-GeorgiaBold";
+    case "subHeading5":
+      return "text-xs font-normal font-Georgia";
     case "bodyText1":
       return "text-base font-MontserratMedium";
     case "bodyText2":

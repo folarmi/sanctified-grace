@@ -17,7 +17,6 @@ export default function Header({ children, className }: HeaderProps) {
       <View
         className={`absolute top-0 left-0 right-0 z-10 py-4 px-6 bg-white border-b border-gray-200`}
       >
-        {/* <Text className="text-lg font-bold">Sticky Header</Text> */}
         <View className="flex flex-row justify-between items-center mt-8">
           <Image source={logo} className="w-[89px] h-9" />
 
@@ -32,7 +31,7 @@ export default function Header({ children, className }: HeaderProps) {
           </View>
         </View>
       </View>
-      <ScrollView className={`pt-20 pb-4 h-[${screenHeight}] ${className}`}>
+      <ScrollView className={`pt-28 pb-4 h-[${screenHeight}] ${className}`}>
         {children}
       </ScrollView>
     </View>

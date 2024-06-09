@@ -23,6 +23,10 @@ import bookstore from "@/assets/images/bookstore.png";
 import podcastOne from "@/assets/images/podcastOne.png";
 import podcastTwo from "@/assets/images/podcastTwo.png";
 import podcastThree from "@/assets/images/podcastThree.png";
+import blogOne from "@/assets/images/blogOne.png";
+import blogTwo from "@/assets/images/blogTwo.png";
+import blogThree from "@/assets/images/blogThree.png";
+import blogFour from "@/assets/images/blogFour.png";
 
 export const recentSermons = [
   {
@@ -260,7 +264,7 @@ export const resourcesPage = [
     id: 2,
     name: "Today’s Bible Reading",
     image: todayBibleReading,
-    link: "resources/todayDevotional",
+    link: "resources/todayBibleReading",
   },
   {
     id: 3,
@@ -270,7 +274,7 @@ export const resourcesPage = [
   },
   {
     id: 5,
-    name: "Kid’s Corner ",
+    name: "Kid’s Corner",
     image: kidsCorner,
     link: "resources/todayDevotional",
   },
@@ -278,7 +282,7 @@ export const resourcesPage = [
     id: 6,
     name: "Blog",
     image: blog,
-    link: "resources/blogs/index",
+    link: "resources/blogs",
   },
   {
     id: 7,
@@ -351,5 +355,59 @@ export const singlePodcastsData = [
     img: podcastOne,
     summary:
       "Pastor Tony in this week’s podcast draws our minds to see the reality of Christ’s resurrection and its essence to the christian life. Listen and be blessed and share!",
+  },
+];
+
+export const todayBibleReadingData = [
+  {
+    id: 1,
+    name: "Genesis 32",
+  },
+  {
+    id: 2,
+    name: "Mark 3",
+  },
+  {
+    id: 3,
+    name: "Esther 8",
+  },
+  {
+    id: 4,
+    name: "Romans 3",
+  },
+];
+
+export const blogPostsData = [
+  {
+    id: 1,
+    name: "The Love of Christ",
+    author: "Joel Uzamere",
+    category: "Devotional",
+    date: "1st May, 2024",
+    image: blogOne,
+  },
+  {
+    id: 2,
+    name: "Knowing God As Father",
+    author: "Pst. Tony Okoroh",
+    category: "Devotional",
+    date: "1st May, 2024",
+    image: blogTwo,
+  },
+  {
+    id: 3,
+    name: "All things for Our Good",
+    author: "Pst. Tony Okoroh",
+    category: "Devotional",
+    date: "1st May, 2024",
+    image: blogThree,
+  },
+  {
+    id: 4,
+    name: "...As I have loved you",
+    author: "Osinachi Nwoko",
+    category: "Devotional",
+    date: "1st May, 2024",
+    image: blogFour,
   },
 ];

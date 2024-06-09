@@ -27,13 +27,11 @@ export default function sermons() {
 
   const [activeTab, setActiveTab] = useState("All Sermons");
 
-  console.log(activeTab);
-
   return (
     <Header className="bg-white">
       <FullImage width={screenWidth} source={sermonHeader} height={164} />
 
-      <ScrollView horizontal contentContainerStyle={{}}>
+      <ScrollView horizontal>
         <View className="flex flex-row py-3 px-6 border-b border-ash_200">
           {tabs.map(({ id, name }) => (
             <Pressable key={id} onPress={() => setActiveTab(name)}>

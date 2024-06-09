@@ -5,6 +5,7 @@ import { Image, View } from "react-native";
 import { screenWidth } from "@/utils";
 import CustomButton from "@/components/CustomButton";
 import Arc from "@/components/Arc";
+import "expo-router/entry";
 
 export default function Index() {
   return (
