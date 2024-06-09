@@ -1,11 +1,4 @@
-import {
-  Image,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { Image, Pressable, ScrollView, StyleSheet, View } from "react-native";
 import React, { useState } from "react";
 import Header from "@/components/Header";
 import FullImage from "@/components/FullImage";
@@ -94,5 +87,3 @@ export default function index() {
     </Header>
   );
 }
-
-const styles = StyleSheet.create({});
