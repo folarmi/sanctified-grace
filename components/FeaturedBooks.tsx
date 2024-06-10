@@ -3,6 +3,7 @@ import React from "react";
 import TailwindText from "./TailwindText";
 import { featuredBooks } from "@/data";
 import FullImage from "./FullImage";
+import { Link } from "expo-router";
 
 export default function FeaturedBooks() {
   return (
@@ -21,18 +22,20 @@ export default function FeaturedBooks() {
       >
         {featuredBooks.map(({ id, image, amount, title, author }) => {
           return (
-            <View key={id} className="mr-4">
-              <FullImage width={163} source={image} height={263} />
+            <Link className="mr-4" href="resources/bookSummary" key={id}>
+              <View>
+                <FullImage width={163} source={image} height={263} />
 
-              <TailwindText
-                variant="subHeading3"
-                className="pt-3 pb-1 w-[163px]"
-              >
-                {title}
-              </TailwindText>
-              <TailwindText variant="footer">{author}</TailwindText>
-              <TailwindText variant="footer">{amount}</TailwindText>
-            </View>
+                <TailwindText
+                  variant="subHeading3"
+                  className="pt-3 pb-1 w-[163px]"
+                >
+                  {title}
+                </TailwindText>
+                <TailwindText variant="footer">{author}</TailwindText>
+                <TailwindText variant="footer">{amount}</TailwindText>
+              </View>
+            </Link>
           );
         })}
       </ScrollView>

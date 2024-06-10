@@ -8,6 +8,8 @@ import CustomButton from "@/components/CustomButton";
 import { CustomColor } from "@/components/CustomColor";
 import { blogPostsData } from "@/data";
 import TailwindText from "@/components/TailwindText";
+import { Link } from "expo-router";
+import ResourcesHeader from "@/components/ResourcesHeader";
 
 export default function index() {
   const [tabs, setTabs] = useState([
@@ -33,6 +35,7 @@ export default function index() {
 
   return (
     <Header className="bg-white">
+      <ResourcesHeader text="Blog" />
       <FullImage width={screenWidth} source={blogheader} height={164} />
 
       <ScrollView horizontal>
@@ -64,23 +67,25 @@ export default function index() {
           >
             <Image source={image} className="w-24 h-24 mr-6" />
 
-            <View>
-              <TailwindText variant="subHeading3" className="pb-2">
-                {name}
-              </TailwindText>
+            <Link href={`resources/blogs/123`}>
+              <View>
+                <TailwindText variant="subHeading3" className="pb-2">
+                  {name}
+                </TailwindText>
 
-              <View className="flex flex-row items-center">
-                <TailwindText variant="footer" className="pr-2">
-                  {author}
-                </TailwindText>
-                <View className="h-3 w-[1px] bg-black"></View>
-                <TailwindText variant="footer" className="pl-2 text-blue_100">
-                  {category}
-                </TailwindText>
+                <View className="flex flex-row items-center">
+                  <TailwindText variant="footer" className="pr-2">
+                    {author}
+                  </TailwindText>
+                  <View className="h-3 w-[1px] bg-black"></View>
+                  <TailwindText variant="footer" className="pl-2 text-blue_100">
+                    {category}
+                  </TailwindText>
+                </View>
+
+                <TailwindText variant="footer">{date}</TailwindText>
               </View>
-
-              <TailwindText variant="footer">{date}</TailwindText>
-            </View>
+            </Link>
           </View>
         );
       })}

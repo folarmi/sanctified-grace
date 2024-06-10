@@ -5,6 +5,7 @@ import React from "react";
 type Variant =
   | "heading0"
   | "heading1"
+  | "headingOne"
   | "subHeading1"
   | "subHeading2"
   | "subHeadingTwo"
@@ -31,6 +32,8 @@ const getBaseClasses = (variant: Variant) => {
       return "font-GeorgiaBold text-[64px] font-medium";
     case "heading1":
       return "font-GeorgiaBold text-5xl font-medium";
+    case "headingOne":
+      return "font-GeorgiaBold text-2xl";
     case "subHeading1":
       return "text-4xl font-GeorgiaBold";
     case "subHeading2":

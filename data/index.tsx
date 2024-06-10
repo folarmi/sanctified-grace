@@ -270,7 +270,7 @@ export const resourcesPage = [
     id: 3,
     name: "Psalms & Hymns",
     image: psalmsAndHymns,
-    link: "resources/todayDevotional",
+    link: "resources/psalms",
   },
   {
     id: 5,
@@ -409,5 +409,53 @@ export const blogPostsData = [
     category: "Devotional",
     date: "1st May, 2024",
     image: blogFour,
+  },
+];
+
+export const psalmsAndHymnsData = [
+  {
+    id: 1,
+    name: "The Spirit of the Psalms",
+    psalms: "Hymns 1 - 150",
+  },
+  {
+    id: 2,
+    name: "Adoration of the Triune God",
+    psalms: "Hymns 151 - 158",
+  },
+  {
+    id: 3,
+    name: "God the Father",
+    psalms: "Hymns 159 - 189",
+  },
+  {
+    id: 4,
+    name: "God the Father",
+    psalms: "Hymns 159 - 189",
+  },
+  {
+    id: 5,
+    name: "The Lord Jesus Christ",
+    psalms: "Hymns 190 - 308",
+  },
+  {
+    id: 6,
+    name: "The Lord Jesus Christ",
+    psalms: "Hymns 190 - 308",
+  },
+  {
+    id: 7,
+    name: "The Holy Spirit",
+    psalms: "Hymns 309 - 328",
+  },
+  {
+    id: 8,
+    name: "The Holy Scriptures",
+    psalms: "Hymns 309 - 328",
+  },
+  {
+    id: 9,
+    name: "The Gospel Call",
+    psalms: "Hymns 339 - 418",
   },
 ];

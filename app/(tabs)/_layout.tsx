@@ -119,7 +119,28 @@ export default function TabLayout() {
       />
 
       <Tabs.Screen
+        name="resources/bookSummary"
+        options={{
+          href: null,
+        }}
+      />
+
+      <Tabs.Screen
         name="resources/blogs/index"
+        options={{
+          href: null,
+        }}
+      />
+
+      <Tabs.Screen
+        name="resources/blogs/[id]"
+        options={{
+          href: null,
+        }}
+      />
+
+      <Tabs.Screen
+        name="resources/psalms/index"
         options={{
           href: null,
         }}

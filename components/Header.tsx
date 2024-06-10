@@ -31,7 +31,7 @@ export default function Header({ children, className }: HeaderProps) {
           </View>
         </View>
       </View>
-      <ScrollView className={`pt-28 pb-4 h-[${screenHeight}] ${className}`}>
+      <ScrollView className={`pt-20 pb-4 h-[${screenHeight}] ${className}`}>
         {children}
       </ScrollView>
     </View>
