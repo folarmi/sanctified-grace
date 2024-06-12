@@ -6,10 +6,21 @@ import { appSettings, moreItems, thisDevice, userProfile } from "@/data";
 import TailwindText from "@/components/TailwindText";
 import pencil from "@/assets/images/pencil.png";
 import nextArrow from "@/assets/images/nextArrow.png";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import MenuMapping from "@/components/MenuMapping";
+import CustomButton from "@/components/CustomButton";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function index() {
+  const router = useRouter();
+  const logout = async () => {
+    try {
+      await AsyncStorage.clear();
+      router.navigate("");
+    } catch (e) {
+      // remove error
+    }
+  };
   return (
     <Header>
       <SettingsHeader text="Account Settings" />
@@ -62,6 +73,16 @@ export default function index() {
         <Text className="text-[18px] font-GeorgiaBold pt-6 pl-4">More</Text>
 
         <MenuMapping items={moreItems} />
+
+        <View className="my-12">
+          <CustomButton
+            // onPress={handleSubmit(onSubmit)}
+            title="Login"
+            onPress={logout}
+            // disabled={loginMutation.isPending}
+            // isLoading={loginMutation.isPending}
+          />
+        </View>
       </View>
     </Header>
   );

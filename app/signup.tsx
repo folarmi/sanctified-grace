@@ -7,14 +7,48 @@ import circledArrow from "@/assets/images/circledArrow.png";
 import Arc from "@/components/Arc";
 import TailwindText from "@/components/TailwindText";
 import CustomInput from "@/components/CustomInput";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import CustomButton from "@/components/CustomButton";
 import TextBetweenLines from "@/components/TextBetweenLines";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import Social from "@/components/Social";
+import api from "./lib/axios";
+import { useMutation } from "@tanstack/react-query";
+import { FormData } from "@/utils/types";
+import { Toast } from "react-native-toast-notifications";
 
 export default function signup() {
-  const { control } = useForm();
+  const { control, handleSubmit } = useForm();
+  const router = useRouter();
+
+  const mutation = useMutation({
+    mutationFn: async (data: FormData) => {
+      const response = await api.post("/auth/register", data);
+      return response;
+    },
+    onSuccess: (data) => {
+      console.log(data?.data?.data?.message);
+      Toast.show(data?.data?.data?.message, {
+        type: "success",
+        placement: "top",
+      });
+      router.navigate("/login");
+    },
+    onError: (error) => {
+      console.log("Error creating user", error);
+    },
+  });
+
+  const onSubmit: SubmitHandler<FormData> = (values) => {
+    const formValues: FormData = {
+      first_name: values.first_name,
+      last_name: values.last_name,
+      email: values.email,
+      phone_number: values.phone_number,
+      password: values.password,
+    };
+    mutation.mutate(formValues);
+  };
 
   return (
     <ScrollViewLayout className="bg-white">
@@ -44,15 +78,23 @@ export default function signup() {
 
       <View className="mx-8">
         <CustomInput
-          name="firstName"
-          label="Name"
+          name="first_name"
+          label="First Name"
           control={control}
           placeholder="E.g John Doe"
           rules={{ required: "First name is required" }}
         />
 
         <CustomInput
-          name="phoneNumber"
+          name="last_name"
+          label="Last Name"
+          control={control}
+          placeholder="E.g John Doe"
+          rules={{ required: "Last name is required" }}
+        />
+
+        <CustomInput
+          name="phone_number"
           label="Phone Number"
           control={control}
           placeholder="+234"
@@ -64,7 +106,7 @@ export default function signup() {
           label="Email"
           control={control}
           placeholder="e.g. johndoesmith@gmail.com"
-          rules={{ required: "Phone Number is required" }}
+          rules={{ required: "Email is required" }}
         />
 
         <CustomInput
@@ -72,7 +114,7 @@ export default function signup() {
           label="Password"
           control={control}
           placeholder="*******"
-          rules={{ required: "Phone Number is required" }}
+          rules={{ required: "Password is required" }}
           secureTextEntry
         />
 
@@ -81,10 +123,16 @@ export default function signup() {
           label="Confrim Password"
           control={control}
           placeholder="*******"
-          rules={{ required: "Phone Number is required" }}
+          // rules={{ required: "Phone Number is required" }}
           secureTextEntry
         />
-        <CustomButton title="Finish" className="mt-5 mb-7" />
+        <CustomButton
+          title="Finish"
+          className="mt-5 mb-7"
+          onPress={handleSubmit(onSubmit)}
+          disabled={mutation.isPending}
+          isLoading={mutation.isPending}
+        />
         <TextBetweenLines text="Or create an Account in" />
 
         <Social />

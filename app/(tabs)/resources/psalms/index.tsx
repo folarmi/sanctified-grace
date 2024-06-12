@@ -4,7 +4,7 @@ import leftArrow from "@/assets/images/leftArrow.png";
 import TailwindText from "@/components/TailwindText";
 import defaultAvatar from "@/assets/images/defaultAvatar.png";
 import heart from "@/assets/images/heart.png";
-import ItemImage from "@/assets/images/Item.png";
+// import ItemImage from "@/assets/images/Item.png";
 import ashSearchIcon from "@/assets/images/ashSearchIcon.png";
 import downArrow from "@/assets/images/downArrow.png";
 import { screenHeight } from "@/utils";
@@ -85,6 +85,7 @@ export default function index() {
           <Image source={heart} className="w-11 h-11" />
         </View>
       </View>
+
       <ScrollView className={`pt-72 pb-4 h-[${screenHeight}]`}>
         {isActiveTab === "Theme" && (
           <View>

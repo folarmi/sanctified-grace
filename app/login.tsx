@@ -7,14 +7,53 @@ import Arc from "@/components/Arc";
 import circledArrow from "@/assets/images/circledArrow.png";
 import TailwindText from "@/components/TailwindText";
 import CustomInput from "@/components/CustomInput";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import CustomButton from "@/components/CustomButton";
 import TextBetweenLines from "@/components/TextBetweenLines";
 import Social from "@/components/Social";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
+import { useMutation } from "@tanstack/react-query";
+import api from "./lib/axios";
+import { LoginData } from "@/utils/types";
+import { Toast } from "react-native-toast-notifications";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function login() {
-  const { control } = useForm();
+  const { control, handleSubmit } = useForm();
+  const router = useRouter();
+
+  const loginMutation = useMutation({
+    mutationFn: async (data: LoginData) => {
+      const response = await api.post("/auth/login", data);
+      return response;
+    },
+    onSuccess: async (data) => {
+      await AsyncStorage.setItem(
+        "accessToken",
+        data?.data?.data?.sessionAuth?.accessToken
+      );
+      const jsonValue = JSON.stringify(data?.data?.data?.user);
+      await AsyncStorage.setItem("userObject", jsonValue);
+      Toast.show(data?.data?.data?.message, {
+        type: "success",
+        placement: "top",
+      });
+      router.navigate("(tabs)");
+    },
+    onError: (error) => {
+      console.log(error.message);
+    },
+  });
+
+  const onSubmit: SubmitHandler<LoginData> = (values) => {
+    const formValues: LoginData = {
+      // email: values.email,
+      // password: values.password,
+      email: "test@Testmail.com",
+      password: "mayflower",
+    };
+    loginMutation.mutate(formValues);
+  };
 
   return (
     <ScrollViewLayout className="bg-white">
@@ -55,7 +94,7 @@ export default function login() {
           label="Email Address"
           control={control}
           placeholder="e.g. johndoesmith@gmail.com"
-          rules={{ required: "First name is required" }}
+          // rules={{ required: "Email Address is required" }}
         />
 
         <CustomInput
@@ -63,8 +102,8 @@ export default function login() {
           label="Password"
           control={control}
           placeholder="*******"
-          rules={{ required: "Phone Number is required" }}
-          secureTextEntry
+          // rules={{ required: "Password is required" }}
+          isSecure={true}
         />
 
         <TailwindText
@@ -81,7 +120,13 @@ export default function login() {
             to reset
           </TailwindText>
         </TailwindText>
-        <CustomButton title="Finish" className="mt-5 mb-7" href="/(tabs)" />
+        <CustomButton
+          onPress={handleSubmit(onSubmit)}
+          title="Finish"
+          className="mt-5 mb-7"
+          disabled={loginMutation.isPending}
+          isLoading={loginMutation.isPending}
+        />
         <TextBetweenLines text="Or login with" />
 
         <Social />
