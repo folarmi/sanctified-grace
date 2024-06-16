@@ -75,13 +75,7 @@ export default function index() {
         <MenuMapping items={moreItems} />
 
         <View className="my-12">
-          <CustomButton
-            // onPress={handleSubmit(onSubmit)}
-            title="Login"
-            onPress={logout}
-            // disabled={loginMutation.isPending}
-            // isLoading={loginMutation.isPending}
-          />
+          <CustomButton title="Logout" onPress={logout} />
         </View>
       </View>
     </Header>

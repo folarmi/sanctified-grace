@@ -27,15 +27,17 @@ export default function signup() {
       return response;
     },
     onSuccess: (data) => {
-      console.log(data?.data?.data?.message);
       Toast.show(data?.data?.data?.message, {
         type: "success",
         placement: "top",
       });
       router.navigate("/login");
     },
-    onError: (error) => {
-      console.log("Error creating user", error);
+    onError: (error: any) => {
+      Toast.show(error?.response?.data?.error, {
+        type: "error",
+        placement: "top",
+      });
     },
   });
 
@@ -46,6 +48,11 @@ export default function signup() {
       email: values.email,
       phone_number: values.phone_number,
       password: values.password,
+      // first_name: "test",
+      // last_name: "test",
+      // email: "test@Testmail.com",
+      // phone_number: "08259566789",
+      // password: "Password1@",
     };
     mutation.mutate(formValues);
   };

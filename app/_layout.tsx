@@ -1,6 +1,4 @@
 import { SplashScreen, Stack } from "expo-router";
-// import Slot from "expo-router/Slot";
-
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { useEffect } from "react";
 import { useFonts } from "expo-font";

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "@/components/Header";
 import SettingsHeader from "@/components/SettingsHeader";
 import defaultAvatar from "@/assets/images/defaultAvatar.png";
@@ -8,9 +8,28 @@ import CustomInput from "@/components/CustomInput";
 import { useForm } from "react-hook-form";
 import CustomButton from "@/components/CustomButton";
 import { screenHeight } from "@/utils";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function userProfile() {
-  const { control } = useForm();
+  const [userInfo, setUserInfo] = useState({});
+
+  const getUserObject = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem("userObject");
+      console.log(jsonValue);
+      setUserInfo(JSON.parse(jsonValue));
+      return jsonValue != null ? JSON.parse(jsonValue) : null;
+    } catch (e) {
+      // read error
+    }
+  };
+
+  const { control } = useForm({
+    defaultValues: userInfo,
+  });
+
+  console.log(getUserObject());
+
   return (
     <Header className="bg-white">
       <SettingsHeader text="User Profile" />
@@ -25,7 +44,7 @@ export default function userProfile() {
 
         <View className="w-full px-6">
           <View className="flex flex-row items-center">
-            <View className="mr-3">
+            <View className="mr-3 w-1/2">
               <CustomInput
                 name="email"
                 label="First Name"
@@ -35,13 +54,15 @@ export default function userProfile() {
               />
             </View>
 
-            <CustomInput
-              name="email"
-              label="Last Name"
-              control={control}
-              placeholder="e.g. johndoesmith@gmail.com"
-              rules={{ required: "Last Name is required" }}
-            />
+            <View className="w-1/2">
+              <CustomInput
+                name="email"
+                label="Last Name"
+                control={control}
+                placeholder="e.g. johndoesmith@gmail.com"
+                rules={{ required: "Last Name is required" }}
+              />
+            </View>
           </View>
 
           <CustomInput

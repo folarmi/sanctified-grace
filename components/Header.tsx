@@ -50,7 +50,7 @@ export default function Header({ children, className }: HeaderProps) {
           </View>
         </View>
       </View>
-      <ScrollView className={`pt-4 pb-4 flex-grow`}>
+      <ScrollView className={`pb-4 flex-grow`}>
         {/* Adjusted pt and pb */}
         {children}
       </ScrollView>

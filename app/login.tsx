@@ -40,8 +40,11 @@ export default function login() {
       });
       router.navigate("(tabs)");
     },
-    onError: (error) => {
-      console.log(error.message);
+    onError: (error: any) => {
+      Toast.show(error?.response?.data?.error, {
+        type: "error",
+        placement: "top",
+      });
     },
   });
 
@@ -49,6 +52,8 @@ export default function login() {
     const formValues: LoginData = {
       // email: values.email,
       // password: values.password,
+      // email: "test@Testmail.com",
+      // password: "mayflower",
       email: "test@Testmail.com",
       password: "mayflower",
     };
