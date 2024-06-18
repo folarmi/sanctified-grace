@@ -6,6 +6,7 @@ type Variant =
   | "heading0"
   | "heading1"
   | "headingOne"
+  | "headingTwo"
   | "subHeading1"
   | "subHeading2"
   | "subHeadingTwo"
@@ -34,6 +35,8 @@ const getBaseClasses = (variant: Variant) => {
       return "font-GeorgiaBold text-5xl font-medium";
     case "headingOne":
       return "font-GeorgiaBold text-2xl";
+    case "headingTwo":
+      return "font-GeorgiaBold text-xl";
     case "subHeading1":
       return "text-4xl font-GeorgiaBold";
     case "subHeading2":

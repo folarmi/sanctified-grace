@@ -37,7 +37,7 @@ export default function TabLayout() {
       />
 
       <Tabs.Screen
-        name="sermons"
+        name="sermons/index"
         options={{
           title: "Sermons",
           tabBarIcon: ({ focused }) => <TabSermonIcon focused={focused} />,
@@ -45,12 +45,18 @@ export default function TabLayout() {
       />
 
       <Tabs.Screen
+        name="sermons/[id]"
+        options={{
+          href: null,
+          tabBarStyle: { display: "none" },
+        }}
+      />
+
+      <Tabs.Screen
         name="podcasts/index"
         options={{
           title: "Podcasts",
-          tabBarIcon: ({ color, focused }) => (
-            <TabPodcastIcon focused={focused} />
-          ),
+          tabBarIcon: ({ focused }) => <TabPodcastIcon focused={focused} />,
         }}
       />
 
