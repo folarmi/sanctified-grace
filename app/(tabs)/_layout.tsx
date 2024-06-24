@@ -1,5 +1,5 @@
 import { Tabs } from "expo-router";
-import React from "react";
+import React, { useContext } from "react";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { CustomColor } from "@/components/CustomColor";
@@ -7,8 +7,11 @@ import TabHomeIcon from "@/assets/svgs/TabHomeIcon";
 import TabSermonIcon from "@/assets/svgs/TabSermonIcon";
 import TabPodcastIcon from "@/assets/svgs/TabPodcastsIcon";
 import TabResourcesIcon from "@/assets/svgs/TabResourcesIcon";
+import { AppContext } from "@/context/AppContext";
 
 export default function TabLayout() {
+  const { isFullPlayer } = useContext(AppContext);
+
   return (
     <Tabs
       screenOptions={{
@@ -17,6 +20,8 @@ export default function TabLayout() {
         headerShown: false,
         tabBarStyle: {
           height: 88,
+          borderTopRightRadius: 12,
+          borderTopLeftRadius: 12,
         },
         tabBarLabelStyle: {
           fontSize: 12,
@@ -38,19 +43,29 @@ export default function TabLayout() {
 
       <Tabs.Screen
         name="sermons/index"
+        initialParams={{
+          isFullPlayer,
+        }}
         options={{
           title: "Sermons",
           tabBarIcon: ({ focused }) => <TabSermonIcon focused={focused} />,
+          tabBarStyle: {
+            display: isFullPlayer ? "none" : "flex",
+            // display: "none",
+            height: 88,
+            borderTopRightRadius: 12,
+            borderTopLeftRadius: 12,
+          },
         }}
       />
 
-      <Tabs.Screen
+      {/* <Tabs.Screen
         name="sermons/[id]"
         options={{
           href: null,
           tabBarStyle: { display: "none" },
         }}
-      />
+      /> */}
 
       <Tabs.Screen
         name="podcasts/index"

@@ -3,7 +3,7 @@ import { View, Text } from "react-native";
 
 const ProgressBar = ({ progress }: any) => {
   return (
-    <View className="h-1 bg-red-900 rounded-full overflow-hidden">
+    <View className="h-1 bg-white/[39] rounded-full overflow-hidden">
       <View
         style={{
           width: `${progress}%`,

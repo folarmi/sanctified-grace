@@ -41,9 +41,11 @@ export default function login() {
       router.navigate("(tabs)");
     },
     onError: (error: any) => {
+      console.log(error);
+      // console.log(error?.response?.data?.error);
       Toast.show(error?.response?.data?.error, {
         type: "error",
-        placement: "top",
+        placement: "bottom",
       });
     },
   });
