@@ -1,5 +1,12 @@
-import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import {
+  Image,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
+import React, { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import midYear from "@/assets/images/midYear.png";
 import { screenWidth } from "@/utils";
@@ -14,8 +21,32 @@ import { Link } from "expo-router";
 import { useQuery } from "@tanstack/react-query";
 import api from "../lib/axios";
 import Loader from "@/components/Loader";
+import ImageCarousel from "@/components/ImageCarousel";
 
 export default function index() {
+  const [imageUrls, setImageUrls] = useState<any>([]);
+  const getEvent = useQuery({
+    queryKey: ["getAllSermons"],
+    queryFn: async () => {
+      const response = await api.get("/event/getAll?page=1&nPerPage=20");
+      return response;
+    },
+  });
+
+  const getImageUrls = () => {
+    let urls: any[] = [];
+    getEvent?.data?.data?.events?.map((item: any) => {
+      urls.push(item?.bannerUrl);
+    });
+    return urls;
+  };
+
+  useEffect(() => {
+    setImageUrls(getImageUrls());
+
+    return () => {};
+  }, []);
+
   const getAllSermonsQuery = useQuery({
     queryKey: ["getAllSermons"],
     queryFn: async () => {
@@ -93,7 +124,7 @@ export default function index() {
               horizontal
               className="flex flex-row pl-6 pb-10 border-b border-ash_200"
             >
-              {getAllSermonsQuery.data?.data?.sermons.map((item: any) => {
+              {getAllSermonsQuery.data?.data?.sermons?.map((item: any) => {
                 return (
                   <View key={item?._id} className="mr-4">
                     <View className="w-[163px] h-64 overflow-hidden">
@@ -131,6 +162,11 @@ export default function index() {
             <NewPodcastEpisode />
             <FeaturedBooks />
             <LatestBlogPosts />
+            {/* <SafeAreaView className="flex-1 bg-gray-100">
+              <View className="flex-1 justify-center items-center"> */}
+            <ImageCarousel images={imageUrls} />
+            {/* </View>
+            </SafeAreaView> */}
           </View>
         </Header>
       )}

@@ -12,8 +12,8 @@ interface ArrowTextProps {
 
 export default function ArrowText({ text, className, href }: ArrowTextProps) {
   return (
-    <Link href={href}>
-      <View className={`flex flex-row items-center ${className}`}>
+    <Link href={href} className={`${className}`}>
+      <View className={`flex flex-row items-center`}>
         <TailwindText variant="bodyText1" className="text-orange_100 pr-2">
           {text}
         </TailwindText>

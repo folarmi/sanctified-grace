@@ -14,6 +14,7 @@ module.exports = {
         ash_100: "#fbfbfb",
         ash_200: "#f5f5f5",
         ash_300: "#878787",
+        ash_400: "#f2f2f2",
         orange_100: "#F9AF1C",
         ash_200: "#E8E8E8",
         ash_300: "#f0f0f0",

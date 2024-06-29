@@ -6,10 +6,25 @@ import RadialGradientBackground from "@/components/RadialBackground";
 import rightArrow from "@/assets/images/rightArrow.png";
 import leftArrowTwo from "@/assets/images/leftArrowTwo.png";
 import TailwindText from "@/components/TailwindText";
-import { todayBibleReadingData } from "@/data";
+// import { todayBibleReadingData } from "@/data";
 import CustomButton from "@/components/CustomButton";
+import { useQuery } from "@tanstack/react-query";
+import api from "@/app/lib/axios";
+import { formatDate } from "@/utils";
 
 export default function todayBibleReading() {
+  const getTodayBibleReading = useQuery({
+    queryKey: ["getTodayBibleReading"],
+    queryFn: async () => {
+      const response = await api.get(
+        `/plan/getDailyReadingPlan?month=${formatDate(new Date()).month}&day=${
+          formatDate(new Date()).day
+        }`
+      );
+      return response;
+    },
+  });
+
   return (
     <Header>
       <ResourcesHeader text="Today’s Bible Reading" />
@@ -33,10 +48,10 @@ export default function todayBibleReading() {
           </View>
         </View>
 
-        {todayBibleReadingData?.map((item, index) => {
+        {getTodayBibleReading?.data?.data?.map((item: any, index: number) => {
           return (
             <View
-              key={item.id}
+              key={index}
               className="border border-blue_100 rounded-md py-4 px-6 mb-1"
             >
               <TailwindText
@@ -45,7 +60,7 @@ export default function todayBibleReading() {
                   index === 0 ? "text-left" : "text-center"
                 }`}
               >
-                {item.name}
+                {item}
               </TailwindText>
             </View>
           );

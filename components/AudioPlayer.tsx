@@ -32,7 +32,6 @@ export default function AudioPlayer({
     playlist?.map((item: any) => {
       audioUrls.push(item?.audioUrl);
     });
-    console.log(audioUrls);
     return audioUrls;
   };
 

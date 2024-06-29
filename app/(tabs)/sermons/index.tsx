@@ -53,7 +53,7 @@ const Sermons = () => {
   React.useEffect(() => {
     setPlaylist(getAllSermonsQuery.data?.data?.sermons);
     if (getAllSermonsQuery.data?.data?.sermons?.length) {
-      setNowPlaying(getAllSermonsQuery.data?.data?.sermons[0]);
+      setNowPlaying(getAllSermonsQuery?.data?.data?.sermons[0]);
     }
   }, [getAllSermonsQuery.data]);
 
