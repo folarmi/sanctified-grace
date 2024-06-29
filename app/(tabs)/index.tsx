@@ -10,18 +10,21 @@ import FullImage from "@/components/FullImage";
 import NewPodcastEpisode from "@/components/NewPodcastEpisode";
 import FeaturedBooks from "@/components/FeaturedBooks";
 import LatestBlogPosts from "@/components/LatestBlogPosts";
+import { Link } from "expo-router";
 
 export default function index() {
   return (
     <Header className="bg-white">
       <FullImage width={screenWidth} source={midYear} height={256} />
 
-      <View className="bg-white mt-14">
+      <View className="bg-white pt-14">
         <View className="flex flex-row justify-between items-center px-6 mb-4">
           <TailwindText variant="subHeading1">Recent Sermons</TailwindText>
-          <TailwindText variant="bodyText5" className="text-orange_100">
-            See All
-          </TailwindText>
+          <Link href="sermons">
+            <TailwindText variant="bodyText5" className="text-orange_100">
+              See All
+            </TailwindText>
+          </Link>
         </View>
 
         {/* Recent Sermons */}

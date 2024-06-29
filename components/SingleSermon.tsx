@@ -1,6 +1,6 @@
 import { Image, TouchableOpacity, View } from "react-native";
 import React, { useContext } from "react";
-import { formatTime, screenWidth } from "@/utils";
+import { formatTime } from "@/utils";
 import TailwindText from "@/components/TailwindText";
 import { StatusBar } from "expo-status-bar";
 import downWhiteArrow from "@/assets/images/downWhiteArrow.png";
@@ -16,14 +16,20 @@ import Download from "@/assets/images/Download.png";
 import pauseWhite from "@/assets/images/whitePause.png";
 import ProgressBar from "@/components/MusicProgressBar";
 import { AppContext } from "@/context/AppContext";
+import Slider from "@react-native-community/slider";
 
 export default function SingleSermon({
   nowPlaying,
-  playSound,
-  stopSound,
+  rewindSound,
+  forwardSound,
+  nextTrack,
+  previousTrack,
+  playPauseSound,
+  shufflePlaylist,
   progress,
   isPlaying,
   status,
+  onSeekSliderValueChange,
 }: any) {
   const { setIsFullPlayer } = useContext(AppContext);
 
@@ -38,13 +44,17 @@ export default function SingleSermon({
           <Image source={ellipsis} className="w-7 h-7" />
         </View>
 
-        <View className="rounded-2xl w-full mb-8">
+        <View
+          className=""
+          style={{ width: 335, height: 335, marginBottom: 32 }}
+        >
           <Image
             source={{ uri: nowPlaying?.bannerUrl }}
-            resizeMode="contain"
+            className="w-full h-full rounded-2xl"
+            resizeMode="cover"
             style={{
-              width: 335,
-              height: 335,
+              // width: 335,
+              // height: 335,
               aspectRatio: 1,
             }}
           />
@@ -61,39 +71,49 @@ export default function SingleSermon({
             <Image source={love} className="w-6 h-6" />
           </View>
 
-          <ProgressBar progress={progress} />
+          {/* <ProgressBar progress={progress} /> */}
+          <Slider
+            className="w-full mb-4"
+            minimumValue={0}
+            maximumValue={1}
+            value={status.positionMillis / status.durationMillis}
+            onSlidingComplete={onSeekSliderValueChange}
+            minimumTrackTintColor="#ffffff" // Green
+            maximumTrackTintColor="#ffffff63" // Light Gray
+            thumbTintColor="#ffffff" // Green
+          />
           <View className="flex flex-row items-center justify-between mt-3">
             <TailwindText variant="bodyText3" className="text-white">
-              {formatTime(status?.positionMillis)}
+              {formatTime(status?.positionMillis) || "00:00:00"}
             </TailwindText>
             <TailwindText variant="bodyText3" className="text-white">
-              {formatTime(status?.durationMillis)}
+              {formatTime(status?.durationMillis) || "00:00:00"}
             </TailwindText>
           </View>
 
           <View className="flex flex-row items-center justify-between w-full">
-            <TouchableOpacity>
+            <TouchableOpacity onPress={previousTrack}>
               <Image source={skipBack} className="w-6 h-6" />
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={rewindSound}>
               <Image source={rewindWhite} className="w-6 h-6" />
             </TouchableOpacity>
-            <TouchableOpacity onPress={isPlaying ? stopSound : playSound}>
+            <TouchableOpacity onPress={playPauseSound}>
               <Image
                 source={isPlaying ? pauseWhite : playWhite}
                 className="w-16 h-16"
               />
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={forwardSound}>
               <Image source={forwardWhite} className="w-6 h-6" />
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={nextTrack}>
               <Image source={skipForward} className="w-6 h-6" />
             </TouchableOpacity>
           </View>
 
           <View className="flex flex-row items-center justify-between mt-16">
-            <TouchableOpacity>
+            <TouchableOpacity onPress={shufflePlaylist}>
               <Image source={Repeat} className="w-6 h-6" />
             </TouchableOpacity>
             <TouchableOpacity>

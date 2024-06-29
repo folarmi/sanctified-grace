@@ -15,7 +15,6 @@ import {
   TouchableOpacity,
   View,
   StyleSheet,
-  Image,
   Pressable,
 } from "react-native";
 
@@ -24,10 +23,12 @@ import AudioPlayer from "@/components/AudioPlayer";
 
 const Sermons = () => {
   const { isFullPlayer } = useContext(AppContext);
+  const [playlist, setPlaylist] = useState<any[]>([]);
   const getAllSermonsQuery = useQuery({
     queryKey: ["getAllSermons"],
     queryFn: async () => {
       const response = await api.get("/sermon/getAll");
+      console.log("response", response);
       return response;
     },
   });
@@ -50,6 +51,7 @@ const Sermons = () => {
   const [activeTab, setActiveTab] = useState("All Sermons");
 
   React.useEffect(() => {
+    setPlaylist(getAllSermonsQuery.data?.data?.sermons);
     if (getAllSermonsQuery.data?.data?.sermons?.length) {
       setNowPlaying(getAllSermonsQuery.data?.data?.sermons[0]);
     }
@@ -146,7 +148,13 @@ const Sermons = () => {
       )}
       {nowPlaying && (
         <View className="">
-          <AudioPlayer nowPlaying={nowPlaying} />
+          <AudioPlayer
+            nowPlaying={nowPlaying}
+            setNowPlaying={setNowPlaying}
+            // playlist={getAllSermonsQuery.data?.data?.sermons}
+            playlist={playlist}
+            setPlaylist={setPlaylist}
+          />
         </View>
       )}
     </View>
@@ -156,7 +164,7 @@ const Sermons = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "red",
+    backgroundColor: "white",
     zIndex: 0,
   },
   songList: {

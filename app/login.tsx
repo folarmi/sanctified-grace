@@ -17,6 +17,7 @@ import api from "./lib/axios";
 import { LoginData } from "@/utils/types";
 import { Toast } from "react-native-toast-notifications";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
 
 export default function login() {
   const { control, handleSubmit } = useForm();
@@ -27,6 +28,50 @@ export default function login() {
       const response = await api.post("/auth/login", data);
       return response;
     },
+    // mutationFn: async (data: LoginData) => {
+    //   try {
+    //     const response = await axios.post(
+    //       "https://sgbc-media-f87afc10b986.herokuapp.com/auth/login",
+    //       data
+    //     );
+    //     return response.data;
+    //   } catch (error) {
+    //     if (axios.isAxiosError(error)) {
+    //       // Axios error handling
+    //       console.error("Axios error:", error.response?.data || error.message);
+    //       throw new Error(error.response?.data?.message || error.message);
+    //     } else {
+    //       // General error handling
+    //       console.error("Unexpected error:", error);
+    //       throw new Error("An unexpected error occurred.");
+    //     }
+    //   }
+    // },
+    // mutationFn: async (data: LoginData) => {
+    //   try {
+    //     const response = await fetch(
+    //       "https://sgbc-media-f87afc10b986.herokuapp.com/auth/login",
+    //       {
+    //         method: "POST",
+    //         headers: {
+    //           "Content-Type": "application/json",
+    //         },
+    //         body: JSON.stringify(data),
+    //       }
+    //     );
+
+    //     if (!response.ok) {
+    //       const errorData = await response.json();
+    //       throw new Error(errorData.message || "Failed to login");
+    //     }
+
+    //     const responseData = await response.json();
+    //     return responseData;
+    //   } catch (error) {
+    //     console.error("Fetch error:", error);
+    //     throw new Error(error.message || "An unexpected error occurred.");
+    //   }
+    // },
     onSuccess: async (data) => {
       await AsyncStorage.setItem(
         "accessToken",

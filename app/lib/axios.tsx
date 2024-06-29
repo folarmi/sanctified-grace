@@ -16,7 +16,7 @@ api.interceptors.request.use(
       if (accessToken) {
         const newConfig = { ...config };
         newConfig.headers.Authorization = `Bearer ${accessToken}`;
-        newConfig.headers.Authorization = `Bearer 9999`;
+        // newConfig.headers.Authorization = `Bearer 9999`;
         return newConfig;
       }
       return config;
@@ -35,7 +35,7 @@ api.interceptors.response.use(
   },
   (error) => {
     // Any status codes that falls outside the range of 2xx causes this function to trigger
-    if (error?.response?.status === 401) {
+    if (error.response.status === 401) {
       // Handle unauthorized errors (e.g., redirect to login)
       // console.log("Unauthorized, logging out...");
       // localStorage.removeItem("token");
@@ -86,5 +86,3 @@ export default api;
 //   updatedAt: "2024-04-25T23:02:55.605Z",
 //   __v: 0,
 // };
-
-// // {}

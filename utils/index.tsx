@@ -41,6 +41,8 @@ export const capitalizeFirstLetter = (str: string) => {
 };
 
 export function formatTime(milliseconds: number) {
+  if (typeof milliseconds !== "number" || isNaN(milliseconds))
+    return "00:00:00";
   // Convert total milliseconds to seconds
   let totalSeconds = Math.floor(milliseconds / 1000);
 

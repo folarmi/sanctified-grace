@@ -1,13 +1,6 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { Audio } from "expo-av";
-import {
-  Image,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import playIcon from "@/assets/images/playIcon.png";
 import rewind from "@/assets/images/rewind.png";
 import forward from "@/assets/images/forward.png";
@@ -16,90 +9,125 @@ import TailwindText from "./TailwindText";
 import SingleSermon from "@/components/SingleSermon";
 import { AppContext } from "@/context/AppContext";
 
-export default function AudioPlayer({ nowPlaying }: any) {
-  const scrollViewRef = useRef<ScrollView>(null);
+export default function AudioPlayer({
+  // nowPlaying,
+  playlist,
+  setPlaylist,
+}: any) {
   const [sound, setSound] = useState<any>();
   const [isPlaying, setIsPlaying] = useState(false);
-  const [status, setStatus] = useState<any>(null);
+  const [status, setStatus] = useState<any>({
+    positionMillis: 0,
+    durationMillis: 0,
+  });
   const [progress, setProgress] = useState(0);
   const { isFullPlayer, setIsFullPlayer } = useContext(AppContext);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isShuffling, setIsShuffling] = useState(false);
+  const [audioUrls, setAudioUrls] = useState<any>([]);
+  const [isSeeking, setIsSeeking] = useState(false);
 
-  //   async function togglePlayPause() {
-  //     if (sound) {
-  //       if (isPlaying) {
-  //         await sound.pauseAsync();
-  //       } else {
-  //         await sound.playAsync();
-  //       }
-  //       setIsPlaying(!isPlaying);
-  //     } else {
-  //       const { sound } = await Audio.Sound.createAsync(
-  //         {
-  //           uri: nowPlaying?.audioUrl,
-  //         },
-  //         { shouldPlay: true }
-  //       );
-  //       setSound(sound);
-  //       setIsPlaying(true);
-  //     }
-  //   }
+  const getAudioUrls = () => {
+    let audioUrls: any[] = [];
+    let songTitle: any[] = [];
+    playlist?.map((item: any) => {
+      audioUrls.push(item?.audioUrl);
+      songTitle.push(item?.title);
+    });
+    console.log(songTitle);
+    return audioUrls;
+  };
 
-  const playSound = async () => {
-    const { sound } = await Audio.Sound.createAsync(
+  const soundRef = useRef<any>(null);
+
+  useEffect(() => {
+    loadSound();
+    setAudioUrls(getAudioUrls());
+
+    return () => {
+      unloadSound();
+    };
+  }, [currentIndex]);
+
+  const loadSound = async () => {
+    if (sound) {
+      await sound.unloadAsync();
+    }
+
+    const { sound: newSound } = await Audio.Sound.createAsync(
       {
-        uri: nowPlaying?.audioUrl,
+        uri: audioUrls[currentIndex],
       },
       { shouldPlay: false },
       onPlaybackStatusUpdate
     );
-    setSound(sound);
-    setIsPlaying(true);
-    await sound.playAsync();
+    setSound(newSound), (soundRef.current = newSound);
+  };
+
+  const unloadSound = async () => {
+    if (sound) {
+      await sound.unloadAsync();
+      setSound(null);
+    }
   };
 
   const onPlaybackStatusUpdate = (status: any) => {
     setStatus(status);
-    if (status.isLoaded && status.isPlaying) {
-      const currentPosition = status.positionMillis;
-      const totalDuration = status.durationMillis;
-      const currentProgress = (currentPosition / totalDuration) * 100;
-      setProgress(currentProgress);
-    }
   };
 
-  const stopSound = async () => {
+  const playPauseSound = async () => {
+    console.log(isPlaying, sound);
+    if (isPlaying) {
+      await sound.pauseAsync();
+    } else {
+      await sound.playAsync();
+    }
+    setIsPlaying(!isPlaying);
+  };
+
+  const rewindSound = async () => {
     if (sound) {
-      await sound.unloadAsync();
-      setIsPlaying(false);
-      setProgress(0);
+      const status = await sound.getStatusAsync();
+      let newPosition = status.positionMillis - 15000;
+      if (newPosition < 0) newPosition = 0;
+      await sound.setPositionAsync(newPosition);
     }
   };
 
-  useEffect(() => {
-    const fetchAudioInfo = async () => {
-      try {
-        const soundObject = new Audio.Sound();
-        await soundObject.loadAsync({
-          uri: nowPlaying?.audioUrl,
-        });
-        const status = await soundObject.getStatusAsync();
-        setStatus(status);
-      } catch (error) {
-        console.error("Error fetching audio info:", error);
-      }
-    };
-    fetchAudioInfo();
+  const forwardSound = async () => {
+    if (sound) {
+      const status = await sound.getStatusAsync();
+      let newPosition = status.positionMillis + 15000;
+      if (newPosition > status.durationMillis)
+        newPosition = status.durationMillis;
+      await sound.setPositionAsync(newPosition);
+    }
+  };
 
-    return () => {
-      if (sound) {
-        sound.unloadAsync();
-      }
-    };
-  }, [nowPlaying?.audioUrl]);
+  const shufflePlaylist = () => {
+    setIsShuffling(!isShuffling);
+  };
 
-  const scrollToTop = () => {
-    if (scrollViewRef.current) {
-      scrollViewRef.current.scrollTo({ y: 0, animated: true });
+  const nextTrack = () => {
+    const nextIndex = isShuffling
+      ? Math.floor(Math.random() * audioUrls.length)
+      : (currentIndex + 1) % audioUrls.length;
+    setCurrentIndex(nextIndex);
+    setIsPlaying(false);
+  };
+
+  const previousTrack = () => {
+    const prevIndex = (currentIndex - 1 + audioUrls.length) % audioUrls.length;
+    setCurrentIndex(prevIndex);
+    setIsPlaying(false);
+  };
+
+  const onSeekSliderValueChange = async (value: any) => {
+    if (sound) {
+      setIsSeeking(true);
+      const position = value * status.durationMillis;
+      await sound.setPositionAsync(position);
+      setIsSeeking(false);
     }
   };
 
@@ -108,61 +136,62 @@ export default function AudioPlayer({ nowPlaying }: any) {
       style={{
         elevation: 5,
       }}
-      className="abolute bottom-0 left-0 right-0 z-100 bg-white rounded-xl px-4 py-3"
+      className="abolute bottom-0 left-0 right-0 z-100 bg-white rounded-xl"
     >
       {isFullPlayer ? (
         // <ScrollView ref={scrollViewRef}>
         <SingleSermon
-          nowPlaying={nowPlaying}
-          stopSound={stopSound}
-          playSound={playSound}
+          nowPlaying={playlist[currentIndex]}
+          playPauseSound={playPauseSound}
+          rewindSound={rewindSound}
+          forwardSound={forwardSound}
+          nextTrack={nextTrack}
+          previousTrack={previousTrack}
           progress={progress}
           isPlaying={isPlaying}
           status={status}
+          shufflePlaylist={shufflePlaylist}
+          onSeekSliderValueChange={onSeekSliderValueChange}
         />
       ) : (
-        // </ScrollView>
         <TouchableOpacity
           onPress={() => {
             setIsFullPlayer(true);
             // scrollToTop;
           }}
           className=""
-          style={{ width: "100%" }}
+          style={{ width: "100%", paddingHorizontal: 12, paddingVertical: 16 }}
         >
           <View className="flex flex-row justify-between items-center w-full">
             <View className="flex flex-row items-center">
               <View className="rounded-lg mr-2 overflow-hidden">
                 <Image
-                  source={{ uri: nowPlaying?.thumbnailUrl }}
+                  source={{ uri: playlist[currentIndex]?.thumbnailUrl }}
                   style={styles.logo}
                 />
               </View>
 
               <View>
                 <TailwindText variant="bodyText4">
-                  {nowPlaying?.title}
+                  {playlist[currentIndex]?.title}
                 </TailwindText>
                 <TailwindText variant="footer" className="pt-[2px]">
-                  {`${nowPlaying?.preacher?.first_name} ${nowPlaying?.preacher?.last_name}`}
+                  {`${playlist[currentIndex]?.preacher?.first_name} ${playlist[currentIndex]?.preacher?.last_name}`}
                 </TailwindText>
               </View>
             </View>
 
             <View className="flex flex-row">
-              <TouchableOpacity className="mr-4">
+              <TouchableOpacity onPress={rewindSound} className="mr-4">
                 <Image source={rewind} className="w-5 h-5" />
               </TouchableOpacity>
-              <TouchableOpacity
-                onPress={isPlaying ? stopSound : playSound}
-                className="mr-4"
-              >
+              <TouchableOpacity onPress={playPauseSound} className="mr-4">
                 <Image
                   source={isPlaying ? pauseIcon : playIcon}
                   className="w-5 h-5"
                 />
               </TouchableOpacity>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={forwardSound}>
                 <Image source={forward} className="w-5 h-5" />
               </TouchableOpacity>
             </View>
