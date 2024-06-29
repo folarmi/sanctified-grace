@@ -1,171 +1,78 @@
-import React, { useState, useEffect, useRef } from "react";
-import { View, Button, Text } from "react-native";
-import { Audio } from "expo-av";
-import Slider from "@react-native-community/slider";
-import { tailwind } from "tailwindcss-react-native";
+import React, { useState, useEffect } from "react";
+import { Tabs } from "expo-router";
+import { View, Text } from "react-native";
+import TabHomeIcon from "./TabHomeIcon";
+import TabSermonIcon from "./TabSermonIcon";
+import TabPodcastIcon from "./TabPodcastIcon";
+import TabResourcesIcon from "./TabResourcesIcon";
+import { useRouter } from "expo-router";
 
-const MusicPlayer = ({ playlist }) => {
-  const [sound, setSound] = useState(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isShuffling, setIsShuffling] = useState(false);
-  const [status, setStatus] = useState({
-    positionMillis: 0,
-    durationMillis: 0,
-  });
-  const [isSeeking, setIsSeeking] = useState(false);
+const MyTabs = ({ isFullPlayer }) => {
+  const router = useRouter();
+  const [activeTab, setActiveTab] = useState("index");
 
-  const soundRef = useRef(null);
-
+  // Listen to route changes and update active tab
   useEffect(() => {
-    loadSound();
-
-    return () => {
-      unloadSound();
+    const handleNavigation = () => {
+      const currentRoute = router.getCurrentRoute();
+      setActiveTab(currentRoute.name);
     };
-  }, [currentIndex]);
 
-  const loadSound = async () => {
-    if (sound) {
-      await sound.unloadAsync();
-    }
+    router.addListener("routeChange", handleNavigation);
+    // Cleanup listener on unmount
+    return () => {
+      router.removeListener("routeChange", handleNavigation);
+    };
+  }, [router]);
 
-    const { sound: newSound } = await Audio.Sound.createAsync(
-      { uri: playlist[currentIndex] },
-      { shouldPlay: false },
-      onPlaybackStatusUpdate
-    );
+  const navigationState = [
+    { routeName: "index", title: "Home", icon: TabHomeIcon },
+    { routeName: "sermons/index", title: "Sermons", icon: TabSermonIcon },
+    { routeName: "podcasts/index", title: "Podcasts", icon: TabPodcastIcon },
+    {
+      routeName: "resources/index",
+      title: "Resources",
+      icon: TabResourcesIcon,
+    },
+  ];
 
-    setSound(newSound);
-    soundRef.current = newSound;
-  };
-
-  const unloadSound = async () => {
-    if (sound) {
-      await sound.unloadAsync();
-      setSound(null);
-    }
-  };
-
-  const onPlaybackStatusUpdate = (status) => {
-    if (!isSeeking) {
-      setStatus(status);
-    }
-  };
-
-  const playPauseSound = async () => {
-    if (isPlaying) {
-      await sound.pauseAsync();
-    } else {
-      await sound.playAsync();
-    }
-    setIsPlaying(!isPlaying);
-  };
-
-  const rewindSound = async () => {
-    if (sound) {
-      const status = await sound.getStatusAsync();
-      let newPosition = status.positionMillis - 5000;
-      if (newPosition < 0) newPosition = 0;
-      await sound.setPositionAsync(newPosition);
-    }
-  };
-
-  const forwardSound = async () => {
-    if (sound) {
-      const status = await sound.getStatusAsync();
-      let newPosition = status.positionMillis + 5000;
-      if (newPosition > status.durationMillis)
-        newPosition = status.durationMillis;
-      await sound.setPositionAsync(newPosition);
-    }
-  };
-
-  const shufflePlaylist = () => {
-    setIsShuffling(!isShuffling);
-  };
-
-  const nextTrack = () => {
-    const nextIndex = isShuffling
-      ? Math.floor(Math.random() * playlist.length)
-      : (currentIndex + 1) % playlist.length;
-    setCurrentIndex(nextIndex);
-    setIsPlaying(false);
-  };
-
-  const previousTrack = () => {
-    const prevIndex = (currentIndex - 1 + playlist.length) % playlist.length;
-    setCurrentIndex(prevIndex);
-    setIsPlaying(false);
-  };
-
-  const formatTime = (millis) => {
-    if (typeof millis !== "number" || isNaN(millis)) return "0:00";
-    const minutes = Math.floor(millis / 1000 / 60);
-    const seconds = Math.floor((millis / 1000) % 60);
-    return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
-  };
-
-  const onSeekSliderValueChange = async (value) => {
-    if (sound) {
-      setIsSeeking(true);
-      const position = value * status.durationMillis;
-      await sound.setPositionAsync(position);
-      setIsSeeking(false);
-    }
+  const renderIcon = ({ route, focused }) => {
+    const IconComponent = navigationState.find(
+      (item) => item.routeName === route.name
+    )?.icon;
+    return <IconComponent focused={focused} />;
   };
 
   return (
-    <View style={tailwind("flex-1 justify-center items-center p-4")}>
-      <Text style={tailwind("text-lg mb-4")}>
-        Now Playing: Track {currentIndex + 1}
-      </Text>
-      {status && (
-        <View style={tailwind("w-full items-center")}>
-          <Text style={tailwind("text-sm mb-2")}>
-            {formatTime(status.positionMillis)} /{" "}
-            {formatTime(status.durationMillis)}
-          </Text>
-          <Slider
-            style={tailwind("w-full mb-4")}
-            minimumValue={0}
-            maximumValue={1}
-            value={status.positionMillis / status.durationMillis}
-            onSlidingComplete={onSeekSliderValueChange}
-            minimumTrackTintColor="#1DB954" // Green
-            maximumTrackTintColor="#D3D3D3" // Light Gray
-            thumbTintColor="#1DB954" // Green
-          />
-        </View>
+    <Tabs
+      selectedIndex={navigationState.findIndex(
+        (tab) => tab.routeName === activeTab
       )}
-      <View style={tailwind("flex-row mb-4")}>
-        <Button title="Rewind" onPress={rewindSound} />
-        <Button title={isPlaying ? "Pause" : "Play"} onPress={playPauseSound} />
-        <Button title="Forward" onPress={forwardSound} />
-      </View>
-      <View style={tailwind("flex-row mb-4")}>
-        <Button title="Previous" onPress={previousTrack} />
-        <Button title="Next" onPress={nextTrack} />
-      </View>
-      <Button
-        title={isShuffling ? "Stop Shuffle" : "Shuffle"}
-        onPress={shufflePlaylist}
-      />
-    </View>
+      onSelect={(index) => setActiveTab(navigationState[index].routeName)}
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused }) => renderIcon({ route, focused }),
+        tabBarActiveTintColor: CustomColor.orange,
+        tabBarInactiveTintColor: "#02387c",
+        tabBarStyle: {
+          height: 88,
+          borderTopRightRadius: 12,
+          borderTopLeftRadius: 12,
+        },
+        tabBarLabelStyle: {
+          fontSize: 12,
+          margin: 0,
+          fontWeight: "400",
+          fontFamily: "MontserratMedium",
+          letterSpacing: -0.2,
+          marginBottom: 18,
+        },
+      })}
+    >
+      {navigationState.map(({ routeName, title }) => (
+        <Tabs.Screen key={routeName} name={routeName} options={{ title }} />
+      ))}
+    </Tabs>
   );
 };
 
-useEffect(() => {
-  const interval = setInterval(() => {
-    setCurrentIndex((prevIndex) => {
-      const nextIndex = prevIndex === images.length - 1 ? 0 : prevIndex + 1;
-      scrollViewRef.current.scrollTo({
-        x: nextIndex * screenWidth,
-        animated: true,
-      });
-      return nextIndex;
-    });
-  }, 2000);
-
-  return () => clearInterval(interval);
-}, [images.length]);
+export default MyTabs;

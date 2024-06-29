@@ -67,7 +67,7 @@ export default function AudioPlayer({
         {
           uri: currentUrl,
         },
-        { shouldPlay: false },
+        { shouldPlay: true },
         onPlaybackStatusUpdate
       );
       setSound(newSound), (soundRef.current = newSound);
@@ -88,7 +88,6 @@ export default function AudioPlayer({
   };
 
   const playPauseSound = async () => {
-    console.log(isPlaying, sound);
     if (isPlaying) {
       await sound.pauseAsync();
     } else {
