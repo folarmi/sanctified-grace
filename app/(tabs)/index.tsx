@@ -11,94 +11,130 @@ import NewPodcastEpisode from "@/components/NewPodcastEpisode";
 import FeaturedBooks from "@/components/FeaturedBooks";
 import LatestBlogPosts from "@/components/LatestBlogPosts";
 import { Link } from "expo-router";
+import { useQuery } from "@tanstack/react-query";
+import api from "../lib/axios";
+import Loader from "@/components/Loader";
 
 export default function index() {
+  const getAllSermonsQuery = useQuery({
+    queryKey: ["getAllSermons"],
+    queryFn: async () => {
+      const response = await api.get("/sermon/getAll");
+      return response;
+    },
+  });
   return (
-    <Header className="bg-white">
-      <FullImage width={screenWidth} source={midYear} height={256} />
+    <>
+      {getAllSermonsQuery.isLoading ? (
+        <Loader loading={getAllSermonsQuery.isLoading} />
+      ) : (
+        <Header className="bg-white">
+          <FullImage width={screenWidth} source={midYear} height={256} />
 
-      <View className="bg-white pt-14">
-        <View className="flex flex-row justify-between items-center px-6 mb-4">
-          <TailwindText variant="subHeading1">Recent Sermons</TailwindText>
-          <Link href="sermons">
-            <TailwindText variant="bodyText5" className="text-orange_100">
-              See All
-            </TailwindText>
-          </Link>
-        </View>
-
-        {/* Recent Sermons */}
-        <ScrollView
-          contentContainerStyle={{
-            display: "flex",
-            flexDirection: "row",
-          }}
-          horizontal
-          className="flex flex-row pl-6 pb-10 border-b border-ash_200"
-        >
-          {recentSermons.map(({ id, image, bibleText, preacher, title }) => {
-            return (
-              <View key={id} className="mr-4">
-                <FullImage width={163} source={image} height={256} />
-                <TailwindText
-                  variant="subHeading3"
-                  className="pt-3 pb-1 w-[163px]"
-                >
-                  {title}
+          <View className="bg-white pt-14">
+            <View className="flex flex-row justify-between items-center px-6 mb-4">
+              <TailwindText variant="subHeading1">Recent Sermons</TailwindText>
+              <Link href="sermons">
+                <TailwindText variant="bodyText5" className="text-orange_100">
+                  See All
                 </TailwindText>
-                <TailwindText variant="footer" className="">
-                  {bibleText}
+              </Link>
+            </View>
+
+            {/* Recent Sermons */}
+            <ScrollView
+              contentContainerStyle={{
+                display: "flex",
+                flexDirection: "row",
+              }}
+              horizontal
+              className="flex flex-row pl-6 pb-10 border-b border-ash_200"
+            >
+              {recentSermons.map(
+                ({ id, image, bibleText, preacher, title }) => {
+                  return (
+                    <View key={id} className="mr-4">
+                      <FullImage width={163} source={image} height={256} />
+                      <TailwindText
+                        variant="subHeading3"
+                        className="pt-3 pb-1 w-[163px]"
+                      >
+                        {title}
+                      </TailwindText>
+                      <TailwindText variant="footer" className="">
+                        {bibleText}
+                      </TailwindText>
+                      <TailwindText variant="footer" className="">
+                        {preacher}
+                      </TailwindText>
+                    </View>
+                  );
+                }
+              )}
+            </ScrollView>
+
+            {/* Sermons */}
+            <View className="flex flex-row justify-between items-center px-6 mt-10 mb-4">
+              <TailwindText variant="subHeading1" className="">
+                Sermons
+              </TailwindText>
+              <Link href="sermons">
+                <TailwindText variant="bodyText5" className="text-orange_100 ">
+                  See All
                 </TailwindText>
-                <TailwindText variant="footer" className="">
-                  {preacher}
-                </TailwindText>
-              </View>
-            );
-          })}
-        </ScrollView>
+              </Link>
+            </View>
 
-        {/* Sermons */}
-        <View className="flex flex-row justify-between items-center px-6 mt-10 mb-4">
-          <TailwindText variant="subHeading1" className="">
-            Sermons
-          </TailwindText>
-          <TailwindText variant="bodyText5" className="text-orange_100 ">
-            See All
-          </TailwindText>
-        </View>
+            <ScrollView
+              contentContainerStyle={{
+                display: "flex",
+                flexDirection: "row",
+              }}
+              horizontal
+              className="flex flex-row pl-6 pb-10 border-b border-ash_200"
+            >
+              {getAllSermonsQuery.data?.data?.sermons.map((item: any) => {
+                return (
+                  <View key={item?._id} className="mr-4">
+                    <View className="w-[163px] h-64 overflow-hidden">
+                      <Image
+                        source={{ uri: item?.bannerUrl }}
+                        className="w-full h-full"
+                        resizeMode="contain"
+                        // style={{
+                        //   aspectRatio: 1,
+                        // }}
+                      />
+                    </View>
 
-        <ScrollView
-          contentContainerStyle={{
-            display: "flex",
-            flexDirection: "row",
-          }}
-          horizontal
-          className="flex flex-row pl-6 pb-10 border-b border-ash_200"
-        >
-          {sermonSeries.map(({ id, image, preacher, title, series }) => {
-            return (
-              <View key={id} className="mr-4">
-                <FullImage width={163} source={image} height={256} />
+                    <TailwindText
+                      variant="subHeading3"
+                      className="pt-3 pb-1 w-[163px]"
+                    >
+                      {item?.title}
+                    </TailwindText>
+                    <TailwindText variant="footer">
+                      {item?.sermonSeries}
+                    </TailwindText>
+                    <TailwindText variant="footer">
+                      {" "}
+                      {`${item?.preacher?.first_name}${" "}${
+                        item?.preacher?.last_name
+                      }`}
+                    </TailwindText>
+                  </View>
+                );
+              })}
+            </ScrollView>
 
-                <TailwindText
-                  variant="subHeading3"
-                  className="pt-3 pb-1 w-[163px]"
-                >
-                  {title}
-                </TailwindText>
-                <TailwindText variant="footer">{series}</TailwindText>
-                <TailwindText variant="footer">{preacher}</TailwindText>
-              </View>
-            );
-          })}
-        </ScrollView>
-
-        <BibleReading />
-        <NewPodcastEpisode />
-        <FeaturedBooks />
-        <LatestBlogPosts />
-      </View>
-    </Header>
+            <BibleReading />
+            <NewPodcastEpisode />
+            <FeaturedBooks />
+            <LatestBlogPosts />
+          </View>
+        </Header>
+      )}
+    </>
   );
 }
 

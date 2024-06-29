@@ -20,6 +20,7 @@ import {
 
 import AudioPlayerHeader from "@/components/AudioPlayerHeader";
 import AudioPlayer from "@/components/AudioPlayer";
+import Loader from "@/components/Loader";
 
 const Sermons = () => {
   const { isFullPlayer } = useContext(AppContext);
@@ -28,7 +29,6 @@ const Sermons = () => {
     queryKey: ["getAllSermons"],
     queryFn: async () => {
       const response = await api.get("/sermon/getAll");
-      console.log("response", response);
       return response;
     },
   });
@@ -60,7 +60,7 @@ const Sermons = () => {
   return (
     <View style={{ flex: 1 }}>
       {getAllSermonsQuery.isLoading ? (
-        <Text>Is Loading....</Text>
+        <Loader loading={getAllSermonsQuery.isLoading} />
       ) : (
         <>
           <AudioPlayerHeader />

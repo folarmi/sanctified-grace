@@ -86,3 +86,12 @@ export default api;
 //   updatedAt: "2024-04-25T23:02:55.605Z",
 //   __v: 0,
 // };
+{
+  /* <View style={tailwind('w-40 h-40 bg-gray-200 overflow-hidden rounded-lg')}>
+<Image
+  source={source}
+  style={tailwind('w-full h-full')}
+  resizeMode="cover"
+/>
+</View> */
+}

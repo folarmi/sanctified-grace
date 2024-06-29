@@ -14,7 +14,6 @@ import skipForward from "@/assets/images/skipForward.png";
 import Repeat from "@/assets/images/Repeat.png";
 import Download from "@/assets/images/Download.png";
 import pauseWhite from "@/assets/images/whitePause.png";
-import ProgressBar from "@/components/MusicProgressBar";
 import { AppContext } from "@/context/AppContext";
 import Slider from "@react-native-community/slider";
 

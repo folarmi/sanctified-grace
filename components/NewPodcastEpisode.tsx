@@ -39,7 +39,7 @@ export default function NewPodcastEpisode() {
         </TailwindText>
       </View>
 
-      <ArrowText text="View Older Podcasts" className="mt-8" />
+      <ArrowText href="podcasts" text="View Older Podcasts" className="mt-8" />
     </View>
   );
 }

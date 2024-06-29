@@ -29,18 +29,17 @@ export default function AudioPlayer({
 
   const getAudioUrls = () => {
     let audioUrls: any[] = [];
-    let songTitle: any[] = [];
     playlist?.map((item: any) => {
       audioUrls.push(item?.audioUrl);
-      songTitle.push(item?.title);
     });
-    console.log(songTitle);
+    console.log(audioUrls);
     return audioUrls;
   };
 
   const soundRef = useRef<any>(null);
 
   useEffect(() => {
+    // Load the sound when the component mounts or the currentIndex changes
     loadSound();
     setAudioUrls(getAudioUrls());
 
@@ -50,18 +49,32 @@ export default function AudioPlayer({
   }, [currentIndex]);
 
   const loadSound = async () => {
-    if (sound) {
-      await sound.unloadAsync();
-    }
+    try {
+      // Check if sound is already loaded, if so unload it
+      if (sound) {
+        await sound.unloadAsync();
+      }
 
-    const { sound: newSound } = await Audio.Sound.createAsync(
-      {
-        uri: audioUrls[currentIndex],
-      },
-      { shouldPlay: false },
-      onPlaybackStatusUpdate
-    );
-    setSound(newSound), (soundRef.current = newSound);
+      // Get the current URL
+      const currentUrl = audioUrls[currentIndex];
+
+      // Check if the current URL is valid
+      if (!currentUrl) {
+        throw new Error("Cannot load an AV asset from a null playback source.");
+      }
+
+      // Load the new sound
+      const { sound: newSound } = await Audio.Sound.createAsync(
+        {
+          uri: currentUrl,
+        },
+        { shouldPlay: false },
+        onPlaybackStatusUpdate
+      );
+      setSound(newSound), (soundRef.current = newSound);
+    } catch (error) {
+      console.error("Error loading sound:", error);
+    }
   };
 
   const unloadSound = async () => {

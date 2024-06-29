@@ -42,7 +42,7 @@ export default function LatestBlogPosts() {
           fellowship of the saints to help you on your christian work
         </TailwindText>
 
-        <ArrowText text="Read Post" className="mb-8" />
+        <ArrowText href="resources/blogs" text="Read Post" className="mb-8" />
       </View>
 
       <CustomButton title="See Older Posts" className="my-8" />

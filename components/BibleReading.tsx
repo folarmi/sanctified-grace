@@ -26,7 +26,10 @@ export default function BibleReading() {
         Scripture but also saves you time deciding what to read next.
       </TailwindText>
 
-      <ArrowText text="Read today’s Passages" />
+      <ArrowText
+        href="resources/todayBibleReading"
+        text="Read today’s Passages"
+      />
     </View>
   );
 }

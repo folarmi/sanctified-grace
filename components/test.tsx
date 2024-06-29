@@ -155,55 +155,16 @@ const MusicPlayer = ({ playlist }) => {
   );
 };
 
-export default MusicPlayer;
-
-// const playSound = async () => {
-//   const { sound } = await Audio.Sound.createAsync(
-//     {
-//       uri: nowPlaying?.audioUrl,
-//     },
-//     { shouldPlay: false },
-//     onPlaybackStatusUpdate
-//   );
-
-//   const status = await sound.getStatusAsync();
-//   if (status.isLoaded) {
-//     setSound(sound);
-//     setIsPlaying(true);
-//     await sound.playAsync();
-//   } else {
-//     console.error("Sound is not fully loaded.");
-//   }
-// };
-
-// const onPlaybackStatusUpdate = (status: any) => {
-//   setStatus(status);
-//   if (status.isLoaded && status.isPlaying) {
-//     const currentPosition = status.positionMillis;
-//     const totalDuration = status.durationMillis;
-//     const currentProgress = (currentPosition / totalDuration) * 100;
-//     setProgress(currentProgress);
-//   }
-// };
-
-// const stopSound = async () => {
-//   if (sound) {
-//     await sound.unloadAsync();
-//     setIsPlaying(false);
-//     setProgress(0);
-//   }
-// };
-
-// [
-//   "Questions Leading To The Salvation of Man ",
-//   "The More Sure Word 2",
-//   "The More Sure Word",
-//   "The More Sure Word",
-//   "Risen With Christ",
-//   "Approaching Calvary",
-//   "The Vital Place of Regular Exhortation",
-//   "The More Sure Word",
-//   "Beware of False Teachers",
-//   "Perseverance of the saint",
-//   "Iressitible Grace",
-// ];
+const test = [
+  "https://sgbc-media-2024.nyc3.digitaloceanspaces.com/sermons/1714086171138_sermon.mp3",
+  "https://sgbc-media-2024.nyc3.digitaloceanspaces.com/sermons/1714081358587_sermon.mp3",
+  "https://sgbc-media-2024.nyc3.digitaloceanspaces.com/sermons/1714081269548_sermon.mp3",
+  "https://sgbc-media-2024.nyc3.digitaloceanspaces.com/sermons/1713973689563_sermon.mp3",
+  "https://sgbc-media-2024.nyc3.digitaloceanspaces.com/sermons/1713973370010_sermon.mp3",
+  "https://sgbc-media-2024.nyc3.digitaloceanspaces.com/sermons/1713840824078_sermon.mp3",
+  "https://sgbc-media-2024.nyc3.digitaloceanspaces.com/sermons/1713840575785_sermon.mp3",
+  "https://sgbc-media-2024.nyc3.digitaloceanspaces.com/sermons/1713831196984_sermon.mp3",
+  "https://sgbc-media-2024.nyc3.digitaloceanspaces.com/sermons/1713819815392_sermon.mp3",
+  "https://sgbc-media-2024.nyc3.digitaloceanspaces.com/sermons/1713455529434_sermon.mp3",
+  "https://sgbc-media-2024.nyc3.digitaloceanspaces.com/sermons/1713451807539_sermon.mp3",
+];
