@@ -30,21 +30,27 @@ const ImageCarousel = ({ images }: props) => {
   };
 
   const handlePrev = () => {
-    if (currentIndex > 0) {
+    setCurrentIndex((prevIndex) => {
+      const prevIndexAdjusted =
+        prevIndex === 0 ? images.length - 1 : prevIndex - 1;
       scrollViewRef.current.scrollTo({
-        x: (currentIndex - 1) * screenWidth,
+        x: prevIndexAdjusted * screenWidth,
         animated: true,
       });
-    }
+      return prevIndexAdjusted;
+    });
   };
 
   const handleNext = () => {
-    if (currentIndex < images.length - 1) {
+    setCurrentIndex((prevIndex) => {
+      console.log(prevIndex);
+      const nextIndex = prevIndex === images.length - 1 ? 0 : prevIndex + 1;
       scrollViewRef.current.scrollTo({
-        x: (currentIndex + 1) * screenWidth,
+        x: nextIndex * screenWidth,
         animated: true,
       });
-    }
+      return nextIndex;
+    });
   };
 
   useEffect(() => {
@@ -73,21 +79,23 @@ const ImageCarousel = ({ images }: props) => {
         scrollEventThrottle={16}
         className="w-full"
       >
-        {testImages.map((image, index) => (
+        {images.map((image, index) => (
           <View
             className="flex-1 justify-center items-center"
             key={index}
             style={{ width: screenWidth }}
           >
             <Image
-              source={image}
-              style={{ width: screenWidth - 60, height: 200 }}
+              source={{ uri: image }}
+              // source={image}
+              style={{ width: screenWidth, height: 200 }}
+              resizeMode="stretch"
             />
           </View>
         ))}
       </ScrollView>
       <View className="flex-row mt-4">
-        {testImages.map((_, index) => (
+        {images.map((_, index) => (
           <View
             key={index}
             className={`w-2 h-2 rounded-full mx-1 ${
@@ -96,7 +104,7 @@ const ImageCarousel = ({ images }: props) => {
           />
         ))}
       </View>
-
+      {/* 
       <View className="flex-row mt-4">
         <TouchableOpacity
           onPress={handlePrev}
@@ -110,7 +118,7 @@ const ImageCarousel = ({ images }: props) => {
         >
           <Text className="text-lg">Next</Text>
         </TouchableOpacity>
-      </View>
+      </View> */}
     </View>
   );
 };

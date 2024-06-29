@@ -97,12 +97,12 @@ export default function login() {
 
   const onSubmit: SubmitHandler<LoginData> = (values) => {
     const formValues: LoginData = {
-      // email: values.email,
-      // password: values.password,
+      email: values.email,
+      password: values.password,
       // email: "test@Testmail.com",
       // password: "mayflower",
-      email: "test@Testmail.com",
-      password: "mayflower",
+      // email: "test@Testmail.com",
+      // password: "mayflower",
     };
     loginMutation.mutate(formValues);
   };
@@ -146,6 +146,7 @@ export default function login() {
           label="Email Address"
           control={control}
           placeholder="e.g. johndoesmith@gmail.com"
+          secureTextEntry={false}
           // rules={{ required: "Email Address is required" }}
         />
 
@@ -178,6 +179,7 @@ export default function login() {
           className="mt-5 mb-7"
           disabled={loginMutation.isPending}
           isLoading={loginMutation.isPending}
+          // isLoading={true}
         />
         <TextBetweenLines text="Or login with" />
 

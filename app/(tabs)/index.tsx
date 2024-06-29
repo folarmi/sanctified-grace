@@ -47,6 +47,8 @@ export default function index() {
     return () => {};
   }, []);
 
+  console.log(imageUrls);
+
   const getAllSermonsQuery = useQuery({
     queryKey: ["getAllSermons"],
     queryFn: async () => {
@@ -60,7 +62,11 @@ export default function index() {
         <Loader loading={getAllSermonsQuery.isLoading} />
       ) : (
         <Header className="bg-white">
-          <FullImage width={screenWidth} source={midYear} height={256} />
+          {imageUrls.length > 0 ? (
+            <ImageCarousel images={imageUrls} />
+          ) : (
+            <FullImage width={screenWidth} source={midYear} height={256} />
+          )}
 
           <View className="bg-white pt-14">
             <View className="flex flex-row justify-between items-center px-6 mb-4">
@@ -162,11 +168,6 @@ export default function index() {
             <NewPodcastEpisode />
             <FeaturedBooks />
             <LatestBlogPosts />
-            {/* <SafeAreaView className="flex-1 bg-gray-100">
-              <View className="flex-1 justify-center items-center"> */}
-            <ImageCarousel images={imageUrls} />
-            {/* </View>
-            </SafeAreaView> */}
           </View>
         </Header>
       )}

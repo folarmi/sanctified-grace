@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { CustomColor } from "./CustomColor";
 import { Link } from "expo-router";
+import { BallIndicator } from "react-native-indicators";
 
 type CustomButtonProps = {
   onPress?: () => void;
@@ -46,32 +47,11 @@ const CustomButton = ({
     textStyle,
   ]);
 
-  // const ButtonContent = (
-  //   <TouchableOpacity
-  //     onPress={handlePress}
-  //     style={buttonStyle}
-  //     className={className}
-  //     disabled={disabled}
-  //   ></TouchableOpacity>
-  // );
-
   const ButtonContent = isLoading ? (
-    <Text style={buttonTextStyle}>Loading.....</Text>
+    <BallIndicator color={"#000"} size={20} />
   ) : (
     <Text style={buttonTextStyle}>{title}</Text>
   );
-
-  // if (href) {
-  //   return (
-  //     <Link href={href} style={buttonStyle} className={className} asChild>
-  //       {isLoading ? (
-  //         <Text style={buttonTextStyle}>loading..</Text>
-  //       ) : (
-  //         <Text style={buttonTextStyle}>{title}</Text>
-  //       )}
-  //     </Link>
-  //   );
-  // }
 
   if (href) {
     return (

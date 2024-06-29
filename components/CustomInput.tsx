@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   TextInput,
   TextInputProps,
@@ -26,7 +26,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
   rules = {},
   placeholder,
   label,
-  isSecure,
+  isSecure = false,
   ...textInputProps
 }) => {
   const {
@@ -38,7 +38,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
     rules,
   });
 
-  const [secureTextEntry, setSecureTextEntry] = useState(true);
+  const [secureTextEntry, setSecureTextEntry] = useState(isSecure);
 
   const toggleVisibility = () => {
     setSecureTextEntry(!secureTextEntry);
@@ -61,12 +61,12 @@ const CustomInput: React.FC<CustomInputProps> = ({
             value={value}
             {...textInputProps}
             placeholder={placeholder}
-            secureTextEntry={secureTextEntry}
+            secureTextEntry={isSecure && secureTextEntry}
           />
         </View>
         {isSecure && (
           <Pressable
-            className="w-full absolute top-3 left-[320px]"
+            className="w-full absolute top-2 left-[90%]"
             onPress={toggleVisibility}
           >
             <Image source={eyesClosed} className="w-6 h-6" />

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Header from "@/components/Header";
 import SettingsHeader from "@/components/SettingsHeader";
 import defaultAvatar from "@/assets/images/defaultAvatar.png";
@@ -9,26 +9,26 @@ import { useForm } from "react-hook-form";
 import CustomButton from "@/components/CustomButton";
 import { screenHeight } from "@/utils";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { AppContext } from "@/context/AppContext";
 
 export default function userProfile() {
-  const [userInfo, setUserInfo] = useState({});
+  // const [userInfo, setUserInfo] = useState({});
+  const { userInfo } = useContext(AppContext);
+  console.log("hjhh", userInfo);
 
-  const getUserObject = async () => {
-    try {
-      const jsonValue = await AsyncStorage.getItem("userObject");
-      console.log(jsonValue);
-      setUserInfo(JSON.parse(jsonValue));
-      return jsonValue != null ? JSON.parse(jsonValue) : null;
-    } catch (e) {
-      // read error
-    }
-  };
+  // const getUserObject = async () => {
+  //   try {
+  //     const jsonValue = await AsyncStorage.getItem("userObject");
+  //     setUserInfo(JSON.parse(jsonValue));
+  //     return jsonValue != null ? JSON.parse(jsonValue) : null;
+  //   } catch (e) {
+  //     // read error
+  //   }
+  // };
 
   const { control } = useForm({
     defaultValues: userInfo,
   });
-
-  console.log(getUserObject());
 
   return (
     <Header className="bg-white">

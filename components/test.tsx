@@ -155,16 +155,17 @@ const MusicPlayer = ({ playlist }) => {
   );
 };
 
-const test = [
-  "https://sgbc-media-2024.nyc3.digitaloceanspaces.com/sermons/1714086171138_sermon.mp3",
-  "https://sgbc-media-2024.nyc3.digitaloceanspaces.com/sermons/1714081358587_sermon.mp3",
-  "https://sgbc-media-2024.nyc3.digitaloceanspaces.com/sermons/1714081269548_sermon.mp3",
-  "https://sgbc-media-2024.nyc3.digitaloceanspaces.com/sermons/1713973689563_sermon.mp3",
-  "https://sgbc-media-2024.nyc3.digitaloceanspaces.com/sermons/1713973370010_sermon.mp3",
-  "https://sgbc-media-2024.nyc3.digitaloceanspaces.com/sermons/1713840824078_sermon.mp3",
-  "https://sgbc-media-2024.nyc3.digitaloceanspaces.com/sermons/1713840575785_sermon.mp3",
-  "https://sgbc-media-2024.nyc3.digitaloceanspaces.com/sermons/1713831196984_sermon.mp3",
-  "https://sgbc-media-2024.nyc3.digitaloceanspaces.com/sermons/1713819815392_sermon.mp3",
-  "https://sgbc-media-2024.nyc3.digitaloceanspaces.com/sermons/1713455529434_sermon.mp3",
-  "https://sgbc-media-2024.nyc3.digitaloceanspaces.com/sermons/1713451807539_sermon.mp3",
-];
+useEffect(() => {
+  const interval = setInterval(() => {
+    setCurrentIndex((prevIndex) => {
+      const nextIndex = prevIndex === images.length - 1 ? 0 : prevIndex + 1;
+      scrollViewRef.current.scrollTo({
+        x: nextIndex * screenWidth,
+        animated: true,
+      });
+      return nextIndex;
+    });
+  }, 2000);
+
+  return () => clearInterval(interval);
+}, [images.length]);

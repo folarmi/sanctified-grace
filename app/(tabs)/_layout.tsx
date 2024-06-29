@@ -1,5 +1,12 @@
-import { Tabs } from "expo-router";
-import React, { useContext } from "react";
+import {
+  Tabs,
+  router,
+  useLocalSearchParams,
+  usePathname,
+  useRouter,
+  useSegments,
+} from "expo-router";
+import React, { useContext, useEffect, useState } from "react";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { CustomColor } from "@/components/CustomColor";
@@ -11,6 +18,34 @@ import { AppContext } from "@/context/AppContext";
 
 export default function TabLayout() {
   const { isFullPlayer } = useContext(AppContext);
+  const [activeTab, setActiveTab] = useState("index");
+  const pathName = usePathname();
+  const router = useRouter();
+
+  // Listen to route changes and update active tab
+  useEffect(() => {
+    if (pathName) {
+      setActiveTab(pathName);
+    }
+  }, [pathName]);
+
+  const navigationState = [
+    { routeName: "index", title: "Home", icon: TabHomeIcon },
+    { routeName: "sermons/index", title: "Sermons", icon: TabSermonIcon },
+    { routeName: "podcasts/index", title: "Podcasts", icon: TabPodcastIcon },
+    {
+      routeName: "resources/index",
+      title: "Resources",
+      icon: TabResourcesIcon,
+    },
+  ];
+
+  const renderIcon = ({ route, focused }: any) => {
+    const IconComponent: any = navigationState.find(
+      (item) => item.routeName === route.name
+    )?.icon;
+    return <IconComponent focused={focused} />;
+  };
 
   return (
     <Tabs
@@ -58,14 +93,6 @@ export default function TabLayout() {
           },
         }}
       />
-
-      {/* <Tabs.Screen
-        name="sermons/[id]"
-        options={{
-          href: null,
-          tabBarStyle: { display: "none" },
-        }}
-      /> */}
 
       <Tabs.Screen
         name="podcasts/index"
@@ -167,5 +194,35 @@ export default function TabLayout() {
         }}
       />
     </Tabs>
+    // <Tabs
+    //   selectedIndex={navigationState.findIndex(
+    //     (tab) => tab.routeName === activeTab
+    //   )}
+    //   onSelect={(index: string | number) =>
+    //     setActiveTab(navigationState[index].routeName)
+    //   }
+    //   screenOptions={({ route }) => ({
+    //     tabBarIcon: ({ focused }) => renderIcon({ route, focused }),
+    //     tabBarActiveTintColor: CustomColor.orange,
+    //     tabBarInactiveTintColor: "#02387c",
+    //     tabBarStyle: {
+    //       height: 88,
+    //       borderTopRightRadius: 12,
+    //       borderTopLeftRadius: 12,
+    //     },
+    //     tabBarLabelStyle: {
+    //       fontSize: 12,
+    //       margin: 0,
+    //       fontWeight: "400",
+    //       fontFamily: "MontserratMedium",
+    //       letterSpacing: -0.2,
+    //       marginBottom: 18,
+    //     },
+    //   })}
+    // >
+    //   {navigationState.map(({ routeName, title }) => (
+    //     <Tabs.Screen key={routeName} name={routeName} options={{ title }} />
+    //   ))}
+    // </Tabs>
   );
 }
