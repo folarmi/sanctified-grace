@@ -25,8 +25,13 @@ import { AudioPlayerContext } from "@/context/AudioPlayerContext";
 
 const Sermons = () => {
   const { isFullPlayer } = useContext(AppContext);
-  const { setPlaylist, playPauseSound, setCurrentIndex } =
-    useContext(AudioPlayerContext);
+  const {
+    setPlaylist,
+    playPauseSound,
+    setCurrentIndex,
+    loadSound,
+    setIsPlaying,
+  } = useContext(AudioPlayerContext);
   const getAllSermonsQuery = useQuery({
     queryKey: ["getAllSermons"],
     queryFn: async () => {
@@ -51,8 +56,10 @@ const Sermons = () => {
   ]);
   const [activeTab, setActiveTab] = useState("All Sermons");
 
-  const handleSongPress = (index: number) => {
+  const handleSongPress = async (index: number) => {
     setCurrentIndex(index);
+    await loadSound();
+    setIsPlaying(true);
     playPauseSound();
   };
 

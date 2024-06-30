@@ -61,7 +61,6 @@ any) {
             }}
           />
         </View>
-
         <View className="">
           <TailwindText variant="headingTwo" className=" text-white">
             {playlist?.[currentIndex]?.title}

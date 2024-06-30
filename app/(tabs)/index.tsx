@@ -1,11 +1,4 @@
-import {
-  Image,
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { Image, ScrollView, StyleSheet, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import midYear from "@/assets/images/midYear.png";
@@ -46,8 +39,6 @@ export default function index() {
 
     return () => {};
   }, []);
-
-  console.log(imageUrls);
 
   const getAllSermonsQuery = useQuery({
     queryKey: ["getAllSermons"],

@@ -72,24 +72,46 @@ export const AudioPlayerProvider = ({ children }: { children: ReactNode }) => {
   const [isShuffling, setIsShuffling] = useState(false);
   const [playlist, setPlaylist] = useState<any[]>([]);
 
-  console.log("urls", audioUrls);
-
   const loadSound = async () => {
     try {
       if (sound) {
         await sound.unloadAsync();
       }
+
       const currentUrl = audioUrls[currentIndex];
+
       if (!currentUrl) {
         throw new Error("Cannot load an AV asset from a null playback source.");
       }
-      const { sound: newSound } = await Audio.Sound.createAsync(
+
+      const { sound: newSound, status } = await Audio.Sound.createAsync(
         { uri: currentUrl },
         { shouldPlay: true },
         onPlaybackStatusUpdate
       );
       setSound(newSound);
       soundRef.current = newSound;
+
+      useEffect(() => {
+        const testURL = async () => {
+          try {
+            const response = await fetch(currentUrl);
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            console.log("URL is accessible:", currentUrl);
+          } catch (error) {
+            console.error("Error accessing URL:", error);
+          }
+        };
+        testURL();
+      }, [currentUrl]);
+
+      if (status.isLoaded) {
+        console.log("Sound loaded successfully", status);
+      } else {
+        console.error("Sound failed to load", status);
+      }
     } catch (error) {
       console.error("Error loading sound:", error);
     }
