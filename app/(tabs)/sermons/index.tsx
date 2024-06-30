@@ -21,10 +21,12 @@ import {
 import AudioPlayerHeader from "@/components/AudioPlayerHeader";
 import AudioPlayer from "@/components/AudioPlayer";
 import Loader from "@/components/Loader";
+import { AudioPlayerContext } from "@/context/AudioPlayerContext";
 
 const Sermons = () => {
   const { isFullPlayer } = useContext(AppContext);
-  const [playlist, setPlaylist] = useState<any[]>([]);
+  const { setPlaylist, playPauseSound, setCurrentIndex } =
+    useContext(AudioPlayerContext);
   const getAllSermonsQuery = useQuery({
     queryKey: ["getAllSermons"],
     queryFn: async () => {
@@ -47,13 +49,16 @@ const Sermons = () => {
       name: "Women",
     },
   ]);
-  const [nowPlaying, setNowPlaying] = useState(null);
   const [activeTab, setActiveTab] = useState("All Sermons");
+
+  const handleSongPress = (index: number) => {
+    setCurrentIndex(index);
+    playPauseSound();
+  };
 
   React.useEffect(() => {
     setPlaylist(getAllSermonsQuery.data?.data?.sermons);
     if (getAllSermonsQuery.data?.data?.sermons?.length) {
-      setNowPlaying(getAllSermonsQuery?.data?.data?.sermons[0]);
     }
   }, [getAllSermonsQuery.data]);
 
@@ -104,59 +109,55 @@ const Sermons = () => {
             {activeTab === "All Sermons" && (
               <View style={styles.container}>
                 <ScrollView style={styles.songList}>
-                  {getAllSermonsQuery.data?.data?.sermons?.map((item: any) => {
-                    return (
-                      <TouchableOpacity
-                        key={item?._id}
-                        onPress={() => setNowPlaying(item)}
-                      >
-                        <View className="flex flex-row items-center px-7 py-4 border-b border-ash_200">
-                          <View className="mr-6">
-                            <TailwindText variant="bodyText3">
-                              {formatDate(item?.preacher?.createdAt).month}
-                            </TailwindText>
-                            <Text className="text-[40px] font-MontserratLight">
-                              {formatDate(item?.preacher?.createdAt).day}
-                            </Text>
-                          </View>
+                  {getAllSermonsQuery.data?.data?.sermons?.map(
+                    (item: any, index: number) => {
+                      return (
+                        <TouchableOpacity
+                          key={item?._id}
+                          onPress={() => handleSongPress(index)}
+                        >
+                          <View className="flex flex-row items-center px-7 py-4 border-b border-ash_200">
+                            <View className="mr-6">
+                              <TailwindText variant="bodyText3">
+                                {formatDate(item?.preacher?.createdAt).month}
+                              </TailwindText>
+                              <Text className="text-[40px] font-MontserratLight">
+                                {formatDate(item?.preacher?.createdAt).day}
+                              </Text>
+                            </View>
 
-                          <View>
-                            <TailwindText variant="bodyText1" className="pb-2">
-                              {item?.title}
-                            </TailwindText>
-                            <View className="flex flex-row items-center">
-                              <TailwindText variant="footer" className="pr-2">
-                                {`${item?.bookOfBible?.name} ${item?.bookOfBible?.chapter}:${item?.bookOfBible?.verse}`}
+                            <View>
+                              <TailwindText
+                                variant="bodyText1"
+                                className="pb-2"
+                              >
+                                {item?.title}
                               </TailwindText>
-                              <View className="h-3 w-[1px] bg-orange_100"></View>
-                              <TailwindText variant="footer" className="pl-2">
-                                {`${item?.preacher?.first_name}${" "}${
-                                  item?.preacher?.last_name
-                                }`}
-                              </TailwindText>
+                              <View className="flex flex-row items-center">
+                                <TailwindText variant="footer" className="pr-2">
+                                  {`${item?.bookOfBible?.name} ${item?.bookOfBible?.chapter}:${item?.bookOfBible?.verse}`}
+                                </TailwindText>
+                                <View className="h-3 w-[1px] bg-orange_100"></View>
+                                <TailwindText variant="footer" className="pl-2">
+                                  {`${item?.preacher?.first_name}${" "}${
+                                    item?.preacher?.last_name
+                                  }`}
+                                </TailwindText>
+                              </View>
                             </View>
                           </View>
-                        </View>
-                      </TouchableOpacity>
-                    );
-                  })}
+                        </TouchableOpacity>
+                      );
+                    }
+                  )}
                 </ScrollView>
               </View>
             )}
           </ScrollView>
         </>
       )}
-      {nowPlaying && (
-        <View className="">
-          <AudioPlayer
-            nowPlaying={nowPlaying}
-            setNowPlaying={setNowPlaying}
-            // playlist={getAllSermonsQuery.data?.data?.sermons}
-            playlist={playlist}
-            setPlaylist={setPlaylist}
-          />
-        </View>
-      )}
+
+      <AudioPlayer />
     </View>
   );
 };

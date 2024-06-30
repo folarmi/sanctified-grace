@@ -11,7 +11,7 @@ import Header from "@/components/Header";
 import midYear from "@/assets/images/midYear.png";
 import { screenWidth } from "@/utils";
 import TailwindText from "@/components/TailwindText";
-import { recentSermons, sermonSeries } from "@/data";
+import { recentSermons } from "@/data";
 import BibleReading from "@/components/BibleReading";
 import FullImage from "@/components/FullImage";
 import NewPodcastEpisode from "@/components/NewPodcastEpisode";

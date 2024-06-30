@@ -11,6 +11,7 @@ import "../global.css";
 import QueryClientContextProvider from "./lib/QueryClientContextProvider";
 import { ToastProvider } from "react-native-toast-notifications";
 import { AppProvider } from "@/context/AppContext";
+import { AudioPlayerProvider } from "@/context/AudioPlayerContext";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -39,17 +40,19 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={colorScheme === "dark" ? DefaultTheme : DefaultTheme}>
       <AppProvider>
-        <QueryClientContextProvider>
-          <ToastProvider>
-            <Stack>
-              <Stack.Screen name="index" options={{ headerShown: false }} />
-              <Stack.Screen name="login" options={{ headerShown: false }} />
-              <Stack.Screen name="signup" options={{ headerShown: false }} />
-              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-              <Stack.Screen name="+not-found" />
-            </Stack>
-          </ToastProvider>
-        </QueryClientContextProvider>
+        <AudioPlayerProvider>
+          <QueryClientContextProvider>
+            <ToastProvider>
+              <Stack>
+                <Stack.Screen name="index" options={{ headerShown: false }} />
+                <Stack.Screen name="login" options={{ headerShown: false }} />
+                <Stack.Screen name="signup" options={{ headerShown: false }} />
+                <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+                <Stack.Screen name="+not-found" />
+              </Stack>
+            </ToastProvider>
+          </QueryClientContextProvider>
+        </AudioPlayerProvider>
       </AppProvider>
     </ThemeProvider>
   );

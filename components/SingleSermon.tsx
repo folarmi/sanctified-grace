@@ -16,21 +16,24 @@ import Download from "@/assets/images/Download.png";
 import pauseWhite from "@/assets/images/whitePause.png";
 import { AppContext } from "@/context/AppContext";
 import Slider from "@react-native-community/slider";
+import { AudioPlayerContext } from "@/context/AudioPlayerContext";
 
-export default function SingleSermon({
-  nowPlaying,
-  rewindSound,
-  forwardSound,
-  nextTrack,
-  previousTrack,
-  playPauseSound,
-  shufflePlaylist,
-  progress,
-  isPlaying,
-  status,
-  onSeekSliderValueChange,
-}: any) {
+export default function SingleSermon({}: // playlist?.[currentIndex],
+any) {
   const { setIsFullPlayer } = useContext(AppContext);
+  const {
+    status,
+    playlist,
+    currentIndex,
+    playPauseSound,
+    onSeekSliderValueChange,
+    previousTrack,
+    rewindSound,
+    isPlaying,
+    forwardSound,
+    nextTrack,
+    shufflePlaylist,
+  } = useContext(AudioPlayerContext);
 
   return (
     <View>
@@ -48,7 +51,7 @@ export default function SingleSermon({
           style={{ width: 335, height: 335, marginBottom: 32 }}
         >
           <Image
-            source={{ uri: nowPlaying?.bannerUrl }}
+            source={{ uri: playlist?.[currentIndex]?.bannerUrl }}
             className="w-full h-full rounded-2xl"
             resizeMode="cover"
             style={{
@@ -61,11 +64,11 @@ export default function SingleSermon({
 
         <View className="">
           <TailwindText variant="headingTwo" className=" text-white">
-            {nowPlaying?.title}
+            {playlist?.[currentIndex]?.title}
           </TailwindText>
           <View className="flex flex-row items-center justify-between mt-3 mb-7">
             <TailwindText variant="bodyText2" className=" text-white">
-              {`${nowPlaying?.preacher?.first_name} ${nowPlaying?.preacher?.last_name}`}
+              {`${playlist?.[currentIndex]?.preacher?.first_name} ${playlist?.[currentIndex]?.preacher?.last_name}`}
             </TailwindText>
             <Image source={love} className="w-6 h-6" />
           </View>

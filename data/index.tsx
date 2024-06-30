@@ -1,7 +1,6 @@
 import sermonOne from "@/assets/images/sermonOne.png";
 import sermonTwo from "@/assets/images/sermonTwo.png";
-import habakkuk from "@/assets/images/habakkuk.png";
-import colossians from "@/assets/images/colossians.png";
+// import habakkuk from "@/assets/images/habakkuk.png";
 import bookOne from "@/assets/images/bookOne.png";
 import bookTwo from "@/assets/images/bookTwo.png";
 import inbox from "@/assets/images/inbox.png";
@@ -59,22 +58,22 @@ export const recentSermons = [
   },
 ];
 
-export const sermonSeries = [
-  {
-    id: 1,
-    title: "The Supremacy of Christ",
-    series: "A Series in Colossians",
-    preacher: "Pst. Osagie Azeta",
-    image: colossians,
-  },
-  {
-    id: 2,
-    title: "The Vision of Habakkuk",
-    series: "A Series in Habakkuk",
-    preacher: "Pst. Osinachi Nwoko",
-    image: habakkuk,
-  },
-];
+// export const sermonSeries = [
+//   {
+//     id: 1,
+//     title: "The Supremacy of Christ",
+//     series: "A Series in Colossians",
+//     preacher: "Pst. Osagie Azeta",
+//     image: colossians,
+//   },
+//   {
+//     id: 2,
+//     title: "The Vision of Habakkuk",
+//     series: "A Series in Habakkuk",
+//     preacher: "Pst. Osinachi Nwoko",
+//     image: habakkuk,
+//   },
+// ];
 
 export const featuredBooks = [
   {
