@@ -56,10 +56,10 @@ const Sermons = () => {
   ]);
   const [activeTab, setActiveTab] = useState("All Sermons");
 
-  const handleSongPress = async (index: number) => {
+  const handleSongPress = (index: number) => {
     setCurrentIndex(index);
-    await loadSound();
-    setIsPlaying(true);
+    // await loadSound();
+    // setIsPlaying(true);
     playPauseSound();
   };
 
