@@ -5,7 +5,7 @@ import * as FileSystem from "expo-file-system";
 import { Asset } from "expo-asset";
 import { useLocalSearchParams } from "expo-router";
 import { acceptedDocTypes } from "@/data";
-import { pdfFiles } from "@/data/pdfFiles";
+import { hymnObjects } from "@/data/pdfFiles";
 
 const PdfViewerScreen: React.FC = () => {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -17,7 +17,7 @@ const PdfViewerScreen: React.FC = () => {
       try {
         if (!id) return;
 
-        const pdfFile = pdfFiles.find((file) => file.id === id);
+        const pdfFile = hymnObjects.find((file) => file.id === id);
         if (!pdfFile) throw new Error("PDF file not found");
 
         const asset = Asset.fromModule(pdfFile.path);
@@ -132,3 +132,15 @@ const PdfViewerScreen: React.FC = () => {
 };
 
 export default PdfViewerScreen;
+// export const pdfFiles = [
+//   {
+//     id: "1",
+//     title: "Document1.pdf",
+//     path: require("@/assets/hymns/Hymn_1_1.pdf"),
+//   },
+//   {
+//     id: "2",
+//     title: "Document2.pdf",
+//     path: require("@/assets/hymns/Hymn_1_2.pdf"),
+//   },
+// ];

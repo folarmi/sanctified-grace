@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, TouchableOpacity, FlatList } from "react-native";
 import { useRouter } from "expo-router";
-import { hymnObjects, pdfFiles } from "@/data/pdfFiles";
+import { hymnObjects } from "@/data/pdfFiles";
 import TailwindText from "@/components/TailwindText";
 
 interface PdfFile {
@@ -19,7 +19,7 @@ const PDFListScreen: React.FC = () => {
   return (
     <FlatList
       // data={hymnObjects}
-      data={pdfFiles}
+      data={hymnObjects}
       scrollEnabled={false}
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => (
@@ -35,3 +35,4 @@ const PDFListScreen: React.FC = () => {
 };
 
 export default PDFListScreen;
+// ../data/pdfFiles.tsx
