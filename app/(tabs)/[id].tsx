@@ -27,8 +27,6 @@ const PdfViewerScreen: React.FC = () => {
           const fileBase64 = await FileSystem.readAsStringAsync(fileUri, {
             encoding: FileSystem.EncodingType.Base64,
           });
-          const formattedBase64 = `data:application/pdf;base64,${fileBase64}`;
-          // console.log("PDF Base64:", formattedBase64); // Log the formatted base64 string
           setPdfBase64(fileBase64);
         }
       } catch (err: any) {
@@ -70,19 +68,6 @@ const PdfViewerScreen: React.FC = () => {
       </View>
     );
   }
-
-  const getFilePreviewUrl = () => {
-    if (acceptedDocTypes.includes(".pdf")) {
-      // Assuming pdfBase64 contains the base64-encoded PDF data
-      const pdfUrl = `data:application/pdf;base64,${pdfBase64}`;
-      return `https://docs.google.com/gview?url=${encodeURIComponent(
-        pdfUrl
-      )}&embedded=true`;
-    } else {
-      // Handle other file types or errors accordingly
-      return "error";
-    }
-  };
 
   const htmlContent = `
   <html>
@@ -132,15 +117,3 @@ const PdfViewerScreen: React.FC = () => {
 };
 
 export default PdfViewerScreen;
-// export const pdfFiles = [
-//   {
-//     id: "1",
-//     title: "Document1.pdf",
-//     path: require("@/assets/hymns/Hymn_1_1.pdf"),
-//   },
-//   {
-//     id: "2",
-//     title: "Document2.pdf",
-//     path: require("@/assets/hymns/Hymn_1_2.pdf"),
-//   },
-// ];
