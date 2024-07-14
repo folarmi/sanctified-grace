@@ -4,12 +4,6 @@ import { useRouter } from "expo-router";
 import { hymnObjects } from "@/data/pdfFiles";
 import TailwindText from "@/components/TailwindText";
 
-interface PdfFile {
-  id: string;
-  title: string;
-  path: any; // The type here can be `require` path
-}
-
 const PDFListScreen: React.FC = () => {
   const router = useRouter();
   const handleSelect = (pdfId: string) => {

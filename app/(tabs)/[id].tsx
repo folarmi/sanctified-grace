@@ -1,16 +1,30 @@
 import React, { useEffect, useState } from "react";
-import { View, ActivityIndicator, Text } from "react-native";
+import {
+  View,
+  ActivityIndicator,
+  Text,
+  Image,
+  TouchableOpacity,
+} from "react-native";
 import { WebView } from "react-native-webview";
 import * as FileSystem from "expo-file-system";
 import { Asset } from "expo-asset";
 import { useLocalSearchParams } from "expo-router";
-import { acceptedDocTypes } from "@/data";
 import { hymnObjects } from "@/data/pdfFiles";
+import TailwindText from "@/components/TailwindText";
+import leftArrow from "@/assets/images/leftArrow.png";
+import defaultAvatar from "@/assets/images/defaultAvatar.png";
+import { useRouter } from "expo-router";
 
 const PdfViewerScreen: React.FC = () => {
+  const router = useRouter();
   const { id } = useLocalSearchParams<{ id: string }>();
   const [pdfBase64, setPdfBase64] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+
+  const handleGoBack = () => {
+    router.back();
+  };
 
   useEffect(() => {
     const loadPdf = async () => {
@@ -106,6 +120,16 @@ const PdfViewerScreen: React.FC = () => {
 
   return (
     <View style={{ flex: 1 }}>
+      <View className="w-full flex flex-row items-center mt-8 p-4 border-b border-gray-200">
+        <TouchableOpacity onPress={() => handleGoBack()}>
+          <Image source={leftArrow} className="w-6 h-6 mr-3" />
+        </TouchableOpacity>
+        <TailwindText variant="subHeading1">Psalms & Hymns</TailwindText>
+        <View className="w-full ml-8">
+          <Image source={defaultAvatar} className="w-11 h-11" />
+        </View>
+      </View>
+
       <WebView
         originWhitelist={["*"]}
         source={{ html: htmlContent }}
