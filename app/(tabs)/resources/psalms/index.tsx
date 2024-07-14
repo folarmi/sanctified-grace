@@ -124,61 +124,6 @@ export default function index() {
 
         {isActiveTab === "Index" && (
           <View>
-            <Text>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-              consectetur possimus dolorum vitae officiis quibusdam a,
-              reiciendis error. Ut dignissimos soluta vero eius assumenda nihil,
-              rerum libero ratione, mollitia est dicta error nemo animi expedita
-              minus quisquam! Inventore impedit animi necessitatibus harum
-              magnam voluptas voluptatibus adipisci. Hic, voluptatum iste?
-              Eligendi.
-            </Text>
-            {/* <PdfViewer
-              pdfFile={require("../../../../assets/hymns/Hymn_1_1.pdf")}
-            /> */}
-
-            {/* <WebView
-              source={{
-                uri: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
-              }}
-              style={{ height: 500, width: 350 }}
-            /> */}
-
-            {/* <View style={{ flex: 1 }}>
-              <WebView
-                originWhitelist={["*"]}
-                source={{
-                  uri: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
-                }}
-                style={{ marginTop: 20, height: 500, width: 350 }}
-                javaScriptEnabled={true}
-                domStorageEnabled={true}
-                onLoad={(event) =>
-                  console.log("WebView loaded", event.nativeEvent)
-                }
-                onError={(event) =>
-                  console.error("WebView error", event.nativeEvent)
-                }
-              />
-            </View> */}
-
-            {/* <WebView
-              originWhitelist={["*"]}
-              source={{
-                uri: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
-              }}
-              style={{ marginTop: 20, height: 500, width: 350 }}
-            /> */}
-            {/* <PdfListScreen /> */}
-            {/* <View style={{ flex: 1 }}>
-              {selectedPdf ? (
-                // <PdfViewer source={selectedPdf} />
-                <PdfViewer />
-              ) : (
-                // <PDFListScreen onSelect={handleSelectPdf} />
-                <PDFListScreen />
-              )}
-            </View> */}
             <PDFListScreen />
           </View>
         )}
