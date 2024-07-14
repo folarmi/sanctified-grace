@@ -275,7 +275,7 @@ export const resourcesPage = [
     id: 5,
     name: "Kid’s Corner",
     image: kidsCorner,
-    link: "resources/todayDevotional",
+    link: "resources/kids",
   },
   {
     id: 6,
@@ -458,3 +458,5 @@ export const psalmsAndHymnsData = [
     psalms: "Hymns 339 - 418",
   },
 ];
+
+export const acceptedDocTypes = [".pdf"];

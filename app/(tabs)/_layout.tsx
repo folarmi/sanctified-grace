@@ -193,6 +193,27 @@ export default function TabLayout() {
           href: null,
         }}
       />
+
+      <Tabs.Screen
+        name="resources/kids"
+        options={{
+          href: null,
+        }}
+      />
+
+      <Tabs.Screen
+        name="pdf-list-screen"
+        options={{
+          href: null,
+          title: "PDF List",
+        }}
+      />
+      <Tabs.Screen
+        name="[id]"
+        options={{
+          href: null,
+        }}
+      />
     </Tabs>
     // <Tabs
     //   selectedIndex={navigationState.findIndex(

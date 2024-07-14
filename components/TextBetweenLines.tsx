@@ -13,7 +13,7 @@ const TextBetweenLines: React.FC<TextBetweenLinesProps> = ({ text }) => {
       <Text
         className="px-4 font-MontserratLight text-gray-700"
         style={{
-          textShadowColor: "rgba(0, 0, 0, 0.25)",
+          textShadowColor: "ragba(0, 0, 0, 0.25)",
           textShadowOffset: { width: -1, height: 1 },
           textShadowRadius: 10,
         }}

@@ -1,4 +1,11 @@
-import { Image, Pressable, ScrollView, TextInput, View } from "react-native";
+import {
+  Image,
+  Pressable,
+  ScrollView,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import React, { useState } from "react";
 import leftArrow from "@/assets/images/leftArrow.png";
 import TailwindText from "@/components/TailwindText";
@@ -10,6 +17,8 @@ import downArrow from "@/assets/images/downArrow.png";
 import { screenHeight } from "@/utils";
 import TabItemIcon from "@/assets/svgs/TabItemIcon";
 import { psalmsAndHymnsData } from "@/data";
+// import WebView from "react-native-webview";
+import PDFListScreen from "../../pdf-list-screen";
 
 export default function index() {
   const [tabs, setTabs] = useState([
@@ -22,8 +31,14 @@ export default function index() {
       name: "Index",
     },
   ]);
+  const [isActiveTab, setIsActiveTab] = useState("Index");
 
-  const [isActiveTab, setIsActiveTab] = useState("Theme");
+  const [selectedPdf, setSelectedPdf] = useState<any | null>(null);
+
+  const handleSelectPdf = (pdfPath: any) => {
+    console.log(pdfPath);
+    setSelectedPdf(pdfPath);
+  };
 
   return (
     <View className="flex">
@@ -107,7 +122,66 @@ export default function index() {
           </View>
         )}
 
-        {isActiveTab === "Index"}
+        {isActiveTab === "Index" && (
+          <View>
+            <Text>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
+              consectetur possimus dolorum vitae officiis quibusdam a,
+              reiciendis error. Ut dignissimos soluta vero eius assumenda nihil,
+              rerum libero ratione, mollitia est dicta error nemo animi expedita
+              minus quisquam! Inventore impedit animi necessitatibus harum
+              magnam voluptas voluptatibus adipisci. Hic, voluptatum iste?
+              Eligendi.
+            </Text>
+            {/* <PdfViewer
+              pdfFile={require("../../../../assets/hymns/Hymn_1_1.pdf")}
+            /> */}
+
+            {/* <WebView
+              source={{
+                uri: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+              }}
+              style={{ height: 500, width: 350 }}
+            /> */}
+
+            {/* <View style={{ flex: 1 }}>
+              <WebView
+                originWhitelist={["*"]}
+                source={{
+                  uri: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+                }}
+                style={{ marginTop: 20, height: 500, width: 350 }}
+                javaScriptEnabled={true}
+                domStorageEnabled={true}
+                onLoad={(event) =>
+                  console.log("WebView loaded", event.nativeEvent)
+                }
+                onError={(event) =>
+                  console.error("WebView error", event.nativeEvent)
+                }
+              />
+            </View> */}
+
+            {/* <WebView
+              originWhitelist={["*"]}
+              source={{
+                uri: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+              }}
+              style={{ marginTop: 20, height: 500, width: 350 }}
+            /> */}
+            {/* <PdfListScreen /> */}
+            {/* <View style={{ flex: 1 }}>
+              {selectedPdf ? (
+                // <PdfViewer source={selectedPdf} />
+                <PdfViewer />
+              ) : (
+                // <PDFListScreen onSelect={handleSelectPdf} />
+                <PDFListScreen />
+              )}
+            </View> */}
+            <PDFListScreen />
+          </View>
+        )}
       </ScrollView>
     </View>
   );

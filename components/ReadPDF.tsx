@@ -3,7 +3,7 @@ import { View } from "react-native";
 import Pdf from "react-native-pdf";
 
 const ReadPDF = () => {
-  const PdfResource = { uri: "../assets/hymns/", cache: true };
+  const PdfResource = { uri: "../assets/hymns/Hymn_1_1.pdf", cache: true };
   return (
     <View>
       <Pdf
