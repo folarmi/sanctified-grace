@@ -82,9 +82,9 @@ export default function index() {
             );
           })}
         </View>
-
+        {/* bg-ash_200 */}
         <View className="bg-white flex flex-row items-center justify-between py-3 px-6">
-          <View className="rounded-lg border bg-ash_200 border-ash_300">
+          <View className="bg-red-900 rounded-lg border-b  border-ash_300">
             <Image
               source={ashSearchIcon}
               className="w-6 h-6 absolute top-5 right-5"
@@ -92,7 +92,7 @@ export default function index() {
             <View className=" mr-4">
               <TextInput
                 placeholder="Search for a Hymn"
-                className="w-[286px] font-bodyText2 py-3 pl-2"
+                className="w-[286px] font-MontserratLight font-bodyText2 py-3 pl-2"
               />
             </View>
           </View>

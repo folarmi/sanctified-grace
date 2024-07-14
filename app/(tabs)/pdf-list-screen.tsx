@@ -1,25 +1,14 @@
 import React from "react";
 import { Text, TouchableOpacity, FlatList } from "react-native";
 import { useRouter } from "expo-router";
+import { hymnObjects, pdfFiles } from "@/data/pdfFiles";
+import TailwindText from "@/components/TailwindText";
 
 interface PdfFile {
   id: string;
   title: string;
   path: any; // The type here can be `require` path
 }
-
-const pdfFiles: PdfFile[] = [
-  {
-    id: "1",
-    title: "Document1.pdf",
-    path: require("../../assets/hymns/Hymn_1_1.pdf"),
-  },
-  {
-    id: "2",
-    title: "Document2.pdf",
-    path: require("../../assets/hymns/Hymn_1_2.pdf"),
-  },
-];
 
 const PDFListScreen: React.FC = () => {
   const router = useRouter();
@@ -29,12 +18,16 @@ const PDFListScreen: React.FC = () => {
 
   return (
     <FlatList
+      // data={hymnObjects}
       data={pdfFiles}
       scrollEnabled={false}
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => (
-        <TouchableOpacity onPress={() => handleSelect(item.id)}>
-          <Text>{item.title}</Text>
+        <TouchableOpacity
+          className="border-b border-ash_200 py-3 px-5 bg-white"
+          onPress={() => handleSelect(item.id)}
+        >
+          <TailwindText variant="footer">{item.title}</TailwindText>
         </TouchableOpacity>
       )}
     />

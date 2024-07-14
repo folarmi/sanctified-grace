@@ -5,19 +5,7 @@ import * as FileSystem from "expo-file-system";
 import { Asset } from "expo-asset";
 import { useLocalSearchParams } from "expo-router";
 import { acceptedDocTypes } from "@/data";
-
-const pdfFiles = [
-  {
-    id: "1",
-    title: "Document1.pdf",
-    path: require("../../assets/hymns/Hymn_1_1.pdf"),
-  },
-  {
-    id: "2",
-    title: "Document2.pdf",
-    path: require("../../assets/hymns/Hymn_1_2.pdf"),
-  },
-];
+import { pdfFiles } from "@/data/pdfFiles";
 
 const PdfViewerScreen: React.FC = () => {
   const { id } = useLocalSearchParams<{ id: string }>();
