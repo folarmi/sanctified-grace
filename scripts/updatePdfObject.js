@@ -3,7 +3,7 @@ const path = require("path");
 
 // Path to the TypeScript file containing the array of objects
 const filePath = path.join(__dirname, "../data/pdfFiles.tsx"); // Adjust the file name and path as needed
-
+console.log("here", filePath);
 // Function to update the format of a single object
 const updateObjectFormat = (object, newId) => {
   // Create a new title based on the new id

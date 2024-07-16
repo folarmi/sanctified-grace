@@ -141,3 +141,5 @@ const PdfViewerScreen: React.FC = () => {
 };
 
 export default PdfViewerScreen;
+
+// ../assets/your-pdf-file.pdf

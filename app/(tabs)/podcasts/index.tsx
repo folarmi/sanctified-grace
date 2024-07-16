@@ -8,6 +8,7 @@ import { Image, View } from "react-native";
 import { podcastData } from "@/data";
 import { Link } from "expo-router";
 import TailwindText from "@/components/TailwindText";
+import ReadFirstLine from "@/components/ReadFirstLine";
 
 export default function index() {
   return (
@@ -50,6 +51,8 @@ export default function index() {
           );
         })}
       </View>
+
+      <ReadFirstLine />
     </Header>
   );
 }
