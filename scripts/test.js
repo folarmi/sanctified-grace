@@ -70,6 +70,7 @@ const updateTitles = (filesArray) => {
     return {
       ...file,
       title: fileName, // Update the title to the filename
+      path: `require(${filePath})`,
     };
   });
 };

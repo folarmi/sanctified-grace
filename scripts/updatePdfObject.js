@@ -7,7 +7,7 @@ console.log("here", filePath);
 // Function to update the format of a single object
 const updateObjectFormat = (object, newId) => {
   // Create a new title based on the new id
-  const newTitle = `Document${newId}.pdf`;
+  const newTitle = `${object.title}`;
   // Update the path to use require
   const newPath = `require("@/assets/hymns/${object.title}")`;
 
