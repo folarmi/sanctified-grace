@@ -298,7 +298,7 @@ export const podcastData = [
     summary:
       "is a weekly podcast that explores the biblical teachings on various topics and issues.",
     img: podcastOne,
-    link: "podcasts/123",
+    link: "/podcasts/123",
   },
   {
     id: 2,
@@ -306,7 +306,7 @@ export const podcastData = [
     summary:
       "is a weekly podcast that explores the biblical teachings on various topics and issues.",
     img: podcastTwo,
-    link: "podcasts/123",
+    link: "/podcasts/123",
   },
   {
     id: 3,
@@ -314,7 +314,7 @@ export const podcastData = [
     summary:
       "is a weekly podcast that explores the biblical teachings on various topics and issues.",
     img: podcastThree,
-    link: "podcasts/123",
+    link: "/podcasts/123",
   },
 ];
 

@@ -79,7 +79,6 @@ export default function login() {
       );
       const jsonValue = JSON.stringify(data?.data?.data?.user);
       await AsyncStorage.setItem("userObject", jsonValue);
-      console.log(data?.data?.data?.sessionAuth?.accessToken);
       Toast.show(data?.data?.data?.message, {
         type: "success",
         placement: "top",

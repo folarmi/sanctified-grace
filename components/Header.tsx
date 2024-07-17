@@ -1,4 +1,4 @@
-import { Image, ScrollView, Text, View } from "react-native";
+import { Image, ScrollView, View } from "react-native";
 import React, { useContext } from "react";
 import logo from "@/assets/images/logo.png";
 import searchIcon from "@/assets/images/searchIcon.png";
@@ -11,7 +11,7 @@ interface HeaderProps {
   className?: string;
 }
 
-export default function Header({ children, className }: HeaderProps) {
+export default function Header({ children }: HeaderProps) {
   const { userInfo } = useContext(AppContext);
 
   return (
@@ -22,7 +22,7 @@ export default function Header({ children, className }: HeaderProps) {
           {/* Adjusted logo size */}
           <View className="flex flex-row items-center">
             <Image source={searchIcon} className="w-11 h-11 mr-3" />
-            <Link href="settings">
+            <Link href="/settings">
               <View>
                 <Image source={defaultAvatar} className="w-11 h-11" />
               </View>

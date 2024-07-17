@@ -128,7 +128,7 @@ export default function index() {
                       <Image
                         source={{ uri: item?.bannerUrl }}
                         className="w-full h-full"
-                        resizeMode="cover"
+                        resizeMode="stretch"
                         // style={{
                         //   aspectRatio: 1,
                         // }}

@@ -1,22 +1,30 @@
-import { Image, Text, View } from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import podcastOne from "@/assets/images/podcastHeader.png";
 import Header from "@/components/Header";
 import FullImage from "@/components/FullImage";
 import { screenWidth } from "@/utils";
 import { singlePodcastsData } from "@/data";
-import { Link } from "expo-router";
 import TailwindText from "@/components/TailwindText";
 import ashCircleArrow from "@/assets/images/ashCircleArrow.png";
+import { useRouter } from "expo-router";
 
 export default function SinglePodcast() {
+  const router = useRouter();
+  const handleGoBack = () => {
+    router.back();
+  };
+
   return (
     <Header className="bg-white mt-5">
       <FullImage width={screenWidth} source={podcastOne} height={164} />
 
-      <View className="pl-8 py-2 border-b border-ash_200 w-full">
+      <TouchableOpacity
+        onPress={() => handleGoBack()}
+        className="pl-8 py-2 border-b border-ash_200 w-full"
+      >
         <Image source={ashCircleArrow} className="w-11 h-11 " />
-      </View>
+      </TouchableOpacity>
 
       {singlePodcastsData.map(
         ({ id, img, length, name, summary, uploaded }) => {
