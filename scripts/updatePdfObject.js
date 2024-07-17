@@ -5,9 +5,12 @@ const path = require("path");
 const filePath = path.join(__dirname, "../data/pdfFiles.tsx"); // Adjust the file name and path as needed
 console.log("here", filePath);
 // Function to update the format of a single object
+
 const updateObjectFormat = (object, newId) => {
   // Create a new title based on the new id
-  const newTitle = `${object.title}`;
+  let formatTitle = object.title.slice(5);
+  formatTitle.replace(/\.[^.]+$/, "");
+  const newTitle = `${object.title.slice(5)}`;
   // Update the path to use require
   const newPath = `require("@/assets/hymns/${object.title}")`;
 

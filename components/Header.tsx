@@ -4,7 +4,6 @@ import logo from "@/assets/images/logo.png";
 import searchIcon from "@/assets/images/searchIcon.png";
 import defaultAvatar from "@/assets/images/defaultAvatar.png";
 import { Link } from "expo-router";
-import { screenHeight } from "@/utils";
 import { AppContext } from "@/context/AppContext";
 
 interface HeaderProps {
@@ -13,6 +12,8 @@ interface HeaderProps {
 }
 
 export default function Header({ children, className }: HeaderProps) {
+  const { userInfo } = useContext(AppContext);
+
   return (
     <View className="flex flex-col h-full">
       <View className="relative z-10 py-4 px-6 bg-white border-b border-gray-200">

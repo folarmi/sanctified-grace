@@ -8,11 +8,9 @@ import CustomInput from "@/components/CustomInput";
 import { useForm } from "react-hook-form";
 import CustomButton from "@/components/CustomButton";
 import { screenHeight } from "@/utils";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AppContext } from "@/context/AppContext";
 
 export default function userProfile() {
-  // const [userInfo, setUserInfo] = useState({});
   const { userInfo } = useContext(AppContext);
   console.log("hjhh", userInfo);
 

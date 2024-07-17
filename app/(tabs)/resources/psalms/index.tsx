@@ -32,7 +32,6 @@ export default function index() {
     },
   ]);
   const [isActiveTab, setIsActiveTab] = useState("Index");
-
   const [selectedPdf, setSelectedPdf] = useState<any | null>(null);
 
   const handleSelectPdf = (pdfPath: any) => {
@@ -50,7 +49,6 @@ export default function index() {
             <Image source={defaultAvatar} className="w-11 h-11" />
           </View>
         </View>
-
         <View className="flex justify-between flex-row items-center py-3 bg-ash_100 px-6">
           {tabs.map((item, index) => {
             return (
@@ -58,15 +56,11 @@ export default function index() {
                 key={index}
                 onPress={() => setIsActiveTab(item?.name)}
                 className={` w-[167px] py-[10px] px-14 rounded-lg ${
-                  isActiveTab === item?.name ? "bg-blue_100 " : "bg-white "
+                  isActiveTab === item?.name ? "bg-blue_100 " : "bg-white"
                 }`}
               >
                 <View className="flex flex-row items-center">
-                  {index === 1 && (
-                    // <Image source={itemImage} className="w-6 h-6 pr-2" />
-                    // {item.name === "Index" ? "" : ""}
-                    <TabItemIcon isActiveTab={isActiveTab} />
-                  )}
+                  {index === 1 && <TabItemIcon isActiveTab={isActiveTab} />}
                   <TailwindText
                     variant="bodyText2"
                     className={`${
@@ -83,25 +77,25 @@ export default function index() {
           })}
         </View>
         {/* bg-ash_200 */}
-        <View className="bg-white flex flex-row items-center justify-between py-3 px-6">
-          <View className="bg-red-900 rounded-lg border-b  border-ash_300">
-            <Image
-              source={ashSearchIcon}
-              className="w-6 h-6 absolute top-5 right-5"
-            />
-            <View className=" mr-4">
+        {/* top-5 right-5 */}
+        <View className="bg-white flex flex-row items-center justify-between py-3 px-6 border-t border-b border-b-ash_300 border-t-ash_300">
+          <View className="relative rounded-lg bg-ash_200">
+            <Image source={ashSearchIcon} className="w-6 h-6 absolute top-4" />
+            {/* <View className="bg-yellow-900 w-[1px] h-full"></View> */}
+
+            <View className="mr-4">
               <TextInput
                 placeholder="Search for a Hymn"
-                className="w-[286px] font-MontserratLight font-bodyText2 py-3 pl-2"
+                className="w-[286px] font-MontserratLight font-bodyText2 py-3 pl-5"
               />
             </View>
           </View>
 
-          <Image source={heart} className="w-11 h-11" />
+          <Image source={heart} className="w-11 h-11 pl-3" />
         </View>
       </View>
 
-      <ScrollView className={`pt-72 pb-4 h-[${screenHeight}]`}>
+      <ScrollView className={`pt-[225px] pb-4 h-[${screenHeight}]`}>
         {isActiveTab === "Theme" && (
           <View>
             {psalmsAndHymnsData?.map(({ id, name, psalms }) => {
@@ -123,7 +117,7 @@ export default function index() {
         )}
 
         {isActiveTab === "Index" && (
-          <View>
+          <View className="pt-2">
             <PDFListScreen />
           </View>
         )}
