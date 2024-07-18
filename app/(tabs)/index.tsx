@@ -15,11 +15,12 @@ import { useQuery } from "@tanstack/react-query";
 import api from "../lib/axios";
 import Loader from "@/components/Loader";
 import ImageCarousel from "@/components/ImageCarousel";
+import ImageComponent from "@/components/ImageComponent";
 
 export default function index() {
   const [imageUrls, setImageUrls] = useState<any>([]);
   const getEvent = useQuery({
-    queryKey: ["getAllSermons"],
+    queryKey: ["getEvents"],
     queryFn: async () => {
       const response = await api.get("/event/getAll?page=1&nPerPage=20");
       return response;
@@ -47,10 +48,13 @@ export default function index() {
       return response;
     },
   });
+
+  // console.log("sermons", getAllSermonsQuery?.data?.data);
+  // console.log("event", getEvent?.data?.data);
   return (
     <>
       {getAllSermonsQuery.isLoading ? (
-        <Loader loading={getAllSermonsQuery.isLoading} />
+        <Loader loading={getAllSermonsQuery?.isLoading} />
       ) : (
         <Header className="bg-white">
           {imageUrls.length > 0 ? (
@@ -124,14 +128,21 @@ export default function index() {
               {getAllSermonsQuery.data?.data?.sermons?.map((item: any) => {
                 return (
                   <View key={item?._id} className="mr-4">
-                    <View className="w-[163px] h-64 overflow-hidden">
+                    <View
+                      style={{
+                        width: 163,
+                        height: 163,
+                        overflow: "hidden",
+                      }}
+                    >
                       <Image
                         source={{ uri: item?.bannerUrl }}
-                        className="w-full h-full"
-                        resizeMode="stretch"
-                        // style={{
-                        //   aspectRatio: 1,
-                        // }}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          resizeMode: "cover",
+                          // aspectRatio: 1,
+                        }}
                       />
                     </View>
 
