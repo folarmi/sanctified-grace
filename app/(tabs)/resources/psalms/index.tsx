@@ -39,7 +39,7 @@ export default function index() {
               <Pressable
                 key={index}
                 onPress={() => setIsActiveTab(item?.name)}
-                className={` w-[167px] py-[10px] px-14 rounded-lg ${
+                className={`w-[167px] py-[10px] px-14 rounded-lg ${
                   isActiveTab === item?.name ? "bg-blue_100 " : "bg-white"
                 }`}
               >
@@ -63,12 +63,15 @@ export default function index() {
 
         <View className="bg-white flex flex-row items-center justify-between py-3 px-6 border-t border-b border-b-ash_300 border-t-ash_300">
           <View className="relative rounded-lg bg-ash_200">
-            <Image source={ashSearchIcon} className="w-6 h-6 absolute top-4" />
+            <Image
+              source={ashSearchIcon}
+              className="w-6 h-6 absolute top-4 ml-4"
+            />
 
             <View className="mr-4">
               <TextInput
                 placeholder="Search for a Hymn"
-                className="w-[286px] font-MontserratLight font-bodyText2 py-3 pl-5"
+                className="w-[286px] font-MontserratLight font-bodyText2 py-3 pl-10"
               />
             </View>
           </View>
