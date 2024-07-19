@@ -78,9 +78,9 @@ any) {
             maximumValue={1}
             value={status.positionMillis / status.durationMillis}
             onSlidingComplete={onSeekSliderValueChange}
-            minimumTrackTintColor="#ffffff" // Green
-            maximumTrackTintColor="#ffffff63" // Light Gray
-            thumbTintColor="#ffffff" // Green
+            minimumTrackTintColor="#ffffff"
+            maximumTrackTintColor="#ffffff63"
+            thumbTintColor="transparent"
           />
           <View className="flex flex-row items-center justify-between mt-3">
             <TailwindText variant="bodyText3" className="text-white">

@@ -8,6 +8,7 @@ import TailwindText from "./TailwindText";
 import SingleSermon from "@/components/SingleSermon";
 import { AppContext } from "@/context/AppContext";
 import { AudioPlayerContext } from "@/context/AudioPlayerContext";
+import Slider from "@react-native-community/slider";
 
 export default function AudioPlayer({}: // nowPlaying,
 // playlist,
@@ -20,6 +21,8 @@ any) {
     rewindSound,
     forwardSound,
     isPlaying,
+    status,
+    onSeekSliderValueChange,
   } = useContext(AudioPlayerContext);
 
   return (
@@ -80,6 +83,17 @@ any) {
               </View>
             </View>
           </TouchableOpacity>
+          <Slider
+            className="w-full"
+            minimumValue={0}
+            maximumValue={1}
+            value={status.positionMillis / status.durationMillis}
+            onSlidingComplete={onSeekSliderValueChange}
+            minimumTrackTintColor="#F9AF1C" // Green
+            maximumTrackTintColor="#ffffff63" // Light Gray
+            thumbTintColor="transparent" // Green
+            style={{ height: 0, transform: [{ scaleY: 1 }] }}
+          />
         </>
       )}
     </View>
