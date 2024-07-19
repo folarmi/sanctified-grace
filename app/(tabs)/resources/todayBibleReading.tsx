@@ -62,9 +62,11 @@ export default function todayBibleReading() {
                   >
                     <TailwindText
                       variant="bodyText1"
-                      className={`text-white ${
-                        index === 0 ? "text-left" : "text-center"
-                      }`}
+                      className={`text-white text-center`}
+                      //                         ${
+                      //                         index === 0 ? "text-left" : "text-center"
+                      //  }
+                      //                       `}
                     >
                       {item}
                     </TailwindText>

@@ -40,6 +40,11 @@ export const capitalizeFirstLetter = (str: string) => {
   return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
+export const replaceString = (str: string, value: string) => {
+  if (!str) return str;
+  str.replace(",", value);
+};
+
 export function formatTime(milliseconds: number) {
   if (typeof milliseconds !== "number" || isNaN(milliseconds))
     return "00:00:00";

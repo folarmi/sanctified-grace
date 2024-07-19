@@ -1,4 +1,4 @@
-import { Image, TouchableOpacity, View } from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import React, { useContext } from "react";
 import { formatTime } from "@/utils";
 import TailwindText from "@/components/TailwindText";
@@ -39,7 +39,7 @@ any) {
     <View>
       <StatusBar style="light" />
       <View className="bg-primary h-full px-8">
-        <View className="mt-10 flex flex-row items-center justify-between mb-8">
+        <View className="flex flex-row items-center justify-between my-10">
           <TouchableOpacity onPress={() => setIsFullPlayer(false)}>
             <Image source={downWhiteArrow} className="w-8 h-8" />
           </TouchableOpacity>
@@ -47,18 +47,17 @@ any) {
         </View>
 
         <View
-          className=""
-          style={{ width: 335, height: 335, marginBottom: 32 }}
+          className="w-full flex items-center justify-center"
+          style={{
+            marginBottom: 32,
+            height: 335,
+            // width: 335,
+          }}
         >
           <Image
-            source={{ uri: playlist?.[currentIndex]?.bannerUrl }}
-            className="w-full h-full rounded-2xl"
+            source={{ uri: playlist?.[currentIndex]?.thumbnailUrl }}
+            className="w-full h-full rounded-[15px]"
             resizeMode="cover"
-            style={{
-              // width: 335,
-              // height: 335,
-              aspectRatio: 1,
-            }}
           />
         </View>
         <View className="">

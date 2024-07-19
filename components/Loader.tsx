@@ -3,7 +3,7 @@ import { View, Button } from "react-native";
 import { BallIndicator } from "react-native-indicators";
 
 type LoaderProps = {
-  loading: boolean;
+  loading?: boolean;
 };
 
 const Loader = ({ loading }: LoaderProps) => {

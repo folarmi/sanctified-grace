@@ -7,6 +7,7 @@ interface FullImageProps {
   className?: string;
   height: number;
   width: number;
+  borderRadius?: number;
 }
 
 export default function FullImage({
@@ -14,10 +15,15 @@ export default function FullImage({
   height,
   width,
   className,
+  borderRadius,
 }: FullImageProps) {
   return (
     <View style={{ width: "100%" }} className={className}>
-      <Image source={source} style={{ width, height }} resizeMode="cover" />
+      <Image
+        source={source}
+        style={{ width, height, borderRadius }}
+        resizeMode="cover"
+      />
     </View>
   );
 }

@@ -1,4 +1,9 @@
-import { formatDate, screenWidth } from "@/utils";
+import {
+  capitalizeFirstLetter,
+  formatDate,
+  replaceString,
+  screenWidth,
+} from "@/utils";
 import FullImage from "@/components/FullImage";
 import sermonHeader from "@/assets/images/sermonHeader.png";
 import CustomButton from "@/components/CustomButton";
@@ -141,11 +146,26 @@ const Sermons = () => {
                                 {item?.title}
                               </TailwindText>
                               <View className="flex flex-row items-center">
-                                <TailwindText variant="footer" className="pr-2">
-                                  {`${item?.bookOfBible?.name} ${item?.bookOfBible?.chapter}:${item?.bookOfBible?.verse}`}
+                                <TailwindText variant="footer">
+                                  {`${capitalizeFirstLetter(
+                                    item?.bookOfBible?.name
+                                  )} ${item?.bookOfBible?.chapter}: ${
+                                    item?.bookOfBible?.verse[0]
+                                  }`}
                                 </TailwindText>
-                                <View className="h-3 w-[1px] bg-orange_100"></View>
-                                <TailwindText variant="footer" className="pl-2">
+                                <TailwindText variant="footer">
+                                  {" "}
+                                  -{" "}
+                                </TailwindText>
+                                <TailwindText variant="footer">
+                                  {`${
+                                    item?.bookOfBible?.verse[1]
+                                      ? item?.bookOfBible?.verse[1]
+                                      : ""
+                                  }`}
+                                </TailwindText>
+                                <View className="h-3 w-[1px] bg-orange_100 mx-2"></View>
+                                <TailwindText variant="footer">
                                   {`${item?.preacher?.first_name}${" "}${
                                     item?.preacher?.last_name
                                   }`}

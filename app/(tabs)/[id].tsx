@@ -6,6 +6,7 @@ import { Asset } from "expo-asset";
 import { useLocalSearchParams } from "expo-router";
 import { hymnObjects } from "@/data/pdfFiles";
 import PsalmsAndHymnsHeader from "@/components/PsalmsAndHymnsHeader";
+import Loader from "@/components/Loader";
 
 const PdfViewerScreen: React.FC = () => {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -64,7 +65,8 @@ const PdfViewerScreen: React.FC = () => {
           height: 700,
         }}
       >
-        <ActivityIndicator size="large" />
+        {/* <ActivityIndicator size="large" /> */}
+        <Loader />
       </View>
     );
   }
@@ -118,3 +120,11 @@ const PdfViewerScreen: React.FC = () => {
 };
 
 export default PdfViewerScreen;
+
+// •⁠  ⁠images on the recent sermons and sermon series - should be square
+// •⁠  ⁠⁠Sermons category header should be sticky
+//
+// •⁠  ⁠⁠Player looks different
+// •⁠  ⁠⁠Check resources background and shadow
+// #00000014
+// box-shadow: 0px 4px 28.9px 0px #00000014;

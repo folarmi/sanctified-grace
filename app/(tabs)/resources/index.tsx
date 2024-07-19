@@ -8,8 +8,8 @@ import { Link } from "expo-router";
 
 export default function resources() {
   return (
-    <Header className="bg-white">
-      <View className="">
+    <Header>
+      <View className="bg-white">
         <TailwindText variant="subHeading1" className="py-3 text-center">
           Resources
         </TailwindText>

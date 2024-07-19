@@ -68,10 +68,10 @@ any) {
                 <TouchableOpacity onPress={rewindSound} className="mr-4">
                   <Image source={rewind} className="w-5 h-5" />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={playPauseSound} className="mr-4">
+                <TouchableOpacity onPress={playPauseSound} className="mr-4 ">
                   <Image
                     source={isPlaying ? pauseIcon : playIcon}
-                    className="w-5 h-5"
+                    className="w-5 h-[23px]"
                   />
                 </TouchableOpacity>
                 <TouchableOpacity onPress={forwardSound}>

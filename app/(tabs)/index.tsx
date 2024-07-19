@@ -2,7 +2,7 @@ import { Image, ScrollView, StyleSheet, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import midYear from "@/assets/images/midYear.png";
-import { screenWidth } from "@/utils";
+import { capitalizeFirstLetter, replaceString, screenWidth } from "@/utils";
 import TailwindText from "@/components/TailwindText";
 import { recentSermons } from "@/data";
 import BibleReading from "@/components/BibleReading";
@@ -85,8 +85,22 @@ export default function index() {
               {recentSermons.map(
                 ({ id, image, bibleText, preacher, title }) => {
                   return (
-                    <View key={id} className="mr-4">
-                      <FullImage width={163} source={image} height={256} />
+                    <View key={id} className="">
+                      <View
+                        style={{
+                          borderRadius: 30,
+                          overflow: "hidden",
+                          marginRight: 8,
+                        }}
+                      >
+                        <Image
+                          source={image}
+                          style={{ width: 163, height: 163 }}
+                          resizeMode="cover"
+                          borderRadius={10}
+                        />
+                      </View>
+
                       <TailwindText
                         variant="subHeading3"
                         className="pt-3 pb-1 w-[163px]"
@@ -133,15 +147,15 @@ export default function index() {
                         width: 163,
                         height: 163,
                         overflow: "hidden",
+                        borderRadius: 5,
                       }}
                     >
                       <Image
-                        source={{ uri: item?.bannerUrl }}
+                        source={{ uri: item?.thumbnailUrl }}
                         style={{
                           width: "100%",
                           height: "100%",
                           resizeMode: "cover",
-                          // aspectRatio: 1,
                         }}
                       />
                     </View>
@@ -153,7 +167,12 @@ export default function index() {
                       {item?.title}
                     </TailwindText>
                     <TailwindText variant="footer">
-                      {item?.sermonSeries}
+                      {capitalizeFirstLetter(item?.sermonSeries).replace(
+                        "_",
+                        " "
+                      )}
+
+                      {/* {item?.sermonSeries} */}
                     </TailwindText>
                     <TailwindText variant="footer">
                       {" "}

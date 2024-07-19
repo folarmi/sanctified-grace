@@ -32,6 +32,9 @@ module.exports = {
         MontserratMedium: ["MontserratMedium"],
         MontserratSemiBold: ["MontserratSemiBold"],
       },
+      boxShadow: {
+        "resources-shadow": "0px 4px 4px 0px #B7B5B540",
+      },
     },
   },
   plugins: [],
