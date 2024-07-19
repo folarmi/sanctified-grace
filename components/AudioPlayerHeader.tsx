@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 import { Link } from "expo-router";
 import logo from "@/assets/images/logo.png";
 import searchIcon from "@/assets/images/searchIcon.png";

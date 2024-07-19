@@ -71,7 +71,6 @@ any) {
             <Image source={love} className="w-6 h-6" />
           </View>
 
-          {/* <ProgressBar progress={progress} /> */}
           <Slider
             className="w-full mb-4"
             minimumValue={0}

@@ -89,9 +89,9 @@ any) {
             maximumValue={1}
             value={status.positionMillis / status.durationMillis}
             onSlidingComplete={onSeekSliderValueChange}
-            minimumTrackTintColor="#F9AF1C" // Green
-            maximumTrackTintColor="#ffffff63" // Light Gray
-            thumbTintColor="transparent" // Green
+            minimumTrackTintColor="#F9AF1C"
+            maximumTrackTintColor="#ffffff63"
+            thumbTintColor="transparent"
             style={{ height: 0, transform: [{ scaleY: 1 }] }}
           />
         </>
