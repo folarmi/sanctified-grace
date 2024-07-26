@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 
 // Path to the TypeScript file containing the array of objects
-const filePath = path.join(__dirname, "../data/pdfFilesTwo.tsx"); // Adjust the file name and path as needed
+const filePath = path.join(__dirname, "../data/pdfFilesThree.tsx"); // Adjust the file name and path as needed
 console.log("here", filePath);
 // Function to update the format of a single object
 

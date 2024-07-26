@@ -30,5 +30,5 @@ const createPdfObjects = () => {
 
 // Usage example
 const pdfFiles = createPdfObjects();
-const outputFilePath = path.join(__dirname, "pdfFilesTwo.tsx"); // Output file path
+const outputFilePath = path.join(__dirname, "pdfFilesThree.tsx"); // Output file path
 fs.writeFileSync(outputFilePath, JSON.stringify(pdfFiles, null, 2));
