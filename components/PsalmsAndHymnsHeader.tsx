@@ -12,7 +12,7 @@ export default function PsalmsAndHymnsHeader() {
   };
 
   return (
-    <View className="w-full flex flex-row items-center justify-between bg-white p-4 border-b border-gray-200">
+    <View className="w-full flex flex-row items-center justify-between bg-white p-4 border-b border-gray-200 pt-8">
       <TouchableOpacity onPress={() => handleGoBack()}>
         <Image source={leftArrow} className="w-6 h-6 mr-3" />
       </TouchableOpacity>

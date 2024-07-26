@@ -1,19 +1,25 @@
 // import { Text, View } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import FullImage from "@/components/FullImage";
 import { screenWidth } from "@/utils";
 import Header from "@/components/Header";
 import podcasts from "@/assets/images/podcasts.png";
-import { Image, View } from "react-native";
+import { Image, ScrollView, View } from "react-native";
 import { podcastData } from "@/data";
 import { Link } from "expo-router";
 import TailwindText from "@/components/TailwindText";
+import AudioPlayerHeader from "@/components/AudioPlayerHeader";
+import PodcastAudioPlayer from "@/components/PodcastAudioPlayer";
 
 export default function index() {
+  const [isFullPlayer, setIsFullPlayer] = useState(false);
   return (
-    <Header className="bg-white">
-      <>
-        <FullImage width={screenWidth} source={podcasts} height={170} />
+    <>
+      <AudioPlayerHeader />
+      <ScrollView>
+        {!isFullPlayer && (
+          <FullImage width={screenWidth} source={podcasts} height={170} />
+        )}
 
         <View className="bg-ash_200 py-8">
           {podcastData?.map(({ id, title, summary, img, link }) => {
@@ -51,7 +57,9 @@ export default function index() {
             );
           })}
         </View>
-      </>
-    </Header>
+      </ScrollView>
+
+      <PodcastAudioPlayer />
+    </>
   );
 }

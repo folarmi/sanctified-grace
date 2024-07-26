@@ -4,4 +4,5 @@ export const CustomColor = {
   primary: "#001229",
   blue_100: "#216ac4",
   blue_200: "#216ac4",
+  blue_300: "#00397F",
 };

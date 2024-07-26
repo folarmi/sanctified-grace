@@ -34,76 +34,76 @@ export default function todayBibleReading() {
         <>
           <ResourcesHeader text="Today’s Bible Reading" />
 
-          <View className="px-6">
-            <RadialGradientBackground style={StyleSheet.absoluteFillObject} />
+          <RadialGradientBackground FROM_COLOR="#115EBC" TO_COLOR="#000E1E">
+            <View className="px-6 h-full">
+              <View className="flex flex-row items-center justify-between my-11">
+                <View className="flex flex-row items-center ">
+                  <Image source={leftArrowTwo} className="w-6 h-6" />
+                  <TailwindText variant="footer" className="text-white pl-2">
+                    Prev
+                  </TailwindText>
+                </View>
 
-            <View className="flex flex-row items-center justify-between my-11">
-              <View className="flex flex-row items-center ">
-                <Image source={leftArrowTwo} className="w-6 h-6" />
-                <TailwindText variant="footer" className="text-white pl-2">
-                  Prev
-                </TailwindText>
+                <View className="flex flex-row items-center">
+                  <TailwindText variant="footer" className="text-white pr-2">
+                    Next
+                  </TailwindText>
+                  <Image source={rightArrow} className="w-6 h-6" />
+                </View>
               </View>
 
-              <View className="flex flex-row items-center">
-                <Image source={rightArrow} className="w-6 h-6" />
-                <TailwindText variant="footer" className="text-white pr-2">
-                  Next
-                </TailwindText>
-              </View>
-            </View>
-
-            {getTodayBibleReading?.data?.data?.map(
-              (item: any, index: number) => {
-                return (
-                  <View
-                    key={index}
-                    className="border border-blue_100 rounded-md py-4 px-6 mb-1"
-                  >
-                    <TailwindText
-                      variant="bodyText1"
-                      className={`text-white text-center`}
-                      //                         ${
-                      //                         index === 0 ? "text-left" : "text-center"
-                      //  }
-                      //                       `}
+              {getTodayBibleReading?.data?.data?.map(
+                (item: any, index: number) => {
+                  return (
+                    <View
+                      key={index}
+                      className="border border-blue_100 rounded-md py-4 px-6 mb-1"
                     >
-                      {item}
-                    </TailwindText>
-                  </View>
-                );
-              }
-            )}
+                      <TailwindText
+                        variant="bodyText1"
+                        className={`text-white text-center`}
+                        //                         ${
+                        //                         index === 0 ? "text-left" : "text-center"
+                        //  }
+                        //                       `}
+                      >
+                        {item}
+                      </TailwindText>
+                    </View>
+                  );
+                }
+              )}
 
-            <View className="flex items-center my-10 w-full">
-              <CustomButton title="Finish" className=" w-[205px]" />
-            </View>
+              <View className="flex items-center my-10 w-full">
+                <CustomButton title="Finish" className=" w-[205px]" />
+              </View>
 
-            <TailwindText
-              variant="subHeading4"
-              className="text-white pb-4 text-center"
-            >
-              Memory Verse for the Day
-            </TailwindText>
+              <TailwindText
+                variant="subHeading4"
+                className="text-white pb-4 text-center"
+              >
+                Memory Verse for the Day
+              </TailwindText>
 
-            <View className="w-full flex items-center">
+              <View className="w-full flex items-center">
+                <TailwindText
+                  variant="subHeading5"
+                  className="text-white pb-1  w-[246px]"
+                >
+                  All Scripture is given by inspiration of God and is profitable
+                  for doctrine, for reproof, for correction, for instruction in
+                  righteousness.
+                </TailwindText>
+              </View>
+
               <TailwindText
                 variant="subHeading5"
-                className="text-white pb-1  w-[246px]"
+                className="text-white pb-10 text-center"
               >
-                All Scripture is given by inspiration of God and is profitable
-                for doctrine, for reproof, for correction, for instruction in
-                righteousness.
+                2 Timothy 3:16
               </TailwindText>
             </View>
-
-            <TailwindText
-              variant="subHeading5"
-              className="text-white pb-10 text-center"
-            >
-              2 Timothy 3:16
-            </TailwindText>
-          </View>
+          </RadialGradientBackground>
         </>
       )}
     </Header>

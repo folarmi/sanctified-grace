@@ -128,3 +128,5 @@ export default PdfViewerScreen;
 // •⁠  ⁠⁠Check resources background and shadow
 // #00000014
 // box-shadow: 0px 4px 28.9px 0px #00000014;
+
+// 1(1) How b
