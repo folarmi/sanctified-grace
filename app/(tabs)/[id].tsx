@@ -4,9 +4,10 @@ import { WebView } from "react-native-webview";
 import * as FileSystem from "expo-file-system";
 import { Asset } from "expo-asset";
 import { useLocalSearchParams } from "expo-router";
-import { hymnObjects } from "@/data/pdfFiles";
+
 import PsalmsAndHymnsHeader from "@/components/PsalmsAndHymnsHeader";
 import Loader from "@/components/Loader";
+import { hymnObjects } from "@/data/pdfFilesThree";
 
 const PdfViewerScreen: React.FC = () => {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -86,7 +87,7 @@ const PdfViewerScreen: React.FC = () => {
 
       loadingTask.promise.then(function(pdf) {
         pdf.getPage(1).then(function(page) {
-          const scale = 1.5;
+          const scale = 3;
           const viewport = page.getViewport({ scale });
 
           const canvas = document.getElementById('pdfRenderer');
@@ -112,7 +113,11 @@ const PdfViewerScreen: React.FC = () => {
       <WebView
         originWhitelist={["*"]}
         source={{ html: htmlContent }}
-        style={{ flex: 1 }}
+        style={{
+          flex: 1,
+          justifyContent: "center",
+          alignContent: "center",
+        }}
         onError={(error) => console.error("WebView error:", error)}
       />
     </View>
@@ -120,13 +125,3 @@ const PdfViewerScreen: React.FC = () => {
 };
 
 export default PdfViewerScreen;
-
-// •⁠  ⁠images on the recent sermons and sermon series - should be square
-// •⁠  ⁠⁠Sermons category header should be sticky
-//
-// •⁠  ⁠⁠Player looks different
-// •⁠  ⁠⁠Check resources background and shadow
-// #00000014
-// box-shadow: 0px 4px 28.9px 0px #00000014;
-
-// 1(1) How b

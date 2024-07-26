@@ -17,7 +17,7 @@ export default function Header({ children }: HeaderProps) {
   return (
     <View className="flex flex-col h-full">
       <View className="relative z-10 py-4 px-6 bg-white border-b border-gray-200">
-        <View className="flex flex-row justify-between items-center mt-8">
+        <View className="w-full flex flex-row justify-between items-center mt-8">
           <Image source={logo} className="w-24 h-9" />
           {/* Adjusted logo size */}
           <View className="flex flex-row items-center">

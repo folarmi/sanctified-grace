@@ -73,11 +73,14 @@ const getBaseClasses = (variant: Variant) => {
 export default function TailwindText({
   variant,
   className,
+  style,
   children,
 }: TailwindTextProps) {
   const baseClasses = getBaseClasses(variant);
 
   return (
-    <Text className={`${baseClasses} ${className || ""}`}>{children}</Text>
+    <Text style={style} className={`${baseClasses} ${className || ""}`}>
+      {children}
+    </Text>
   );
 }

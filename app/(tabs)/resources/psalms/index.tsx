@@ -1,16 +1,31 @@
-import { Image, Pressable, ScrollView, TextInput, View } from "react-native";
+import {
+  FlatList,
+  Image,
+  Pressable,
+  ScrollView,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import React, { useState } from "react";
 import TailwindText from "@/components/TailwindText";
 import heart from "@/assets/images/heart.png";
 import ashSearchIcon from "@/assets/images/ashSearchIcon.png";
 import downArrow from "@/assets/images/downArrow.png";
-import { screenHeight } from "@/utils";
-import TabItemIcon from "@/assets/svgs/TabItemIcon";
-import { psalmsAndHymnsData } from "@/data";
+import upArrow from "@/assets/images/upArrow.png";
+import { capitalizeEachWord, formatString, screenHeight } from "@/utils";
 import PDFListScreen from "../../pdf-list-screen";
 import PsalmsAndHymnsHeader from "@/components/PsalmsAndHymnsHeader";
+import { psalmsAndHymnsData } from "@/data/hymnsWithTheme";
+import { useRouter } from "expo-router";
+import whiteIndex from "@/assets/images/whiteIndex.png";
+import blueIndex from "@/assets/images/blueIndex.png";
 
 export default function index() {
+  const router = useRouter();
+  const handleSelect = (pdfId: string) => {
+    router.push(`${pdfId}`);
+  };
   const [tabs, setTabs] = useState([
     {
       id: 1,
@@ -22,36 +37,44 @@ export default function index() {
     },
   ]);
   const [isActiveTab, setIsActiveTab] = useState("Theme");
-  const [selectedPdf, setSelectedPdf] = useState<any | null>(null);
+  const [selectedTheme, setSelectedTheme] = useState(
+    "THE SPIRIT OF THE PSALMS"
+  );
+  const [showHymns, setShowHymns] = useState(false);
 
-  const handleSelectPdf = (pdfPath: any) => {
-    console.log(pdfPath);
-    setSelectedPdf(pdfPath);
+  const toggleHymns = (category: string) => {
+    setSelectedTheme(category);
+    setShowHymns(!showHymns);
   };
 
   return (
     <View className="flex">
       <View className={`absolute top-0 left-0 right-0 z-10 bg-white`}>
         <PsalmsAndHymnsHeader />
-        <View className="flex justify-between flex-row items-center py-3 bg-ash_100 px-6">
+        <View className="flex flex-row items-center py-3 px-6">
           {tabs.map((item, index) => {
             return (
               <Pressable
                 key={index}
                 onPress={() => setIsActiveTab(item?.name)}
-                className={`w-[167px] py-[10px] px-14 rounded-lg ${
-                  isActiveTab === item?.name ? "bg-blue_100 " : "bg-white"
-                }`}
+                className={`w-[167px] py-[10px] px-14 rounded-lg mr-3`}
+                style={{
+                  backgroundColor:
+                    isActiveTab === item?.name ? "#216bc4" : "#fff",
+                }}
               >
                 <View className="flex flex-row items-center">
-                  {index === 1 && <TabItemIcon isActiveTab={isActiveTab} />}
+                  {index === 1 &&
+                    (isActiveTab === item?.name ? (
+                      <Image source={whiteIndex} className="w-6 h-6 mr-2" />
+                    ) : (
+                      <Image source={blueIndex} className="w-6 h-6 mr-2" />
+                    ))}
                   <TailwindText
                     variant="bodyText2"
-                    className={`${
-                      isActiveTab === item.name
-                        ? "text-white"
-                        : "text-navy_blue"
-                    }`}
+                    style={{
+                      color: isActiveTab === item.name ? "#fff" : "#02387c",
+                    }}
                   >
                     {item?.name}
                   </TailwindText>
@@ -82,19 +105,77 @@ export default function index() {
 
       <ScrollView className={`pt-[200px] pb-4 h-[${screenHeight}]`}>
         {isActiveTab === "Theme" && (
-          <View>
-            {psalmsAndHymnsData?.map(({ id, name, psalms }) => {
+          <View className="mt-4">
+            {psalmsAndHymnsData?.map((item, index) => {
               return (
-                <View
-                  className="flex flex-row items-center justify-between bg-white py-5 px-7 border-b border-ash_200"
-                  key={id}
-                >
-                  <View>
-                    <TailwindText variant="bodyText1">{name}</TailwindText>
-                    <TailwindText variant="footer">{psalms}</TailwindText>
-                  </View>
+                <View key={index}>
+                  <TouchableOpacity
+                    key={index}
+                    onPress={() => toggleHymns(item.category)}
+                  >
+                    <View
+                      className={`flex flex-row items-center justify-between py-5 px-7 border-b border-ash_200`}
+                      style={{
+                        backgroundColor:
+                          selectedTheme === item.category && showHymns
+                            ? "#00397F"
+                            : "#fff",
+                      }}
+                    >
+                      <View>
+                        <TailwindText
+                          variant="bodyText1"
+                          style={{
+                            color:
+                              selectedTheme === item.category && showHymns
+                                ? "#FFFFFF"
+                                : "#000",
+                          }}
+                        >
+                          {capitalizeEachWord(item.category)}
+                        </TailwindText>
+                        <TailwindText
+                          variant="footer"
+                          style={{
+                            color:
+                              selectedTheme === item.category && showHymns
+                                ? "#FFFFFF"
+                                : "#000",
+                          }}
+                        >
+                          {item.psalms}
+                        </TailwindText>
+                      </View>
 
-                  <Image source={downArrow} className="w-6 h-6" />
+                      {selectedTheme === item.category && showHymns ? (
+                        <Image source={upArrow} className="w-6 h-6" />
+                      ) : (
+                        <Image source={downArrow} className="w-6 h-6" />
+                      )}
+                    </View>
+                  </TouchableOpacity>
+
+                  {selectedTheme === item.category && showHymns && (
+                    <View key={index}>
+                      <FlatList
+                        data={item.hymns}
+                        scrollEnabled={false}
+                        keyExtractor={(item) => item.id}
+                        renderItem={({ item }) => (
+                          <TouchableOpacity
+                            className="border-b border-ash_200 py-3 pl-10 bg-white"
+                            onPress={() => handleSelect(item.id)}
+                          >
+                            <TailwindText variant="footer">
+                              {formatString(
+                                item.title.replace(/_/g, " ")
+                              ).slice(0, -4)}
+                            </TailwindText>
+                          </TouchableOpacity>
+                        )}
+                      />
+                    </View>
+                  )}
                 </View>
               );
             })}
@@ -102,7 +183,7 @@ export default function index() {
         )}
 
         {isActiveTab === "Index" && (
-          <View className="">
+          <View className="mt-4">
             <PDFListScreen />
           </View>
         )}
@@ -110,3 +191,5 @@ export default function index() {
     </View>
   );
 }
+
+// box-shadow: 0px 8px 7.4px 0px #0000006B inset;

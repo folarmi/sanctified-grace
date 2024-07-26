@@ -15,12 +15,13 @@ module.exports = {
         ash_200: "#f5f5f5",
         ash_300: "#878787",
         ash_400: "#f2f2f2",
+        ash_500: "#F0F0F0",
         orange_100: "#F9AF1C",
         ash_200: "#E8E8E8",
         ash_300: "#f0f0f0",
         sky_blue: "#c6dbf6",
         primary: "#001229",
-        blue_100: "#216ac4",
+        blue_100: "#216bc4",
         blue_200: "#00397F",
         navy_blue: "#02387c",
         dark_blue: "#001328",
@@ -33,9 +34,25 @@ module.exports = {
         MontserratSemiBold: ["MontserratSemiBold"],
       },
       boxShadow: {
-        "resources-shadow": "0px 4px 4px 0px #B7B5B540",
+        "resources-shadow": "0px 4px 28.9px 0px #00000014",
       },
     },
   },
   plugins: [],
 };
+
+<View
+  style={tailwind(
+    "w-full flex flex-row items-center justify-between bg-red-900 p-4 border-b border-gray-200 pt-8"
+  )}
+>
+  <View style={tailwind("flex flex-row items-center")}>
+    <TouchableOpacity onPress={handleGoBack}>
+      <Image source={leftArrow} style={tailwind("w-6 h-6 mr-3")} />
+    </TouchableOpacity>
+    <TailwindText variant="subHeading1">Psalms & Hymns</TailwindText>
+  </View>
+  <View>
+    <Image source={defaultAvatar} style={tailwind("w-11 h-11")} />
+  </View>
+</View>;

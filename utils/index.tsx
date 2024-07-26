@@ -40,6 +40,18 @@ export const capitalizeFirstLetter = (str: string) => {
   return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
+export function capitalizeEachWord(sentence: string) {
+  return sentence
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(" ");
+}
+
+// Example usage:
+const sentence = "this is an example sentence";
+const capitalizedSentence = capitalizeEachWord(sentence);
+console.log(capitalizedSentence); // Output: "This Is An Example Sentence"
+
 export const replaceString = (str: string, value: string) => {
   if (!str) return str;
   str.replace(",", value);
@@ -64,4 +76,11 @@ export function formatTime(milliseconds: number) {
 
   // Return formatted time as hh:mm:ss
   return `${hours}:${minutes}:${seconds}`;
+}
+
+export function formatString(input: string) {
+  // Use regex to match the pattern and replace it
+  // This regex captures the first number, the second number, and the rest of the string
+  const formattedString = input.replace(/^(\d+)\s(\d+)\s/, "$1 ($2) ");
+  return formattedString;
 }
