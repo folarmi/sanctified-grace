@@ -1,5 +1,5 @@
 import { Image, Pressable, ScrollView, StyleSheet, View } from "react-native";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Header from "@/components/Header";
 import FullImage from "@/components/FullImage";
 import { screenWidth } from "@/utils";
@@ -10,6 +10,7 @@ import { blogPostsData } from "@/data";
 import TailwindText from "@/components/TailwindText";
 import { Link } from "expo-router";
 import ResourcesHeader from "@/components/ResourcesHeader";
+import ThemeContext from "@/app/context/ThemeContext";
 
 export default function index() {
   const [tabs, setTabs] = useState([
@@ -32,14 +33,20 @@ export default function index() {
   ]);
 
   const [activeTab, setActiveTab] = useState("All");
+  const { isDarkMode } = useContext<any>(ThemeContext);
 
   return (
     <Header className="bg-white">
       <ResourcesHeader text="Blog" />
       <FullImage width={screenWidth} source={blogheader} height={164} />
 
-      <ScrollView horizontal>
-        <View className="flex flex-row py-3 px-6 border-b border-ash_200">
+      <ScrollView
+        horizontal
+        contentContainerStyle={{
+          backgroundColor: isDarkMode ? "black" : "white",
+        }}
+      >
+        <View className="flex flex-row py-3 px-6 border-b border-ash_200 dark:border-ash_600">
           {tabs.map(({ id, name }) => (
             <Pressable key={id} onPress={() => setActiveTab(name)}>
               <View className="mr-3">
@@ -47,10 +54,24 @@ export default function index() {
                   title={name}
                   variant="secondary"
                   style={{
-                    backgroundColor: activeTab === name ? "#02387c" : "#fff",
+                    backgroundColor:
+                      activeTab === name
+                        ? isDarkMode
+                          ? CustomColor.orange
+                          : CustomColor.blue_300
+                        : isDarkMode
+                        ? CustomColor.black
+                        : CustomColor.white,
                   }}
                   textStyle={{
-                    color: activeTab === name ? CustomColor.white : "#00397F",
+                    color:
+                      activeTab === name
+                        ? isDarkMode
+                          ? CustomColor.primary
+                          : CustomColor.white
+                        : isDarkMode
+                        ? CustomColor.sky_blue
+                        : CustomColor.blue_300,
                   }}
                 />
               </View>
@@ -59,36 +80,41 @@ export default function index() {
         </View>
       </ScrollView>
 
-      {blogPostsData?.map(({ id, author, category, date, image, name }) => {
-        return (
-          <View
-            key={id}
-            className="flex flex-row items-center mb-2 border-b border-[#d9d9d9] h-24"
-          >
-            <Image source={image} className="w-24 h-24 mr-6" />
+      <View className="dark:bg-black">
+        {blogPostsData?.map(({ id, author, category, date, image, name }) => {
+          return (
+            <View
+              key={id}
+              className="flex dark:bg-dark_mode flex-row items-center mb-2 border-b border-[#d9d9d9] dark:border-ash_600 h-24"
+            >
+              <Image source={image} className="w-24 h-24 mr-6" />
 
-            <Link href={`resources/blogs/123`}>
-              <View>
-                <TailwindText variant="subHeading3" className="pb-2">
-                  {name}
-                </TailwindText>
+              <Link href={`resources/blogs/123`}>
+                <View>
+                  <TailwindText variant="subHeading3" className="pb-2">
+                    {name}
+                  </TailwindText>
 
-                <View className="flex flex-row items-center">
-                  <TailwindText variant="footer" className="pr-2">
-                    {author}
-                  </TailwindText>
-                  <View className="h-3 w-[1px] bg-black"></View>
-                  <TailwindText variant="footer" className="pl-2 text-blue_100">
-                    {category}
-                  </TailwindText>
+                  <View className="flex flex-row items-center">
+                    <TailwindText variant="footer" className="pr-2">
+                      {author}
+                    </TailwindText>
+                    <View className="h-3 w-[1px] bg-black"></View>
+                    <TailwindText
+                      variant="footer"
+                      className="pl-2 text-blue_100"
+                    >
+                      {category}
+                    </TailwindText>
+                  </View>
+
+                  <TailwindText variant="footer">{date}</TailwindText>
                 </View>
-
-                <TailwindText variant="footer">{date}</TailwindText>
-              </View>
-            </Link>
-          </View>
-        );
-      })}
+              </Link>
+            </View>
+          );
+        })}
+      </View>
     </Header>
   );
 }

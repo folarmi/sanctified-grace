@@ -28,7 +28,7 @@ export default function SinglePodcast() {
 
         <TouchableOpacity
           onPress={() => handleGoBack()}
-          className="pl-8 py-2 border-b border-ash_200 w-full"
+          className="pl-8 py-2 border-b border-ash_200 dark:border-ash_600 dark:bg-dark_mode w-full"
         >
           <Image source={ashCircleArrow} className="w-11 h-11 " />
         </TouchableOpacity>
@@ -36,7 +36,7 @@ export default function SinglePodcast() {
         {singlePodcastsData.map(
           ({ id, img, length, name, summary, uploaded }) => {
             return (
-              <View className="px-6 border-b border-ash_200 py-5">
+              <View className="px-6 dark:bg-dark_mode border-b border-ash_200 dark:border-ash_600 py-5">
                 <View key={id} className="flex flex-row items-center ">
                   <View>
                     <Image
@@ -75,6 +75,3 @@ export default function SinglePodcast() {
     </>
   );
 }
-
-// #115EBC
-// #115EBC

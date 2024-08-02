@@ -25,8 +25,8 @@ export default function index() {
     <Header>
       <SettingsHeader text="Account Settings" />
 
-      <View className="bg-white">
-        <Text className="text-[18px] font-GeorgiaBold pt-6 pl-4">
+      <View className="bg-white dark:bg-dark_mode">
+        <Text className="text-[18px] dark:text-white font-GeorgiaBold pt-6 pl-4">
           User Profile
         </Text>
 
@@ -34,7 +34,7 @@ export default function index() {
           return (
             <View
               key={id}
-              className="flex items-center flex-row px-7 py-4 border-b border-ash_200"
+              className="flex items-center flex-row px-7 py-4 dark:bg-dark_mode border-b border-ash_200 dark:border-ash_600"
             >
               <View className="w-11 h-11 bg-sky_blue flex items-center p-[10px] rounded-full mr-[33px]">
                 <TailwindText variant="bodyText1" className="text-black">
@@ -57,20 +57,22 @@ export default function index() {
         })}
 
         {/* This Device */}
-        <Text className="text-[18px] font-GeorgiaBold pt-6 pl-4">
+        <Text className="text-[18px] dark:text-white font-GeorgiaBold pt-6 pl-4">
           This Device
         </Text>
 
         <MenuMapping items={thisDevice} />
 
         {/* App Settings */}
-        <Text className="text-[18px] font-GeorgiaBold pt-6 pl-4">
+        <Text className="text-[18px] dark:text-white font-GeorgiaBold pt-6 pl-4">
           App Settings
         </Text>
         <MenuMapping items={appSettings} />
 
         {/* More items */}
-        <Text className="text-[18px] font-GeorgiaBold pt-6 pl-4">More</Text>
+        <Text className="text-[18px] dark:text-white font-GeorgiaBold pt-6 pl-4">
+          More
+        </Text>
 
         <MenuMapping items={moreItems} />
 

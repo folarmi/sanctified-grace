@@ -11,7 +11,7 @@ export default function SingleBlog() {
     <Header className="bg-white text-">
       <ResourcesHeader text="Blog Post" />
 
-      <View className="bg-[#fbfbfb] px-6">
+      <View className="bg-[#fbfbfb] dark:bg-black px-6">
         <TailwindText variant="footer" className="text-center pt-8 pb-2">
           1st May, 2024
         </TailwindText>

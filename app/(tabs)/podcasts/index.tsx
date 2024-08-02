@@ -1,5 +1,5 @@
 // import { Text, View } from "react-native";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import FullImage from "@/components/FullImage";
 import { screenWidth } from "@/utils";
 import Header from "@/components/Header";
@@ -10,9 +10,12 @@ import { Link } from "expo-router";
 import TailwindText from "@/components/TailwindText";
 import AudioPlayerHeader from "@/components/AudioPlayerHeader";
 import PodcastAudioPlayer from "@/components/PodcastAudioPlayer";
+import ThemeContext from "@/app/context/ThemeContext";
+import { CustomColor } from "@/components/CustomColor";
 
 export default function index() {
   const [isFullPlayer, setIsFullPlayer] = useState(false);
+  const { isDarkMode } = useContext<any>(ThemeContext);
   return (
     <>
       <AudioPlayerHeader />
@@ -21,7 +24,7 @@ export default function index() {
           <FullImage width={screenWidth} source={podcasts} height={170} />
         )}
 
-        <View className="bg-ash_200 py-8">
+        <View className="bg-ash_200 dark:bg-black py-8">
           {podcastData?.map(({ id, title, summary, img, link }) => {
             return (
               <View key={id} className="flex flex-row ml-[22px] mb-[18px]">
@@ -36,10 +39,12 @@ export default function index() {
                   href={link}
                   style={{
                     elevation: 20,
-                    backgroundColor: "#fff",
+                    backgroundColor: isDarkMode
+                      ? CustomColor.dark_mode
+                      : CustomColor?.white,
                     width: screenWidth - 160,
                   }}
-                  className={`flex justify-center items-center pl-6 rounded-tr-xl rounded-br-xl bg-white mr-[22px]`}
+                  className={`flex justify-center items-center pl-6 rounded-tr-xl rounded-br-xl mr-[22px]`}
                 >
                   <View className="py-6">
                     <TailwindText variant="bodyText1" className="pb-2">

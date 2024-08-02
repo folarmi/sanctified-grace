@@ -7,17 +7,6 @@ export const CustomColor = {
   blue_200: "#216ac4",
   blue_300: "#00397F",
   sky_blue: "#C6DCF7",
+  dark_mode: "#202020",
+  gold_highlight: "#FFF5BD",
 };
-
-// style={{
-//   backgroundColor:
-//     activeTab === name
-//       ? isDarkMode
-//         ? CustomColor.orange
-//         : CustomColor.blue_300
-//       : isDarkMode
-//       ? "#000"
-//       : "#fff",
-// }}
-
-// CustomColor.blue_300

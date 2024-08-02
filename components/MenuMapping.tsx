@@ -11,7 +11,7 @@ export default function MenuMapping({ items }: any) {
         return (
           <View
             key={id}
-            className="flex items-center flex-row px-7 py-4 border-b border-ash_200"
+            className="flex items-center flex-row px-7 py-4 border-b border-ash_200 dark:border-ash_600"
           >
             <View className=" mr-[33px]">
               <Image source={image} className="w-11 h-11" />

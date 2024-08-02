@@ -24,6 +24,7 @@ export default function TabLayout() {
           height: 88,
           borderTopRightRadius: 12,
           borderTopLeftRadius: 12,
+          backgroundColor: isDarkMode ? CustomColor.black : CustomColor.white,
         },
         tabBarLabelStyle: {
           fontSize: 12,
@@ -57,6 +58,7 @@ export default function TabLayout() {
             height: 88,
             borderTopRightRadius: 12,
             borderTopLeftRadius: 12,
+            backgroundColor: isDarkMode ? CustomColor.black : CustomColor.white,
           },
         }}
       />

@@ -9,8 +9,8 @@ export default function bookSummary() {
   const router = useRouter();
   return (
     <View className="">
-      <View className="bg-ash_300">
-        <View className="mt-12 border-b border-ash_200">
+      <View className="bg-ash_300 dark:bg-dark_mode">
+        <View className="mt-12 border-b border-ash_200 dark:border-ash_600">
           <Pressable onPress={router.back} className="ml-5">
             <Image source={blackArrow} className="w-11 h-11" />
           </Pressable>
@@ -21,7 +21,7 @@ export default function bookSummary() {
         </View>
       </View>
 
-      <View className="px-5 bg-white py-5 border-b border-ash_200">
+      <View className="px-5 bg-white dark:bg-dark_mode py-5 border-b border-ash_200">
         <TailwindText variant="headingOne" className="w-[341px]">
           Directions for Daily Communion with God
         </TailwindText>
