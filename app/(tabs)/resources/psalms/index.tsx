@@ -21,7 +21,7 @@ import { useRouter } from "expo-router";
 import whiteIndex from "@/assets/images/whiteIndex.png";
 import blueIndex from "@/assets/images/blueIndex.png";
 
-export default function index() {
+export default function Index() {
   const router = useRouter();
   const handleSelect = (pdfId: string) => {
     router.push(`${pdfId}`);
@@ -108,9 +108,9 @@ export default function index() {
           <View className="mt-4">
             {psalmsAndHymnsData?.map((item, index) => {
               return (
-                <View key={index}>
+                <View key={item.category}>
                   <TouchableOpacity
-                    key={index}
+                    key={item?.category}
                     onPress={() => toggleHymns(item.category)}
                   >
                     <View
@@ -127,23 +127,23 @@ export default function index() {
                           variant="bodyText1"
                           style={{
                             color:
-                              selectedTheme === item.category && showHymns
+                              selectedTheme === item?.category && showHymns
                                 ? "#FFFFFF"
                                 : "#000",
                           }}
                         >
-                          {capitalizeEachWord(item.category)}
+                          {capitalizeEachWord(item?.category)}
                         </TailwindText>
                         <TailwindText
                           variant="footer"
                           style={{
                             color:
-                              selectedTheme === item.category && showHymns
+                              selectedTheme === item?.category && showHymns
                                 ? "#FFFFFF"
                                 : "#000",
                           }}
                         >
-                          {item.psalms}
+                          {item?.psalms}
                         </TailwindText>
                       </View>
 
@@ -160,7 +160,7 @@ export default function index() {
                       <FlatList
                         data={item.hymns}
                         scrollEnabled={false}
-                        keyExtractor={(item) => item.id}
+                        keyExtractor={(item) => item.title}
                         renderItem={({ item }) => (
                           <TouchableOpacity
                             className="border-b border-ash_200 py-3 pl-10 bg-white"

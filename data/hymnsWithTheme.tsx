@@ -254,8 +254,8 @@ export const psalmsAndHymnsData = [
       },
       {
         id: "51",
-        title: "32_3_Blessèd_are_they,_supremely_blest.pdf",
-        path: require("@/assets/hymnsTwo/32_3_Blessèd_are_they,_supremely_blest.pdf"),
+        title: "32_3_Blessed_are_they,_supremely_blest.pdf",
+        path: require("@/assets/hymnsTwo/32_3_Blessed_are_they,_supremely_blest.pdf"),
       },
       {
         id: "52",
@@ -1946,8 +1946,8 @@ export const psalmsAndHymnsData = [
       },
       {
         id: "370",
-        title: "253_Extended_on_a_cursèd_tree.pdf",
-        path: require("@/assets/hymnsTwo/253_Extended_on_a_cursèd_tree.pdf"),
+        title: "253_Extended_on_a_cursed_tree.pdf",
+        path: require("@/assets/hymnsTwo/253_Extended_on_a_cursed_tree.pdf"),
       },
       {
         id: "371",
@@ -2112,8 +2112,8 @@ export const psalmsAndHymnsData = [
       },
       {
         id: "402",
-        title: "285_Hail!_Thou_once_despisèd_Jesus.pdf",
-        path: require("@/assets/hymnsTwo/285_Hail!_Thou_once_despisèd_Jesus.pdf"),
+        title: "285_Hail!_Thou_once_despised_Jesus.pdf",
+        path: require("@/assets/hymnsTwo/285_Hail!_Thou_once_despised_Jesus.pdf"),
       },
       {
         id: "403",
@@ -3113,8 +3113,8 @@ export const psalmsAndHymnsData = [
       },
       {
         id: "583",
-        title: "465_Jesus,_our_best_belovèd_Friend.pdf",
-        path: require("@/assets/hymnsTwo/465_Jesus,_our_best_belovèd_Friend.pdf"),
+        title: "465_Jesus,_our_best_beloved_Friend.pdf",
+        path: require("@/assets/hymnsTwo/465_Jesus,_our_best_beloved_Friend.pdf"),
       },
       {
         id: "584",
@@ -3632,8 +3632,8 @@ export const psalmsAndHymnsData = [
       },
       {
         id: "676",
-        title: "557_Blessèd_are_the_sons_of_God.pdf",
-        path: require("@/assets/hymnsTwo/557_Blessèd_are_the_sons_of_God.pdf"),
+        title: "557_Blessed_are_the_sons_of_God.pdf",
+        path: require("@/assets/hymnsTwo/557_Blessed_are_the_sons_of_God.pdf"),
       },
       {
         id: "677",
@@ -3758,8 +3758,8 @@ export const psalmsAndHymnsData = [
       },
       {
         id: "700",
-        title: "581_My_best-belovèd_keeps_His_throne.pdf",
-        path: require("@/assets/hymnsTwo/581_My_best-belovèd_keeps_His_throne.pdf"),
+        title: "581_My_best-beloved_keeps_His_throne.pdf",
+        path: require("@/assets/hymnsTwo/581_My_best-beloved_keeps_His_throne.pdf"),
       },
       {
         id: "701",

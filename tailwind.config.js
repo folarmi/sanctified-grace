@@ -40,19 +40,3 @@ module.exports = {
   },
   plugins: [],
 };
-
-<View
-  style={tailwind(
-    "w-full flex flex-row items-center justify-between bg-red-900 p-4 border-b border-gray-200 pt-8"
-  )}
->
-  <View style={tailwind("flex flex-row items-center")}>
-    <TouchableOpacity onPress={handleGoBack}>
-      <Image source={leftArrow} style={tailwind("w-6 h-6 mr-3")} />
-    </TouchableOpacity>
-    <TailwindText variant="subHeading1">Psalms & Hymns</TailwindText>
-  </View>
-  <View>
-    <Image source={defaultAvatar} style={tailwind("w-11 h-11")} />
-  </View>
-</View>;
