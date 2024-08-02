@@ -422,7 +422,7 @@ export const accessibilityData = [
   {
     id: 1,
     name: "Display",
-    action: "Light Mode",
+    action: "Font Mode",
   },
   {
     id: 2,
