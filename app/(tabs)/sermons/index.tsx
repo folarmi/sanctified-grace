@@ -85,7 +85,9 @@ const Sermons = () => {
 
             <ScrollView
               contentContainerStyle={{
-                backgroundColor: isDarkMode ? "black" : "white",
+                backgroundColor: isDarkMode
+                  ? CustomColor.black
+                  : CustomColor.white,
               }}
               horizontal
             >

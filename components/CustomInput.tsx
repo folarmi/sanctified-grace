@@ -53,7 +53,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
       <View className="flex flex-row">
         <View className="w-full">
           <TextInput
-            className={`border border-blue_100 rounded-lg p-2 text-sm font-MontserratLight ${
+            className={`border dark:text-white border-blue_100 rounded-lg p-2 text-sm font-MontserratLight ${
               error ? "border-red-500" : "border-gray-300"
             }`}
             onChangeText={onChange}

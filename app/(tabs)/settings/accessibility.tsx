@@ -7,6 +7,8 @@ import { Image, View } from "react-native";
 import downArrow from "@/assets/images/downArrow.png";
 import CustomSwitchButton from "@/components/CustomSwitchButton";
 import ThemeContext from "@/app/context/ThemeContext";
+import { screenHeight } from "@/utils";
+import { CustomColor } from "@/components/CustomColor";
 
 const Accessibility = () => {
   const themeContext = useContext(ThemeContext);
@@ -18,15 +20,23 @@ const Accessibility = () => {
   const { isDarkMode, toggleTheme } = themeContext;
 
   return (
-    <Header className="bg-white">
+    <Header>
       <SettingsHeader text="Accessibility" />
 
-      <View className=" bg-white">
+      <View
+        className="h-full"
+        style={{
+          height: screenHeight,
+          backgroundColor: isDarkMode
+            ? CustomColor.dark_mode
+            : CustomColor?.white,
+        }}
+      >
         {accessibilityData?.map(({ id, name, action }) => {
           return (
             <View
               key={id}
-              className="flex flex-row items-center justify-between px-6 pt-3 pb-[22px] border-b border-ash_500"
+              className="flex flex-row items-center justify-between px-6 pt-3 pb-[22px] border-b border-ash_500 dark:border-ash_600"
             >
               <View className="">
                 <TailwindText variant="footer" className="pb-2 text-blue_100">

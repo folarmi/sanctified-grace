@@ -12,7 +12,6 @@ import { AppContext } from "@/context/AppContext";
 
 export default function userProfile() {
   const { userInfo } = useContext(AppContext);
-  console.log("hjhh", userInfo);
 
   // const getUserObject = async () => {
   //   try {
@@ -29,10 +28,10 @@ export default function userProfile() {
   });
 
   return (
-    <Header className="bg-white">
+    <Header className="">
       <SettingsHeader text="User Profile" />
 
-      <View className={`bg-white h-{${screenHeight}}`}>
+      <View className={`bg-white dark:bg-dark_mode h-{${screenHeight}}`}>
         <View className="flex justify-center items-center">
           <Image source={defaultAvatar} className="w-[83px] h-[83px] my-5" />
           <TailwindText variant="bodyText1" className="pb-9">
