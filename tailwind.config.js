@@ -23,6 +23,7 @@ module.exports = {
         primary: "#001229",
         blue_100: "#216bc4",
         blue_200: "#00397F",
+        blue_300: "#E8F1FD",
         navy_blue: "#02387c",
         dark_blue: "#001328",
       },

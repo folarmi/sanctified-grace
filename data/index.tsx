@@ -130,24 +130,28 @@ export const appSettings = [
     name: "Accessibility",
     sub: "display & interaction controls",
     image: access,
+    link: "accessibility",
   },
   {
     id: 3,
     name: "Terms of Use",
     sub: "Access your notes",
     image: termsOfuse,
+    link: "notifications",
   },
   {
     id: 4,
     name: "Privacy Policy",
     sub: "Access your downloads",
     image: privacy,
+    link: "notifications",
   },
   {
     id: 5,
     name: "About",
     sub: "App version 1.0",
     image: aboutInfo,
+    link: "notifications",
   },
 ];
 
@@ -157,18 +161,21 @@ export const moreItems = [
     name: "Share Grace Multiplied App",
     sub: "Get a link to share the app",
     image: share,
+    link: "notifications",
   },
   {
     id: 2,
     name: "Feedback",
     sub: "Provide Feedback on the App Store",
     image: feedback,
+    link: "notifications",
   },
   {
     id: 3,
     name: "Help",
     sub: "Access your downloads",
     image: help,
+    link: "notifications",
   },
 ];
 
@@ -411,51 +418,26 @@ export const blogPostsData = [
   },
 ];
 
-export const psalmsAndHymnsData = [
+export const accessibilityData = [
   {
     id: 1,
-    name: "The Spirit of the Psalms",
-    psalms: "Hymns 1 - 150",
+    name: "Display",
+    action: "Light Mode",
   },
   {
     id: 2,
-    name: "Adoration of the Triune God",
-    psalms: "Hymns 151 - 158",
+    name: "Theme",
+    action: "Light Mode",
   },
   {
     id: 3,
-    name: "God the Father",
-    psalms: "Hymns 159 - 189",
+    name: "Screen readers",
+    action: "Text-to-speech output",
   },
   {
     id: 4,
-    name: "God the Father",
-    psalms: "Hymns 159 - 189",
-  },
-  {
-    id: 5,
-    name: "The Lord Jesus Christ",
-    psalms: "Hymns 190 - 308",
-  },
-  {
-    id: 6,
-    name: "The Lord Jesus Christ",
-    psalms: "Hymns 190 - 308",
-  },
-  {
-    id: 7,
-    name: "The Holy Spirit",
-    psalms: "Hymns 309 - 328",
-  },
-  {
-    id: 8,
-    name: "The Holy Scriptures",
-    psalms: "Hymns 309 - 328",
-  },
-  {
-    id: 9,
-    name: "The Gospel Call",
-    psalms: "Hymns 339 - 418",
+    name: "Select your Language",
+    action: "English (UK)",
   },
 ];
 
