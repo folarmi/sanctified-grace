@@ -24,7 +24,8 @@ import blueIndex from "@/assets/images/blueIndex.png";
 export default function Index() {
   const router = useRouter();
   const handleSelect = (pdfId: string) => {
-    router.push(`${pdfId}`);
+    // router.push(`${pdfId}`);
+    router.push(`resources/psalms/${pdfId}`);
   };
   const [tabs, setTabs] = useState([
     {
@@ -191,5 +192,3 @@ export default function Index() {
     </View>
   );
 }
-
-// box-shadow: 0px 8px 7.4px 0px #0000006B inset;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, ActivityIndicator, Text } from "react-native";
+import { View, Text } from "react-native";
 import { WebView } from "react-native-webview";
 import * as FileSystem from "expo-file-system";
 import { Asset } from "expo-asset";

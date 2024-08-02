@@ -8,7 +8,8 @@ import { hymnObjects } from "@/data/pdfFilesThree";
 const PDFListScreen: React.FC = () => {
   const router = useRouter();
   const handleSelect = (pdfId: string) => {
-    router.push(`${pdfId}`);
+    // router.push(`${pdfId}`);
+    router.push(`resources/psalms/${pdfId}`);
   };
 
   return (

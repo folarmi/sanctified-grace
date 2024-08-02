@@ -101,12 +101,12 @@ export default function TabLayout() {
           title: "PDF List",
         }}
       />
-      <Tabs.Screen
+      {/* <Tabs.Screen
         name="[id]"
         options={{
           href: null,
         }}
-      />
+      /> */}
     </Tabs>
   );
 }

@@ -47,11 +47,6 @@ export function capitalizeEachWord(sentence: string) {
     .join(" ");
 }
 
-// Example usage:
-const sentence = "this is an example sentence";
-const capitalizedSentence = capitalizeEachWord(sentence);
-console.log(capitalizedSentence); // Output: "This Is An Example Sentence"
-
 export const replaceString = (str: string, value: string) => {
   if (!str) return str;
   str.replace(",", value);
