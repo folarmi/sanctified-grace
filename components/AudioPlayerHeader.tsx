@@ -11,7 +11,7 @@ export default function AudioPlayerHeader() {
   return (
     <>
       {!isFullPlayer && (
-        <View className="relative z-10 py-4 px-6 bg-white border-b border-gray-200">
+        <View className="relative z-10 py-4 px-6 bg-white dark:bg-black border-b border-gray-200 dark:border-ash_600">
           <View className="flex flex-row justify-between items-center mt-8">
             <Image source={logo} className="w-24 h-9" />
             {/* Adjusted logo size */}

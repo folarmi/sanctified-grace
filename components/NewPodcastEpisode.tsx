@@ -7,7 +7,7 @@ import ArrowText from "./ArrowText";
 
 export default function NewPodcastEpisode() {
   return (
-    <View className="mt-10 px-6 pb-10 border-b border-ash_200">
+    <View className="mt-10 px-6 pb-10 border-b border-ash_200 dark:border-ash_600">
       <TailwindText variant="subHeading1">New Podcast Episode</TailwindText>
 
       <View style={{ width: "100%" }}>
@@ -24,15 +24,12 @@ export default function NewPodcastEpisode() {
           elevation: 20,
           shadowColor: "#000",
         }}
-        className="shadow-2xl bg-white rounded-b-2xl px-4"
+        className="shadow-2xl bg-white dark:bg-dark_mode rounded-b-2xl px-4"
       >
         <TailwindText variant="bodyText1" className="pt-3">
           The Trinity & Man’s Salvation
         </TailwindText>
-        <TailwindText
-          variant="bodyTextTwo"
-          className=" leading-6 text-justify pb-6"
-        >
+        <TailwindText variant="footer" className="leading-6 text-justify pb-6">
           This week, Pastor Osagie dives into the mystery of the Trinity, and
           how it pertains to the Gospel, the salvation of mankind. How Important
           is this subject? find out!

@@ -30,7 +30,7 @@ any) {
       style={{
         elevation: 5,
       }}
-      className="abolute bottom-0 left-0 right-0 z-100 bg-white rounded-xl"
+      className="abolute bottom-0 left-0 right-0 z-100 bg-white dark:bg-black rounded-xl"
     >
       {isFullPlayer ? (
         <SingleSermon />

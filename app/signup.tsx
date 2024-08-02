@@ -58,7 +58,7 @@ export default function signup() {
   };
 
   return (
-    <ScrollViewLayout className="bg-white">
+    <ScrollViewLayout className="bg-white dark:bg-dark_mode">
       <View style={{ width: "100%" }}>
         <Image
           source={signupHeader}

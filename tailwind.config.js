@@ -7,6 +7,7 @@ module.exports = {
     "./app/**/*.{js,tsx,ts,tsx}",
   ],
   presets: [require("nativewind/preset")],
+  darkMode: "media",
   theme: {
     extend: {
       colors: {
@@ -16,6 +17,7 @@ module.exports = {
         ash_300: "#878787",
         ash_400: "#f2f2f2",
         ash_500: "#F0F0F0",
+        ash_600: "#4D4D4D",
         orange_100: "#F9AF1C",
         ash_200: "#E8E8E8",
         ash_300: "#f0f0f0",
@@ -26,6 +28,8 @@ module.exports = {
         blue_300: "#E8F1FD",
         navy_blue: "#02387c",
         dark_blue: "#001328",
+        dark_mode: "#202020",
+        gold_highlight: "#FFF5BD",
       },
       fontFamily: {
         Georgia: ["Georgia"],

@@ -2,17 +2,20 @@ import Header from "@/components/Header";
 import SettingsHeader from "@/components/SettingsHeader";
 import TailwindText from "@/components/TailwindText";
 import { accessibilityData } from "@/data";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Image, View } from "react-native";
 import downArrow from "@/assets/images/downArrow.png";
 import CustomSwitchButton from "@/components/CustomSwitchButton";
+import ThemeContext from "@/app/context/ThemeContext";
 
 const Accessibility = () => {
-  const [isOn, setIsOn] = useState(false);
+  const themeContext = useContext(ThemeContext);
 
-  const toggleSwitch = () => {
-    setIsOn((previousState) => !previousState);
-  };
+  if (!themeContext) {
+    throw new Error("ThemeContext must be used within a ThemeProvider");
+  }
+
+  const { isDarkMode, toggleTheme } = themeContext;
 
   return (
     <Header className="bg-white">
@@ -37,7 +40,10 @@ const Accessibility = () => {
               )}
 
               {name === "Theme" && (
-                <CustomSwitchButton isOn={isOn} toggleSwitch={toggleSwitch} />
+                <CustomSwitchButton
+                  isOn={isDarkMode}
+                  toggleSwitch={toggleTheme}
+                />
               )}
             </View>
           );

@@ -30,41 +30,41 @@ interface TailwindTextProps extends RNTextProps {
 const getBaseClasses = (variant: Variant) => {
   switch (variant) {
     case "heading0":
-      return "font-GeorgiaBold text-[64px] font-medium";
+      return "font-GeorgiaBold text-[64px] font-medium dark:text-white";
     case "heading1":
-      return "font-GeorgiaBold text-5xl font-medium";
+      return "font-GeorgiaBold text-5xl font-medium dark:text-white";
     case "headingOne":
-      return "font-GeorgiaBold text-2xl";
+      return "font-GeorgiaBold text-2xl dark:text-white";
     case "headingTwo":
-      return "font-GeorgiaBold text-xl";
+      return "font-GeorgiaBold text-xl dark:text-white";
     case "subHeading1":
-      return "text-4xl font-GeorgiaBold";
+      return "text-4xl font-GeorgiaBold dark:text-white";
     case "subHeading2":
-      return "text-2xl font-MontserratSemiBold";
+      return "text-2xl font-MontserratSemiBold dark:text-white";
     case "subHeadingTwo":
-      return "text-xl font-MontserratSemiBold";
+      return "text-xl font-MontserratSemiBold dark:text-white";
     case "subHeading3":
-      return "text-sm font-MontserratSemiBold";
+      return "text-sm font-MontserratSemiBold dark:text-white";
     case "subHeading4":
-      return "text-xs font-GeorgiaBold";
+      return "text-xs font-GeorgiaBold dark:text-white";
     case "subHeading5":
-      return "text-xs font-normal font-Georgia";
+      return "text-xs font-normal font-Georgia dark:text-white";
     case "bodyText1":
-      return "text-base font-MontserratMedium";
+      return "text-base font-MontserratMedium dark:text-white";
     case "bodyText2":
-      return "text-sm font-MontserratLight";
+      return "text-sm font-MontserratLight dark:text-white";
     case "bodyTextTwo":
-      return "text-base font-MontserratLight";
+      return "text-base font-MontserratLight dark:text-white";
     case "bodyText3":
-      return "text-xs font-MontserratLight";
+      return "text-xs font-MontserratLight dark:text-white";
     case "bodyText4":
-      return "text-xs font-MontserratMedium";
+      return "text-xs font-MontserratMedium dark:text-white";
     case "bodyText5":
-      return "text-sm font-MontserratMedium";
+      return "text-sm font-MontserratMedium dark:text-white";
     case "bodyText6":
-      return "text-sm font-MontserratLight";
+      return "text-sm font-MontserratLight dark:text-white";
     case "footer":
-      return "text-xs font-MontserratLight";
+      return "text-xs font-MontserratLight dark:text-white";
     default:
       return "";
   }

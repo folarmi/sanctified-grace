@@ -2,16 +2,12 @@ import { SplashScreen, Stack } from "expo-router";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { useEffect } from "react";
 import { useFonts } from "expo-font";
-import {
-  DarkTheme,
-  DefaultTheme,
-  ThemeProvider,
-} from "@react-navigation/native";
 import "../global.css";
 import QueryClientContextProvider from "./lib/QueryClientContextProvider";
 import { ToastProvider } from "react-native-toast-notifications";
 import { AppProvider } from "@/context/AppContext";
 import { AudioPlayerProvider } from "@/context/AudioPlayerContext";
+import ThemeProvider from "./context/ThemeProvider";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -38,7 +34,8 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === "dark" ? DefaultTheme : DefaultTheme}>
+    // <ThemeProvider value={colorScheme === "dark" ? DefaultTheme : DefaultTheme}>
+    <ThemeProvider>
       <AppProvider>
         <AudioPlayerProvider>
           <QueryClientContextProvider>

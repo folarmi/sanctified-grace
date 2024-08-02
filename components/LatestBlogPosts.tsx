@@ -27,7 +27,7 @@ export default function LatestBlogPosts() {
           elevation: 20,
           shadowColor: "#000",
         }}
-        className="shadow-2xl bg-white rounded-b-2xl px-4"
+        className="shadow-2xl bg-white dark:bg-dark_mode rounded-b-2xl px-4"
       >
         <TailwindText variant="subHeadingTwo" className="pt-6 pb-4">
           Finding the Right Church Family for You

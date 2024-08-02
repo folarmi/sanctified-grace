@@ -422,12 +422,12 @@ export const accessibilityData = [
   {
     id: 1,
     name: "Display",
-    action: "Font Mode",
+    action: "Font Size",
   },
   {
     id: 2,
     name: "Theme",
-    action: "Light Mode",
+    action: "Dark Mode",
   },
   {
     id: 3,

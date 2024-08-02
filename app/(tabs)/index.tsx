@@ -1,5 +1,5 @@
 import { Image, ScrollView, StyleSheet, View } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Header from "@/components/Header";
 import midYear from "@/assets/images/midYear.png";
 import { capitalizeFirstLetter, replaceString, screenWidth } from "@/utils";
@@ -15,7 +15,7 @@ import { useQuery } from "@tanstack/react-query";
 import api from "../lib/axios";
 import Loader from "@/components/Loader";
 import ImageCarousel from "@/components/ImageCarousel";
-import ImageComponent from "@/components/ImageComponent";
+import yellowArrow from "@/assets/images/yellowArrow.png";
 
 export default function index() {
   const [imageUrls, setImageUrls] = useState<any>([]);
@@ -49,27 +49,34 @@ export default function index() {
     },
   });
 
-  // console.log("sermons", getAllSermonsQuery?.data?.data);
-  // console.log("event", getEvent?.data?.data);
   return (
     <>
       {getAllSermonsQuery.isLoading ? (
         <Loader loading={getAllSermonsQuery?.isLoading} />
       ) : (
-        <Header className="bg-white">
+        <Header className="bg-white dark:bg-black">
           {imageUrls.length > 0 ? (
             <ImageCarousel images={imageUrls} />
           ) : (
             <FullImage width={screenWidth} source={midYear} height={256} />
           )}
 
-          <View className="bg-white pt-14">
+          <View className="bg-white dark:bg-black pt-14">
             <View className="flex flex-row justify-between items-center px-6 mb-4">
               <TailwindText variant="subHeading1">Recent Sermons</TailwindText>
-              <Link href="sermons">
-                <TailwindText variant="bodyText5" className="text-orange_100">
+              <Link href="sermons" className="flex flex-row">
+                <TailwindText
+                  variant="bodyText5"
+                  style={{
+                    color: "#F9AF1C",
+                  }}
+                >
                   See All
                 </TailwindText>
+                <Image
+                  source={yellowArrow}
+                  className="w-[18px] h-[18px] pl-2"
+                />
               </Link>
             </View>
 
@@ -80,7 +87,7 @@ export default function index() {
                 flexDirection: "row",
               }}
               horizontal
-              className="flex flex-row pl-6 pb-10 border-b border-ash_200"
+              className="flex flex-row pl-6 pb-10 border-b border-ash_200 dark:border-ash_600"
             >
               {recentSermons.map(
                 ({ id, image, bibleText, preacher, title }) => {
@@ -124,10 +131,20 @@ export default function index() {
               <TailwindText variant="subHeading1" className="">
                 Sermons
               </TailwindText>
-              <Link href="sermons">
-                <TailwindText variant="bodyText5" className="text-orange_100 ">
+
+              <Link href="sermons" className="flex flex-row">
+                <TailwindText
+                  variant="bodyText5"
+                  style={{
+                    color: "#F9AF1C",
+                  }}
+                >
                   See All
                 </TailwindText>
+                <Image
+                  source={yellowArrow}
+                  className="w-[18px] h-[18px] pl-2"
+                />
               </Link>
             </View>
 
@@ -137,7 +154,7 @@ export default function index() {
                 flexDirection: "row",
               }}
               horizontal
-              className="flex flex-row pl-6 pb-10 border-b border-ash_200"
+              className="flex flex-row pl-6 pb-10 border-b border-ash_200 dark:border-ash_600"
             >
               {getAllSermonsQuery.data?.data?.sermons?.map((item: any) => {
                 return (

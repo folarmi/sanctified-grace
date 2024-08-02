@@ -1,9 +1,4 @@
-import {
-  capitalizeFirstLetter,
-  formatDate,
-  replaceString,
-  screenWidth,
-} from "@/utils";
+import { capitalizeFirstLetter, formatDate, screenWidth } from "@/utils";
 import FullImage from "@/components/FullImage";
 import sermonHeader from "@/assets/images/sermonHeader.png";
 import CustomButton from "@/components/CustomButton";
@@ -27,16 +22,14 @@ import AudioPlayerHeader from "@/components/AudioPlayerHeader";
 import AudioPlayer from "@/components/AudioPlayer";
 import Loader from "@/components/Loader";
 import { AudioPlayerContext } from "@/context/AudioPlayerContext";
+import ThemeContext from "@/app/context/ThemeContext";
 
 const Sermons = () => {
   const { isFullPlayer } = useContext(AppContext);
-  const {
-    setPlaylist,
-    playPauseSound,
-    setCurrentIndex,
-    loadSound,
-    setIsPlaying,
-  } = useContext(AudioPlayerContext);
+  const { isDarkMode } = useContext<any>(ThemeContext);
+
+  const { setPlaylist, playPauseSound, setCurrentIndex } =
+    useContext(AudioPlayerContext);
   const getAllSermonsQuery = useQuery({
     queryKey: ["getAllSermons"],
     queryFn: async () => {
@@ -92,7 +85,7 @@ const Sermons = () => {
 
             <ScrollView
               contentContainerStyle={{
-                backgroundColor: "white",
+                backgroundColor: isDarkMode ? "black" : "white",
               }}
               horizontal
             >
@@ -105,11 +98,23 @@ const Sermons = () => {
                         variant="secondary"
                         style={{
                           backgroundColor:
-                            activeTab === name ? "#02387c" : "#fff",
+                            activeTab === name
+                              ? isDarkMode
+                                ? CustomColor.orange
+                                : CustomColor.blue_300
+                              : isDarkMode
+                              ? CustomColor.black
+                              : CustomColor.white,
                         }}
                         textStyle={{
                           color:
-                            activeTab === name ? CustomColor.white : "#00397F",
+                            activeTab === name
+                              ? isDarkMode
+                                ? CustomColor.primary
+                                : CustomColor.white
+                              : isDarkMode
+                              ? CustomColor.sky_blue
+                              : CustomColor.blue_300,
                         }}
                       />
                     </View>
@@ -128,12 +133,12 @@ const Sermons = () => {
                           key={item?._id}
                           onPress={() => handleSongPress(index)}
                         >
-                          <View className="flex flex-row items-center px-7 py-4 border-b border-ash_200">
+                          <View className="flex flex-row items-center px-7 py-4 border-b border-ash_200 dark:border-ash_600 dark:bg-dark_mode">
                             <View className="mr-6">
                               <TailwindText variant="bodyText3">
                                 {formatDate(item?.preacher?.createdAt).month}
                               </TailwindText>
-                              <Text className="text-[40px] font-MontserratLight">
+                              <Text className="text-[40px] font-MontserratLight dark:text-white">
                                 {formatDate(item?.preacher?.createdAt).day}
                               </Text>
                             </View>

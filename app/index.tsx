@@ -9,7 +9,7 @@ import "expo-router/entry";
 
 export default function Index() {
   return (
-    <ScrollViewLayout className="bg-white">
+    <ScrollViewLayout className="bg-white dark:bg-dark_mode">
       <View className="">
         <View style={{ width: "100%" }}>
           <Image

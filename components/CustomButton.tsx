@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   TouchableOpacity,
   Text,
@@ -9,6 +9,7 @@ import {
 import { CustomColor } from "./CustomColor";
 import { Link } from "expo-router";
 import { BallIndicator } from "react-native-indicators";
+import ThemeContext from "@/app/context/ThemeContext";
 
 type CustomButtonProps = {
   onPress?: () => void;
@@ -67,6 +68,8 @@ const CustomButton = ({
     );
   }
 
+  const { isDarkMode } = useContext<any>(ThemeContext);
+
   // return ButtonContent;
   return (
     <TouchableOpacity
@@ -93,6 +96,7 @@ const styles = StyleSheet.create({
   },
   secondaryButton: {
     backgroundColor: CustomColor.white,
+    // borderColor: isDarkMode ? CustomColor.sky_blue : CustomColor.blue_200,
     borderColor: CustomColor.blue_200,
     borderWidth: 1,
   },
