@@ -37,7 +37,7 @@
 
 import React, { useState, useEffect, ReactNode, useCallback } from "react";
 import ThemeContext, { ThemeContextType } from "./ThemeContext";
-import { Appearance } from "react-native";
+import { Appearance, ColorSchemeName } from "react-native";
 import { useColorScheme } from "nativewind";
 
 type Props = {
@@ -45,21 +45,35 @@ type Props = {
 };
 
 const ThemeProvider = ({ children }: Props) => {
-  const { colorScheme, setColorScheme } = useColorScheme();
-  const [isDarkMode, setIsDarkMode] = useState(colorScheme === "dark");
+  const { setColorScheme } = useColorScheme();
+  const [isDarkMode, setIsDarkMode] = useState(
+    Appearance.getColorScheme() === "dark"
+  );
+
+  const handleAppearanceChange = useCallback(
+    (preferences: { colorScheme: ColorSchemeName }) => {
+      const { colorScheme } = preferences;
+      if (colorScheme === "dark" || colorScheme === "light") {
+        setIsDarkMode(colorScheme === "dark");
+        setColorScheme(colorScheme); // Synchronize nativewind colorScheme
+      }
+    },
+    [setColorScheme]
+  );
 
   useEffect(() => {
-    const systemColorScheme = Appearance.getColorScheme();
-    setIsDarkMode(systemColorScheme === "dark");
-  }, []);
+    const subscription = Appearance.addChangeListener(handleAppearanceChange);
 
-  useEffect(() => {
-    setColorScheme(isDarkMode ? "dark" : "light");
-  }, [isDarkMode, setColorScheme]);
+    return () => subscription.remove();
+  }, [handleAppearanceChange]);
 
   const toggleTheme = useCallback(() => {
-    setIsDarkMode((prevMode) => !prevMode);
-  }, []);
+    setIsDarkMode((prevMode) => {
+      const newMode = !prevMode;
+      setColorScheme(newMode ? "dark" : "light"); // Synchronize nativewind colorScheme
+      return newMode;
+    });
+  }, [setColorScheme]);
 
   const contextValue: ThemeContextType = {
     isDarkMode,
