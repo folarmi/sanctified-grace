@@ -18,7 +18,9 @@ export default function TabLayout() {
       backBehavior="history"
       screenOptions={{
         tabBarActiveTintColor: CustomColor.orange,
-        tabBarInactiveTintColor: isDarkMode ? "#FFF5BD" : "#02387c",
+        tabBarInactiveTintColor: isDarkMode
+          ? CustomColor.gold_highlight
+          : CustomColor.navy_blue,
         headerShown: false,
         tabBarStyle: {
           height: 88,

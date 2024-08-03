@@ -1,13 +1,15 @@
 import React, { useState, useEffect, ReactNode } from "react";
 import ThemeContext, { ThemeContextType } from "./ThemeContext";
 import { Appearance } from "react-native";
+import { useColorScheme } from "nativewind";
 
 type Props = {
   children: ReactNode;
 };
 
 const ThemeProvider = ({ children }: Props) => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [, setIsDarkMode] = useState(false);
+  const { colorScheme: isDarkMode, toggleColorScheme } = useColorScheme();
 
   useEffect(() => {
     const colorScheme = Appearance.getColorScheme();

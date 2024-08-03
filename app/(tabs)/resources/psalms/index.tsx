@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import TailwindText from "@/components/TailwindText";
 import heart from "@/assets/images/heart.png";
 import ashSearchIcon from "@/assets/images/ashSearchIcon.png";
@@ -20,11 +20,13 @@ import { psalmsAndHymnsData } from "@/data/hymnsWithTheme";
 import { useRouter } from "expo-router";
 import whiteIndex from "@/assets/images/whiteIndex.png";
 import blueIndex from "@/assets/images/blueIndex.png";
+import { CustomColor } from "@/components/CustomColor";
+import ThemeContext from "@/app/context/ThemeContext";
+import DownArrow from "@/assets/svgs/DownArrow";
 
 export default function Index() {
   const router = useRouter();
   const handleSelect = (pdfId: string) => {
-    // router.push(`${pdfId}`);
     router.push(`resources/psalms/${pdfId}`);
   };
   const [tabs, setTabs] = useState([
@@ -42,6 +44,7 @@ export default function Index() {
     "THE SPIRIT OF THE PSALMS"
   );
   const [showHymns, setShowHymns] = useState(false);
+  const { isDarkMode } = useContext<any>(ThemeContext);
 
   const toggleHymns = (category: string) => {
     setSelectedTheme(category);
@@ -50,7 +53,9 @@ export default function Index() {
 
   return (
     <View className="flex">
-      <View className={`absolute top-0 left-0 right-0 z-10 bg-white`}>
+      <View
+        className={`absolute top-0 left-0 right-0 z-10 bg-white dark:bg-black`}
+      >
         <PsalmsAndHymnsHeader />
         <View className="flex flex-row items-center py-3 px-6">
           {tabs.map((item, index) => {
@@ -61,7 +66,13 @@ export default function Index() {
                 className={`w-[167px] py-[10px] px-14 rounded-lg mr-3`}
                 style={{
                   backgroundColor:
-                    isActiveTab === item?.name ? "#216bc4" : "#fff",
+                    isActiveTab === item?.name
+                      ? isDarkMode
+                        ? CustomColor.dark_mode
+                        : CustomColor.blue_100
+                      : isDarkMode
+                      ? CustomColor.dark_mode
+                      : CustomColor.white,
                 }}
               >
                 <View className="flex flex-row items-center">
@@ -74,7 +85,14 @@ export default function Index() {
                   <TailwindText
                     variant="bodyText2"
                     style={{
-                      color: isActiveTab === item.name ? "#fff" : "#02387c",
+                      color:
+                        isActiveTab === item.name
+                          ? isDarkMode
+                            ? CustomColor.ash_500
+                            : CustomColor.white
+                          : isDarkMode
+                          ? CustomColor.ash_500
+                          : CustomColor.navy_blue,
                     }}
                   >
                     {item?.name}
@@ -85,8 +103,8 @@ export default function Index() {
           })}
         </View>
 
-        <View className="bg-white flex flex-row items-center justify-between py-3 px-6 border-t border-b border-b-ash_300 border-t-ash_300">
-          <View className="relative rounded-lg bg-ash_200">
+        <View className="bg-white dark:bg-black flex flex-row items-center justify-between py-3 px-6 border-t border-b border-b-ash_300 border-t-ash_300 dark:border-ash_600">
+          <View className="relative rounded-lg bg-ash_200 dark:bg-ash_600">
             <Image
               source={ashSearchIcon}
               className="w-6 h-6 absolute top-4 ml-4"
@@ -115,22 +133,29 @@ export default function Index() {
                     onPress={() => toggleHymns(item.category)}
                   >
                     <View
-                      className={`flex flex-row items-center justify-between py-5 px-7 border-b border-ash_200`}
+                      className={`flex flex-row items-center justify-between py-5 px-7 border-b border-ash_200 dark:border-ash_600`}
                       style={{
                         backgroundColor:
                           selectedTheme === item.category && showHymns
-                            ? "#00397F"
-                            : "#fff",
+                            ? isDarkMode
+                              ? CustomColor?.dark_mode
+                              : CustomColor?.blue_300
+                            : isDarkMode
+                            ? CustomColor?.dark_mode
+                            : CustomColor?.white,
                       }}
                     >
                       <View>
                         <TailwindText
                           variant="bodyText1"
+                          className="dark:text-white"
                           style={{
                             color:
                               selectedTheme === item?.category && showHymns
-                                ? "#FFFFFF"
-                                : "#000",
+                                ? CustomColor.white
+                                : isDarkMode
+                                ? CustomColor.white
+                                : CustomColor.black,
                           }}
                         >
                           {capitalizeEachWord(item?.category)}
@@ -140,8 +165,10 @@ export default function Index() {
                           style={{
                             color:
                               selectedTheme === item?.category && showHymns
-                                ? "#FFFFFF"
-                                : "#000",
+                                ? CustomColor.white
+                                : isDarkMode
+                                ? CustomColor.white
+                                : CustomColor.black,
                           }}
                         >
                           {item?.psalms}
@@ -151,20 +178,20 @@ export default function Index() {
                       {selectedTheme === item.category && showHymns ? (
                         <Image source={upArrow} className="w-6 h-6" />
                       ) : (
-                        <Image source={downArrow} className="w-6 h-6" />
+                        <DownArrow />
                       )}
                     </View>
                   </TouchableOpacity>
 
                   {selectedTheme === item.category && showHymns && (
-                    <View key={index}>
+                    <View key={index} className="dark:bg-black">
                       <FlatList
                         data={item.hymns}
                         scrollEnabled={false}
                         keyExtractor={(item) => item.title}
                         renderItem={({ item }) => (
                           <TouchableOpacity
-                            className="border-b border-ash_200 py-3 pl-10 bg-white"
+                            className="border-b border-ash_200 dark:border-ash_600 py-3 pl-10 bg-white dark:bg-dark_mode"
                             onPress={() => handleSelect(item.id)}
                           >
                             <TailwindText variant="footer">

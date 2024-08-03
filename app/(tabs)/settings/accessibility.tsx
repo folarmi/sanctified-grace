@@ -19,6 +19,8 @@ const Accessibility = () => {
 
   const { isDarkMode, toggleTheme } = themeContext;
 
+  console.log(isDarkMode);
+
   return (
     <Header>
       <SettingsHeader text="Accessibility" />
